@@ -1,0 +1,195 @@
+<div class="az-content pd-y-20 pd-lg-y-30 pd-xl-y-40">
+    <div class="container-fluid">
+      <div class="az-content-body d-flex flex-column">
+        <div class="row row-xs">
+              <div class="col-md-12">
+              <div class="card bd-0">
+                <div class="card-header tx-medium bd tx-white bg-gray">
+                  <span class="az-content-label">Timeline</span>
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-style2">
+                      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                      <li class="breadcrumb-item"><a routerLink="/task-management">Dashboard</a></li>
+                      <li class="breadcrumb-item" ><a routerLink="/task-management/taskboard">Task Board</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">TImeline</li>
+                    </ol>
+                  </nav>
+                </div><!-- card-header -->
+                <div class="card-body bd bd-t-0 pd-t-10">
+                  <!-- <table></table> -->
+                    <div class="d-flex flex-row justify-content-between mg-b-5 pd-x-20 pd-b-5 row">
+                      <div class="col-md">
+                        <div class="d-flex">
+                          <label class="form-label">Task Name</label>
+                           <span class="az-content-label pd-t-10 mg-t-2 mg-l-8 tx-bold tx-14">{{taskTitle}}</span>
+                         </div>
+                      </div>
+                      <div class="col-md">
+                        <div class="d-flex">
+                          <label class="form-label">Author</label>
+                          <span class="az-content-label pd-t-10 mg-t-2 mg-l-8 tx-bold tx-14">{{taskOwner}}</span>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="d-flex">
+                          <label class="form-label">Due Date</label>
+                          <span class="az-content-label pd-t-10 mg-t-2 mg-l-8 tx-bold tx-14">{{ taskDueDate | date:'MM-dd-yyyy'}}</span>
+                        </div>
+                      </div>
+                      
+                    </div>   
+                      <!-- <div class=" pd-b-20 pd-x-20">
+                        <div class="container mg-t-10">
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="main-timeline">
+                                      <div class="timeline">
+                                          <a class="timeline-content">
+                                              <div class="timeline-icon">
+                                                  <i class="fa fa-calendar-alt"></i>
+                                              </div>
+                                              <span class="timeline-year">2021</span>
+                                              <h4 class="title">11 January, 19:23</h4>
+                                              <p class="description tx-medium">
+                                                  Task yet not completed.
+                                              </p>
+                                          </a>
+                                      </div>
+                                      <div class="timeline">
+                                          <a class="timeline-content">
+                                              <div class="timeline-icon">
+                                                  <i class="fa fa-tasks"></i>
+                                              </div>
+                                              <span class="timeline-year">2021</span>
+                                              <h3 class="title">06 January, 14:59</h3>
+                                              <p class="description tx-medium">
+                                                  Due date reached! 
+                                              </p>
+                                          </a>
+                                      </div>
+                                      <div class="timeline">
+                                        <a class="timeline-content">
+                                            <div class="timeline-icon">
+                                                <i class="fa fa-globe"></i>
+                                            </div>
+                                            <span class="timeline-year">2020</span>
+                                            <h3 class="title">20 December, 08:24</h3>
+                                            <p class="description tx-medium">
+                                                Admin created task "Server Gateway".
+                                            </p>
+                                        </a>
+                                    </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      </div> -->
+
+
+
+                      <!-- <div class="container-fluid d-flex flex-row justify-content-between bg-gray-200 rounded pd-y-3 mg-y-10">
+                        <div class="image-grouped">
+                          <img src="assets/img/faces/face2.jpg" alt="profile image">
+                          <span class="tx-medium pd-t-6 pd-l-6 tx-gray-800">Catherine</span>
+                        </div>
+                        <i class="fa fa-cogs mg-l-auto align-self-center mg-x-10 tx-gray-600"></i>
+                        <div class="align-self-center wd-300">                          
+                          <ngb-progressbar type="success" [value]="100" [striped]="true" [animated]="true" routerLink="timeline"><i>100%</i></ngb-progressbar>
+                        </div>
+                      </div>
+                      <div class="container-fluid timeline-container mg-b-20" >
+                        <ul class="timeline">
+                          <li><span class="year">20 Dec 2020</span>
+                            <ul class="content">
+                              <li><span class="badge badge-dark">08:24 am</span></li>
+                              <li>Admin created task <strong>"Audit department files".</strong></li>                              
+                            </ul>
+                          </li>
+                          <li><span class="year">04 Jan 2021</span>
+                            <ul class="content">
+                              <li><span class="badge badge-dark">11:30 am</span> </li>
+                              <li>Task status changed to In progress.</li>                              
+                            </ul>
+                          </li>
+                          <li><span class="year">10 Jan 2021</span>
+                            <ul class="content">
+                              <li><span class="badge badge-dark">04:45 pm</span></li>
+                              <li>Documents send to GM.</li>
+                            </ul>
+                          </li>  
+                          <li><span class="year">12 Jan 2021</span>
+                            <ul class="content">
+                              <li><span class="badge badge-dark">07:33 am</span> </li>
+                              <li>Files verified by GM.</li>     
+                            </ul>
+                          </li>
+                          <li><span class="year">13 Jan 2021</span>
+                            <ul class="content">
+                              <li><span class="badge badge-dark">07:23 pm</span></li>
+                              <li>Generate Audit reoprt.</li>
+                            </ul>
+                          </li> 
+                          <li><span class="year new completed-task">Completed</span></li>
+                        </ul>
+                      </div> -->
+                  <div *ngIf="timelines.length > 0;">
+                      <div *ngFor="let  timeline of timelines;" >
+                      <div class="container-fluid d-flex flex-row justify-content-between bg-gray-200 rounded pd-y-3 mg-y-10">
+                        <div class="image-grouped">
+                          <span class="tx-medium pd-5 tx-gray-800 text-uppercase">{{timeline.user_name}}</span>
+                        </div>
+                        <i class="fa fa-cogs mg-l-auto align-self-center mg-x-10 tx-gray-600"></i>
+                        <div class="align-self-center wd-300">                          
+                          <ngb-progressbar type="primary" [value]="timeline.task_percentage" [striped]="true" [animated]="true" routerLink="timeline"><i>{{timeline.task_percentage}}%</i></ngb-progressbar>
+                        </div>
+                      </div>
+                      <div class="container-fluid timeline-container">
+                        <ul class="timeline" *ngIf="timeline.task_audit.length > 0">
+                          <li *ngFor="let  audit of timeline.task_audit;"><span class="year">{{audit.created_at | date:'MM-dd-yyyy'}}</span>
+                            <ul class="content">
+                              <li><span class="badge badge-dark">{{audit.created_at | date:'h:mm a'}}</span></li>
+                              <li>{{audit.action_user_name}} {{audit.description}}</li>                      
+                            </ul>
+                          </li>
+                          
+                          <!-- <li><span class="year">06 Jan 2021</span>
+                            <ul class="content">
+                              <li><span class="badge badge-dark">02:59 pm</span> </li>
+                              <li>Task status changed to In progress.</li>                            
+                            </ul>
+                          </li>                           
+                          <li><span class="year">14 Jan 2021</span>
+                            <ul class="content">
+                              <li><span class="badge badge-dark">05:55 pm</span> </li>
+                              <li>Due date reached!</li> 
+                            </ul>
+                          </li>
+                          <li><span class="year">15 Jan 2021</span>
+                            <ul class="content">
+                              <li><span class="badge badge-dark">08:37 pm</span></li>
+                              <li>Task yet not completed.</li>
+                            </ul>
+                          </li>  -->
+                          <!-- <li><span class="year new">Process</span></li> -->
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        
+
+      </div><!-- az-content-body -->
+    </div><!-- container -->
+  </div><!-- az-content -->
+
+      
+
+          
+
+   

@@ -1,0 +1,21 @@
+.custom-card-header{
+  height: fit-content !important;
+} 
+
+@media (min-width: 552px) {
+  .breadcrumb-cust-style{
+    margin-bottom: 0 !important;
+  }
+  .task-action-buttons{
+    right: 20px;
+    position: absolute;
+    top: 20px;
+  }  
+}
+
+@media (max-width: 991px) {
+  .az-content{
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }  
+}

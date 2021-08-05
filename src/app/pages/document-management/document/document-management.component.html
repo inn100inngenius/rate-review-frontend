@@ -1,0 +1,876 @@
+<div class="component-container">
+  <div class="col-md-12">
+    <div class="card bd-0">
+      <div class="card-body  pd-t-12">
+       
+        <div class="az-content-body az-content-body-profile">
+          
+          <ul ngbNav #nav="ngbNav" [(activeId)]="active"
+            class="nav-tabs tx-medium tx-12 pd-b-1-f pd-0-f mg-l-20 mg-b-10">
+            <li [ngbNavItem]="1">
+              <a ngbNavLink class="tx-15">Recent Uploads</a>
+              <ng-template ngbNavContent>
+                <div class="row">
+                  <div class="col-md bd pd-15 rounded-5 mg-5 max-width-limit" *ngFor="let document of recentFiles;">
+                    <div class="d-flex align-items-start">
+                      <div class="wrapper mg-b-5" routerLink="/document-management/document-details">
+                        <h6 class="project-title tx-medium tx-gray-800 mg-b-2 doc-file-title">{{document.node_name}}
+                        </h6>
+                        <div class="d-flex flex-row justify-content-between">
+                          <div *ngIf="document.approve_status == 1 &&  document.review_status == 0" class="badge badge-success">
+                            Approved</div>
+                          <div *ngIf="document.review_status == 1 && document.approve_status == 1 " class="badge badge-warning ">
+                              Reviewed</div>
+                          <div *ngIf="document.approve_status == 2 " class="badge badge-danger">
+                              Rejected</div>
+                          <div *ngIf="document.approve_status == 0 && document.review_status == 0" class="badge badge-primary ">
+                              Pending</div>
+                          
+                          <!-- <span class="tx-11 tx-bold tx-orange mg-r-10">57.6 mb</span> -->
+                          <!-- <span class="status-pointer-badge-warning">Your reviewal</span> -->
+                        </div>
+                      </div>
+                     
+                    </div>
+
+              <div class="d-flex flex-row justify-content-between">
+                <table class="tx-medium tx-12  mg-t-10">
+                  <!-- <tr>
+                    <td>Doc Id </td>
+                    <td class="ml-2">: {{document.document_id}}</td>
+                  </tr> -->
+                  <tr>
+                    <td>Rev No </td>
+                    <td class="ml-2">: {{document.revision}}</td>
+                  </tr>
+                  <tr>
+                    <td>Doc Date </td>
+                    <td class="ml-2">: {{document.created_at | date: 'dd MMM y'}}</td>
+                  </tr>
+                  <tr>
+                    <td>Exp Date </td>
+                    <td class="ml-2">: {{document.expiry_date | date: 'dd MMM y'}}</td>
+                  </tr>
+                </table>
+                <div>                             
+                  <a href="#owner{{document.document_id}}" class="modal-effect" data-toggle="modal" data-effect="effect-scale" ngbTooltip="Owner">
+                    <div role="button" class="wd-20 ht-20 text-center tx-11 tx-medium bd bg-orange tx-white pd-t-2 rounded-50 mg-b-5">O</div>
+                  </a>
+                  <a href="#approver{{document.document_id}}" class="modal-effect" data-toggle="modal" data-effect="effect-scale" ngbTooltip="Approvers">
+                    <div role="button" class="wd-20 ht-20 text-center tx-11 tx-medium bd bg-primary tx-white pd-t-2 rounded-50 mg-b-5">A</div>
+                  </a>
+                  <a href="#reviewer{{document.document_id}}" class="modal-effect" data-toggle="modal" data-effect="effect-scale" ngbTooltip="Reviwers">
+                    <div role="button" class="wd-20 ht-20 text-center tx-11 tx-medium bd bg-gray-800 tx-white pd-t-2 rounded-50">R</div>
+                  </a>                          
+                </div>
+              </div>
+              <div class="pd-y-5">
+                <ngb-progressbar type="success" [value]="100" [striped]="true" [animated]="true"><i>100%</i></ngb-progressbar>
+              </div>
+              <div
+                class="d-flex justify-content-between align-items-center flex-wrap bd-b bd-3 bd-success pd-y-5">
+                <div role="button" class="pd-t-3 bg-primary rounded wd-20 ht-20 text-center tx-white op-8 tx-11" ngbTooltip="CheckIn" routerLink="document-checkin/{{document.document_id}}"><i class="fa fa-sign-in-alt"></i></div>
+                <!-- <div role="button" class="pd-t-3 bg-success rounded wd-20 ht-20 text-center tx-white op-8 tx-11" ngbTooltip="CheckOut"><i class="fa fa-sign-out-alt"></i></div> -->
+                <div role="button" class="pd-t-3 bg-info rounded wd-20 ht-20 text-center tx-white op-8 tx-11" (click)="downloadMyFile(document.document_id,document.f_name,document.id)" ngbTooltip="Download"><i class="fa fa-download"></i></div>
+                <div role="button" class="pd-t-3 bg-gray-700 rounded wd-20 ht-20 text-center tx-white op-8 tx-11"
+                ngbTooltip="Share"><i class="fa fa-share-alt"></i></div>
+                <!-- <a routerlink="/document-management/document-details" > -->
+                  <div role="button" routerLink="document-details/{{document.document_id}}" 
+                    class="pd-t-3 bg-danger rounded wd-20 ht-20 text-center tx-white op-8 tx-11" ngbTooltip="Information"><i class="fa fa-info-circle"></i></div>
+                <!-- </a> -->
+              </div>
+              <div id="owner{{document.document_id}}" class="modal over-the-tooltip">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content modal-content-demo">
+                    <div class="d-flex flex-row  bg-gray-200 pd-10">
+                      
+                      <label class="mg-b-0 pull-left ml-3 tx-15">{{document.node_name}}</label>
+                   
+
+                   
+                          </div>
+                          <div class="modal-body bd-t bd-orange bd-5">
+                            <div class="media d-block d-sm-flex">
+                              <div class="media-body">
+                                <div class="mg-b-10">
+                                  <div class="d-flex flex-row padding-l-0">
+                                    <div class="tx-medium tx-13 mg-b-5 align-self-center wd-150"><i
+                                        class="fa fa-edit mg-r-5 tx-gray-600"></i> Owner</div>
+                                    <div class="image-grouped">
+                                      <img src="assets/img/faces/face2.jpg" alt="profile image">
+                                      <span class="tx-medium pd-t-6 pd-l-6 tx-gray-800">{{document.user_name }}</span>
+                                    </div>
+                                  </div>
+
+                                  <div class="d-flex flex-row tx-14 mg-t-15 mg-b-10">
+                                    <div class="tx-medium tx-13 mg-b-5 align-self-center wd-150"><i
+                                        class="fa fa-users mg-r-5 tx-gray-600"></i> Email</div>
+                                    <div class="tx-gray-700 tx-14 ht-25 tx-bold pd-x-10"> {{document.user_email }}</div>
+                                  </div>
+                                  <div class="d-flex flex-row mt-3 padding-l-0">
+                                    <div class="tx-medium tx-13  mg-b-5 wd-150"><i
+                                        class="fa fa-tasks mg-r-5 tx-gray-600"></i> Status</div>
+                                        <div *ngIf="document.approve_status == 1 &&  document.review_status == 0" class="badge badge-success  tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10">
+                                          Approved</div>
+                                        <div *ngIf="document.review_status == 1 && document.approve_status == 1 " class="badge badge-warning  tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10">
+                                            Reviewed</div>
+                                        <div *ngIf="document.approve_status == 2 " class="badge badge-danger  tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10">
+                                            Rejected</div>
+                                        <div *ngIf="document.approve_status == 0 && document.review_status == 0" class="badge badge-primary  tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10">
+                                            Pending</div>
+                                  </div>
+                                  <div class="d-flex flex-row mt-3 padding-l-0">
+                                    <div class="tx-medium tx-13  mg-b-5 wd-150"><i
+                                        class="fa fa-calendar-check mg-r-5 tx-gray-600"></i> Upload Date</div>
+                                    <div class="badge badge-info tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10">
+                                      {{document.created_at | date: 'dd MMMM y'}}</div>
+                                  </div>
+                                  <!-- <div class="d-flex flex-row mt-3 padding-l-0">
+                                    <div class="tx-medium tx-13  mg-b-5 wd-150"><i
+                                        class="fa fa-calendar-check mg-r-5 tx-gray-600"></i> Approval Date</div>
+                                    <div
+                                      class="badge badge-warning tx-12 ht-25 tx-bold tx-white pd-x-10 pd-y-6 mg-l-10">
+                                      {{document.approval_date | date: 'dd MMMM y'}}</div>
+                                  </div> -->
+                                  <!-- <div class="tx-medium tx-13  mg-t-15 mg-b-10">
+                              <i class="fa fa-user-tag mg-r-5 tx-gray-600"></i>
+                              Roles</div>
+                            <div class="pd-l-25">
+                              <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> House keeping </div>
+                              <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Manager </div>
+                              <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Excecutive chef </div>
+                              <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Receptionist </div>
+                            </div>
+                            <div class="tx-medium tx-13 mg-t-15 mg-b-10"><i class="fa fa-hotel mg-r-5 tx-gray-600"></i>
+                              Properties</div>
+                            <div class="pd-l-25">
+                              <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Property 1 </div>
+                              <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Property 2 </div>
+                              <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Property 3 </div>
+                              <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Property 4 </div>
+                              <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Property 5 </div>
+                            </div> -->
+                                </div>
+                              </div>
+                              <i
+                                class="icon ion-md-document tx-100 tx-success rounded mg-sm-l-20 mg-t-20 mg-sm-t-0 lh-1 d-inline-block"></i>
+                            </div>
+                            <div class="pd-15">
+                              <button class="custom-btn btn-danger pull-right" data-dismiss="modal"
+                                aria-label="Close">close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- modal-dialog -->
+                    </div>
+
+                    <div id="approver{{document.document_id}}" class="modal over-the-tooltip">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content modal-content-demo">
+                          <div class="d-flex flex-row  bg-gray-200 pd-10">
+                            
+                            <label class="mg-b-0 pull-left ml-3 tx-15">{{document.node_name}}</label>
+                          </div>
+                          <div class="modal-body bd-t bd-primary bd-5">
+                            <div class="az-content-body d-flex flex-column">
+                              <div class="card-header tx-medium bd tx-white bg-gray">
+                                <div>
+                                  <span class="az-content-label">Approvers</span>
+                                </div>
+                              </div>
+                              <div class="card-body bd bd-t-0 pd-0">
+                                <div class="row mg-10 pd-20 pd-b-0-f">
+                                  <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">User</th>
+                                        <!-- <th scope="col">Role</th> -->
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Approved Date</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let app of document.doc_approvers; index as i">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td>
+                                          {{ app.user_name }}
+                                        </td>
+                                        <!-- <td>
+                                  {{ app.role }}
+                                </td> -->
+                                        <td *ngIf="app.approve_status == 1 "><button
+                                            class="custom-btn btn-success rounded tx-12">Approved</button></td>
+                                        <td *ngIf="app.approve_status == 0"><button
+                                            class="custom-btn btn-primary rounded tx-12"
+                                            style="width: 87px;">Pending</button></td>
+                                        <td> </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                              <div class="pd-15">
+                                <button class="custom-btn btn-danger pull-right" data-dismiss="modal"
+                                  aria-label="Close">close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- modal-dialog -->
+                    </div><!-- modal -->
+                    <div id="reviewer{{document.document_id}}" class="modal over-the-tooltip">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content modal-content-demo">
+                          <div class="d-flex flex-row bg-gray-200 pd-10">
+                            
+                            <label class="mg-b-0 pull-left ml-3 tx-15">{{document.node_name}}</label>
+                          </div>
+                          <div class="modal-body bd-t bd-gray-800 bd-5">
+                            <div class="az-content-body d-flex flex-column">
+                              <div class="card-header tx-medium bd tx-white bg-gray">
+                                <div>
+                                  <span class="az-content-label">Reviewers</span>
+                                </div>
+                              </div>
+                              <div class="card-body bd bd-t-0 pd-0">
+                                <div class="row mg-10 pd-20 pd-b-0-f">
+                                  <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">User</th>
+                                        <!-- <th scope="col">Role</th> -->
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Reviewed Date</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let rev of document.doc_reviewers; index as i">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td>
+                                          {{ rev.user_name }}
+                                        </td>
+                                        <!-- <td>
+                                  {{ rev.role }}
+                                </td> -->
+                                        <td *ngIf="rev.review_status == 1"><button
+                                            class="custom-btn btn-success rounded tx-12">Reviewed</button></td>
+                                        <td *ngIf="rev.review_status == 0"><button
+                                            class="custom-btn btn-primary rounded tx-12"
+                                            style="width: 87px;">Pending</button></td>
+                                        <td> </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                              <div class="pd-15">
+                                <button class="custom-btn btn-danger pull-right" data-dismiss="modal"
+                                  aria-label="Close">close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- modal-dialog -->
+                    </div><!-- modal -->
+
+                  </div>
+                 </div>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+              <a ngbNavLink class="tx-15">File Explorer</a>
+              <ng-template ngbNavContent>
+                <div class="row">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-style2">
+                      <li class="breadcrumb-item" *ngFor="let path of folderPathData;let i =index;let l = last;"
+                        (click)="navigateToPath(path.id)" role="button">{{path.node_name }} </li>
+                      <!-- <li class="breadcrumb-item active" aria-current="page">Overview</li> -->
+                    </ol>
+                  </nav>
+
+                </div>
+                <div class="row">
+                  <div class="no-doc-data" *ngIf="docData?.folders.length == 0 && docData?.documents.length == 0">
+
+                    <div><i class="fa fa-file"></i></div>
+                    <span>No Items Found</span>
+                  </div>
+                  <div type="button" (click)="openFolder(folder.id)" *ngFor="let folder of docData?.folders;"
+                    class="col-md bd pd-15 rounded-5 mg-5 max-width-limit d-flex flex-row">
+                    <i class="fa fa-folder tx-warning tx-15"></i> <label
+                      class="mg-l-10 tx-medium tx-gray-800 doc-folder-title mg-b-0">{{folder.node_name}}</label>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                  <div class="col-md bd pd-15 rounded-5 mg-5 max-width-limit"
+                    *ngFor="let document of docData?.documents;">
+                    <div class="d-flex align-items-start">
+                      <div class="wrapper mg-b-5" routerLink="view-details">
+                        <h6 class="project-title tx-medium tx-gray-800 mg-b-2 doc-file-title">{{document.node_name}}
+                        </h6>
+                        <div class="d-flex flex-row justify-content-between">
+                          <div *ngIf="document.approve_status == 1 &&  document.review_status == 0" class="badge badge-success">
+                            Approved</div>
+                          <div *ngIf="document.review_status == 1 && document.approve_status == 1 " class="badge badge-warning ">
+                              Reviewed</div>
+                          <div *ngIf="document.approve_status == 2 " class="badge badge-danger">
+                              Rejected</div>
+                          <div *ngIf="document.approve_status == 0 && document.review_status == 0" class="badge badge-primary ">
+                              Pending</div>
+                          <!-- <span class="tx-11 tx-bold tx-orange mg-r-10">57.6 mb</span> -->
+                          <!-- <span class="status-pointer-badge-warning">Your reviewal</span> -->
+                        </div>
+                      </div>
+                      
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-between">
+                      <table class="tx-medium tx-12  mg-t-10">
+                        <!-- <tr>
+                          <td>Doc Id </td>
+                          <td class="ml-2">: {{document.document_id}}</td>
+                        </tr> -->
+                        <tr>
+                          <td>Rev No </td>
+                          <td class="ml-2">: {{document.revision}}</td>
+                        </tr>
+                        <tr>
+                          <td>Doc Date </td>
+                          <td class="ml-2">: {{document.created_at | date: 'dd MMM y'}}</td>
+                        </tr>
+                        <tr>
+                          <td>Exp Date </td>
+                          <td class="ml-2">: {{document.expiry_date | date: 'dd MMM y'}}</td>
+                        </tr>
+                      </table>
+                      <div>
+                        <a href="#owner{{document.document_id}}" class="modal-effect" data-toggle="modal"
+                          data-effect="effect-scale" ngbTooltip="Owner">
+                          <div role="button"
+                            class="wd-20 ht-20 text-center tx-11 tx-medium bd bg-orange tx-white pd-t-2 rounded-50 mg-b-5">
+                            O</div>
+                        </a>
+                        <a href="#approver{{document.document_id}}" class="modal-effect" data-toggle="modal"
+                          data-effect="effect-scale" ngbTooltip="Approvers">
+                          <div role="button"
+                            class="wd-20 ht-20 text-center tx-11 tx-medium bd bg-primary tx-white pd-t-2 rounded-50 mg-b-5">
+                            A</div>
+                        </a>
+                        <a href="#reviewer{{document.document_id}}" class="modal-effect" data-toggle="modal"
+                          data-effect="effect-scale" ngbTooltip="Reviwers">
+                          <div role="button"
+                            class="wd-20 ht-20 text-center tx-11 tx-medium bd bg-gray-800 tx-white pd-t-2 rounded-50">R
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="pd-y-5">
+                      <ngb-progressbar type="success" [value]="100" [striped]="true" [animated]="true"><i>100%</i>
+                      </ngb-progressbar>
+                    </div>
+                    <div
+                    class="d-flex justify-content-between align-items-center flex-wrap bd-b bd-3 bd-success pd-y-5">
+                    <div role="button" class="pd-t-3 bg-primary rounded wd-20 ht-20 text-center tx-white op-8 tx-11" ngbTooltip="CheckIn" routerLink="document-checkin/{{document.document_id}}"><i class="fa fa-sign-in-alt"></i></div>
+                    <!-- <div role="button" class="pd-t-3 bg-success rounded wd-20 ht-20 text-center tx-white op-8 tx-11" ngbTooltip="CheckOut"><i class="fa fa-sign-out-alt"></i></div> -->
+                    <div role="button" class="pd-t-3 bg-info rounded wd-20 ht-20 text-center tx-white op-8 tx-11" (click)="downloadMyFile(document.document_id,document.f_name,document.id)" ngbTooltip="Download"><i class="fa fa-download"></i></div>
+                    <div role="button" class="pd-t-3 bg-gray-700 rounded wd-20 ht-20 text-center tx-white op-8 tx-11"
+                    ngbTooltip="Share"><i class="fa fa-share-alt"></i></div>
+                    <!-- <a routerlink="/document-management/document-details" > -->
+                      <div role="button" routerLink="document-details/{{document.document_id}}" 
+                        class="pd-t-3 bg-danger rounded wd-20 ht-20 text-center tx-white op-8 tx-11" ngbTooltip="Information"><i class="fa fa-info-circle"></i></div>
+                    <!-- </a> -->
+                  </div>
+                    <div id="owner{{document.document_id}}" class="modal over-the-tooltip">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content modal-content-demo">
+                          <div class="d-flex flex-row  bg-gray-200 pd-10">
+                            
+                            <label class="mg-b-0 pull-left ml-3 tx-15">{{document.node_name}}</label>
+                          </div>
+                          <div class="modal-body bd-t bd-orange bd-5">
+                            <div class="media d-block d-sm-flex">
+                              <div class="media-body">
+                                <div class="mg-b-10">
+                                  <div class="d-flex flex-row padding-l-0">
+                                    <div class="tx-medium tx-13 mg-b-5 align-self-center wd-150"><i
+                                        class="fa fa-edit mg-r-5 tx-gray-600"></i> Owner</div>
+                                    <div class="image-grouped">
+                                      <span class="tx-medium pd-t-6 pd-l-6 tx-gray-800">{{document.user_name }}</span>
+                                    </div>
+                                  </div>
+
+                                  <div class="d-flex flex-row tx-14 mg-t-15 mg-b-10">
+                                    <div class="tx-medium tx-13 mg-b-5 align-self-center wd-150"><i
+                                        class="fa fa-users mg-r-5 tx-gray-600"></i> Email</div>
+                                    <div class="tx-gray-700 tx-14 ht-25 tx-bold pd-x-10"> {{document.user_email }}</div>
+                                  </div>
+                                  <div class="d-flex flex-row mt-3 padding-l-0">
+                                    <div class="tx-medium tx-13  mg-b-5 wd-150"><i
+                                        class="fa fa-tasks mg-r-5 tx-gray-600"></i> Status</div>
+                                        <div *ngIf="document.approve_status == 1 &&  document.review_status == 0" class="badge badge-success tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10">
+                                          Approved</div>
+                                        <div *ngIf="document.review_status == 1 && document.approve_status == 1 " class="badge badge-warning tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10">
+                                            Reviewed</div>
+                                        <div *ngIf="document.approve_status == 2 " class="badge badge-danger tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10">
+                                            Rejected</div>
+                                        <div *ngIf="document.approve_status == 0 && document.review_status == 0" class="badge badge-primary tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10">
+                                            Pending</div>
+                                  </div>
+                                  <div class="d-flex flex-row mt-3 padding-l-0">
+                                    <div class="tx-medium tx-13  mg-b-5 wd-150"><i
+                                        class="fa fa-calendar-check mg-r-5 tx-gray-600"></i> Upload Date</div>
+                                    <div class="badge badge-info tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10">
+                                      {{document.created_at | date: 'dd MMMM y'}}</div>
+                                  </div>
+                                  <!-- <div class="d-flex flex-row mt-3 padding-l-0">
+                                    <div class="tx-medium tx-13  mg-b-5 wd-150"><i
+                                        class="fa fa-calendar-check mg-r-5 tx-gray-600"></i> Approval Date</div>
+                                    <div
+                                      class="badge badge-warning tx-12 ht-25 tx-bold tx-white pd-x-10 pd-y-6 mg-l-10">
+                                      {{document.approval_date | date: 'dd MMMM y'}}</div>
+                                  </div> -->
+                                  <!-- <div class="tx-medium tx-13  mg-t-15 mg-b-10">
+                            <i class="fa fa-user-tag mg-r-5 tx-gray-600"></i>
+                            Roles</div>
+                          <div class="pd-l-25">
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> House keeping </div>
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Manager </div>
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Excecutive chef </div>
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Receptionist </div>
+                          </div>
+                          <div class="tx-medium tx-13 mg-t-15 mg-b-10"><i class="fa fa-hotel mg-r-5 tx-gray-600"></i>
+                            Properties</div>
+                          <div class="pd-l-25">
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Property 1 </div>
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Property 2 </div>
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Property 3 </div>
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Property 4 </div>
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Property 5 </div>
+                          </div> -->
+                                </div>
+                              </div>
+                              <i
+                                class="icon ion-md-document tx-100 tx-success rounded mg-sm-l-20 mg-t-20 mg-sm-t-0 lh-1 d-inline-block"></i>
+                            </div>
+                            <div class="pd-15">
+                              <button class="custom-btn btn-danger pull-right" data-dismiss="modal"
+                                aria-label="Close">close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- modal-dialog -->
+                    </div>
+
+                    <div id="approver{{document.document_id}}" class="modal over-the-tooltip">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content modal-content-demo">
+                          <div class="d-flex flex-row  bg-gray-200 pd-10">
+                            
+                            <label class="mg-b-0 pull-left ml-3 tx-15">{{document.node_name}}</label>
+                          </div>
+                          <div class="modal-body bd-t bd-primary bd-5">
+                            <div class="az-content-body d-flex flex-column">
+                              <div class="card-header tx-medium bd tx-white bg-gray">
+                                <div>
+                                  <span class="az-content-label">Approvers</span>
+                                </div>
+                              </div>
+                              <div class="card-body bd bd-t-0 pd-0">
+                                <div class="row mg-10 pd-20 pd-b-0-f">
+                                  <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">User</th>
+                                        <!-- <th scope="col">Role</th> -->
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Approved Date</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let app of document.doc_approvers; index as i">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td>
+                                          {{ app.user_name }}
+                                        </td>
+                                        <!-- <td>
+                                {{ app.role }}
+                              </td> -->
+                                        <td *ngIf="app.approve_status == 1 "><button
+                                            class="custom-btn btn-success rounded tx-12">Approved</button></td>
+                                        <td *ngIf="app.approve_status == 0"><button
+                                            class="custom-btn btn-primary rounded tx-12"
+                                            style="width: 87px;">Pending</button></td>
+                                        <td> </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                              <div class="pd-15">
+                                <button class="custom-btn btn-danger pull-right" data-dismiss="modal"
+                                  aria-label="Close">close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- modal-dialog -->
+                    </div><!-- modal -->
+                    <div id="reviewer{{document.document_id}}" class="modal over-the-tooltip">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content modal-content-demo">
+                          <div class="d-flex flex-row bg-gray-200 pd-10">
+                            
+                            <label class="mg-b-0 pull-left ml-3 tx-15">{{document.node_name}}</label>
+                          </div>
+                          <div class="modal-body bd-t bd-gray-800 bd-5">
+                            <div class="az-content-body d-flex flex-column">
+                              <div class="card-header tx-medium bd tx-white bg-gray">
+                                <div>
+                                  <span class="az-content-label">Reviewers</span>
+                                </div>
+                              </div>
+                              <div class="card-body bd bd-t-0 pd-0">
+                                <div class="row mg-10 pd-20 pd-b-0-f">
+                                  <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">User</th>
+                                        <!-- <th scope="col">Role</th> -->
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Reviewed Date</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let rev of document.doc_reviewers; index as i">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td>
+                                          {{ rev.user_name }}
+                                        </td>
+                                        <!-- <td>
+                                {{ rev.role }}
+                              </td> -->
+                                        <td *ngIf="rev.review_status == 1"><button
+                                            class="custom-btn btn-success rounded tx-12">Reviewed</button></td>
+                                        <td *ngIf="rev.review_status == 0"><button
+                                            class="custom-btn btn-primary rounded tx-12"
+                                            style="width: 87px;">Pending</button></td>
+                                        <td> </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                              <div class="pd-15">
+                                <button class="custom-btn btn-danger pull-right" data-dismiss="modal"
+                                  aria-label="Close">close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- modal-dialog -->
+                    </div><!-- modal -->
+
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="3">
+              <a ngbNavLink class="tx-15">All Documents</a>
+              <ng-template ngbNavContent>
+                <div class="row">
+                  <!-- Card 1 -->
+                  <div class="col-md bd pd-15 rounded-5 mg-5 max-width-limit"
+                    *ngFor="let document of docData?.documents;">
+                    <div class="d-flex align-items-start">
+                      <div class="wrapper mg-b-5" routerLink="/document-management/document-details">
+                        <h6 class="project-title tx-medium tx-gray-800 mg-b-2 doc-file-title">{{document.node_name}}
+                        </h6>
+                        <div class="d-flex flex-row justify-content-between">
+                          <div *ngIf="document.approve_status == 1 &&  document.review_status == 0" class="badge badge-success">
+                            Approved</div>
+                          <div *ngIf="document.review_status == 1 && document.approve_status == 1 " class="badge badge-warning ">
+                              Reviewed</div>
+                          <div *ngIf="document.approve_status == 2 " class="badge badge-danger">
+                              Rejected</div>
+                          <div *ngIf="document.approve_status == 0 && document.review_status == 0" class="badge badge-primary ">
+                              Pending</div>
+                          <!-- <span class="tx-11 tx-bold tx-orange mg-r-10">57.6 mb</span> -->
+                          <!-- <span class="status-pointer-badge-warning">Your reviewal</span> -->
+                        </div>
+                      </div>
+                     
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-between">
+                      <table class="tx-medium tx-12  mg-t-10">
+                        <!-- <tr>
+                          <td>Doc Id </td>
+                          <td class="ml-2">: {{document.document_id}}</td>
+                        </tr> -->
+                        <tr>
+                          <td>Rev No </td>
+                          <td class="ml-2">: {{document.revision}}</td>
+                        </tr>
+                        <tr>
+                          <td>Doc Date </td>
+                          <td class="ml-2">: {{document.created_at | date: 'dd MMM y'}}</td>
+                        </tr>
+                        <tr>
+                          <td>Exp Date </td>
+                          <td class="ml-2">: {{document.expiry_date | date: 'dd MMM y'}}</td>
+                        </tr>
+                      </table>
+                      <div>
+                        <a href="#owner{{document.document_id}}" class="modal-effect" data-toggle="modal"
+                          data-effect="effect-scale" ngbTooltip="Owner">
+                          <div role="button"
+                            class="wd-20 ht-20 text-center tx-11 tx-medium bd bg-orange tx-white pd-t-2 rounded-50 mg-b-5">
+                            O</div>
+                        </a>
+                        <a href="#approver{{document.document_id}}" class="modal-effect" data-toggle="modal"
+                          data-effect="effect-scale" ngbTooltip="Approvers">
+                          <div role="button"
+                            class="wd-20 ht-20 text-center tx-11 tx-medium bd bg-primary tx-white pd-t-2 rounded-50 mg-b-5">
+                            A</div>
+                        </a>
+                        <a href="#reviewer{{document.document_id}}" class="modal-effect" data-toggle="modal"
+                          data-effect="effect-scale" ngbTooltip="Reviwers">
+                          <div role="button"
+                            class="wd-20 ht-20 text-center tx-11 tx-medium bd bg-gray-800 tx-white pd-t-2 rounded-50">R
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="pd-y-5">
+                      <ngb-progressbar type="success" [value]="100" [striped]="true" [animated]="true"><i>100%</i>
+                      </ngb-progressbar>
+                    </div>
+                    <div
+                      class="d-flex justify-content-between align-items-center flex-wrap bd-b bd-3 bd-success pd-y-5">
+                      <div role="button" class="pd-t-3 bg-primary rounded wd-20 ht-20 text-center tx-white op-8 tx-11" ngbTooltip="CheckIn" routerLink="document-checkin/{{document.document_id}}"><i class="fa fa-sign-in-alt"></i></div>
+                      <!-- <div role="button" class="pd-t-3 bg-success rounded wd-20 ht-20 text-center tx-white op-8 tx-11" ngbTooltip="CheckOut"><i class="fa fa-sign-out-alt"></i></div> -->
+                      <div role="button" class="pd-t-3 bg-info rounded wd-20 ht-20 text-center tx-white op-8 tx-11" (click)="downloadMyFile(document.document_id,document.f_name,document.id)" ngbTooltip="Download"><i class="fa fa-download"></i></div>
+                      <div role="button" class="pd-t-3 bg-gray-700 rounded wd-20 ht-20 text-center tx-white op-8 tx-11"
+                      ngbTooltip="Share"><i class="fa fa-share-alt"></i></div>
+                      <!-- <a routerlink="/document-management/document-details" > -->
+                        <div role="button" routerLink="document-details/{{document.document_id}}" 
+                          class="pd-t-3 bg-danger rounded wd-20 ht-20 text-center tx-white op-8 tx-11" ngbTooltip="Information"><i class="fa fa-info-circle"></i></div>
+                      <!-- </a> -->
+                    </div>
+                    <div id="owner{{document.document_id}}" class="modal over-the-tooltip">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content modal-content-demo">
+                          <div class="d-flex flex-row  bg-gray-200 pd-10">
+                            
+                            <label class="mg-b-0 pull-left ml-3 tx-15">{{document.node_name}}</label>
+                          </div>
+                          <div class="modal-body bd-t bd-orange bd-5">
+                            <div class="media d-block d-sm-flex">
+                              <div class="media-body">
+                                <div class="mg-b-10">
+                                  <div class="d-flex flex-row padding-l-0">
+                                    <div class="tx-medium tx-13 mg-b-5 align-self-center wd-150"><i
+                                        class="fa fa-edit mg-r-5 tx-gray-600"></i> Owner</div>
+                                    <div class="image-grouped">
+                                      <img src="assets/img/faces/face2.jpg" alt="profile image">
+                                      <span class="tx-medium pd-t-6 pd-l-6 tx-gray-800">{{document.user_name }}</span>
+                                    </div>
+                                  </div>
+
+                                  <div class="d-flex flex-row tx-14 mg-t-15 mg-b-10">
+                                    <div class="tx-medium tx-13 mg-b-5 align-self-center wd-150"><i
+                                        class="fa fa-users mg-r-5 tx-gray-600"></i> Email</div>
+                                    <div class="tx-gray-700 tx-14 ht-25 tx-bold pd-x-10"> {{document.user_email }}</div>
+                                  </div>
+                                  <div class="d-flex flex-row mt-3 padding-l-0">
+                                    <div class="tx-medium tx-13  mg-b-5 wd-150"><i
+                                        class="fa fa-tasks mg-r-5 tx-gray-600"></i> Status</div>
+                                        <div *ngIf="document.approve_status == 1 &&  document.review_status == 0" class="badge badge-success tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10">
+                                          Approved</div>
+                                        <div *ngIf="document.review_status == 1 && document.approve_status == 1 " class="badge badge-warning tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10">
+                                            Reviewed</div>
+                                        <div *ngIf="document.approve_status == 2 " class="badge badge-danger tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10">
+                                            Rejected</div>
+                                        <div *ngIf="document.approve_status == 0 && document.review_status == 0" class="badge badge-primary tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10">
+                                            Pending</div>
+                                  </div>
+                                  <div class="d-flex flex-row mt-3 padding-l-0">
+                                    <div class="tx-medium tx-13  mg-b-5 wd-150"><i
+                                        class="fa fa-calendar-check mg-r-5 tx-gray-600"></i> Upload Date</div>
+                                    <div class="badge badge-info tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10">
+                                      {{document.created_at | date: 'dd MMMM y'}}</div>
+                                  </div>
+                                  <!-- <div class="d-flex flex-row mt-3 padding-l-0">
+                                    <div class="tx-medium tx-13  mg-b-5 wd-150"><i
+                                        class="fa fa-calendar-check mg-r-5 tx-gray-600"></i> Approval Date</div>
+                                    <div
+                                      class="badge badge-warning tx-12 ht-25 tx-bold tx-white pd-x-10 pd-y-6 mg-l-10">
+                                      {{document.approval_date | date: 'dd MMMM y'}}</div>
+                                  </div> -->
+                                  <!-- <div class="tx-medium tx-13  mg-t-15 mg-b-10">
+                            <i class="fa fa-user-tag mg-r-5 tx-gray-600"></i>
+                            Roles</div>
+                          <div class="pd-l-25">
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> House keeping </div>
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Manager </div>
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Excecutive chef </div>
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Receptionist </div>
+                          </div>
+                          <div class="tx-medium tx-13 mg-t-15 mg-b-10"><i class="fa fa-hotel mg-r-5 tx-gray-600"></i>
+                            Properties</div>
+                          <div class="pd-l-25">
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Property 1 </div>
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Property 2 </div>
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Property 3 </div>
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Property 4 </div>
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> Property 5 </div>
+                          </div> -->
+                                </div>
+                              </div>
+                              <i
+                                class="icon ion-md-document tx-100 tx-success rounded mg-sm-l-20 mg-t-20 mg-sm-t-0 lh-1 d-inline-block"></i>
+                            </div>
+                            <div class="pd-15">
+                              <button class="custom-btn btn-danger pull-right" data-dismiss="modal"
+                                aria-label="Close">close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- modal-dialog -->
+                    </div>
+
+                    <div id="approver{{document.document_id}}" class="modal over-the-tooltip">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content modal-content-demo">
+                          <div class="d-flex flex-row  bg-gray-200 pd-10">
+                            
+                            <label class="mg-b-0 pull-left ml-3 tx-15">{{document.node_name}}</label>
+                          </div>
+                          <div class="modal-body bd-t bd-primary bd-5">
+                            <div class="az-content-body d-flex flex-column">
+                              <div class="card-header tx-medium bd tx-white bg-gray">
+                                <div>
+                                  <span class="az-content-label">Approvers</span>
+                                </div>
+                              </div>
+                              <div class="card-body bd bd-t-0 pd-0">
+                                <div class="row mg-10 pd-20 pd-b-0-f">
+                                  <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">User</th>
+                                        <!-- <th scope="col">Role</th> -->
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Approved Date</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let app of document.doc_approvers; index as i">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td>
+                                          {{ app.user_name }}
+                                        </td>
+                                        <!-- <td>
+                                {{ app.role }}
+                              </td> -->
+                                        <td *ngIf="app.approve_status == 1 "><button
+                                            class="custom-btn btn-success rounded tx-12">Approved</button></td>
+                                        <td *ngIf="app.approve_status == 0"><button
+                                            class="custom-btn btn-primary rounded tx-12"
+                                            style="width: 87px;">Pending</button></td>
+                                        <td> </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                              <div class="pd-15">
+                                <button class="custom-btn btn-danger pull-right" data-dismiss="modal"
+                                  aria-label="Close">close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- modal-dialog -->
+                    </div><!-- modal -->
+                    <div id="reviewer{{document.document_id}}" class="modal over-the-tooltip">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content modal-content-demo">
+                          <div class="d-flex flex-row bg-gray-200 pd-10">
+                            
+                            <label class="mg-b-0 pull-left ml-3 tx-15">{{document.node_name}}</label>
+                          </div>
+                          <div class="modal-body bd-t bd-gray-800 bd-5">
+                            <div class="az-content-body d-flex flex-column">
+                              <div class="card-header tx-medium bd tx-white bg-gray">
+                                <div>
+                                  <span class="az-content-label">Reviewers</span>
+                                </div>
+                              </div>
+                              <div class="card-body bd bd-t-0 pd-0">
+                                <div class="row mg-10 pd-20 pd-b-0-f">
+                                  <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">User</th>
+                                        <!-- <th scope="col">Role</th> -->
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Reviewed Date</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let rev of document.doc_reviewers; index as i">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td>
+                                          {{ rev.user_name }}
+                                        </td>
+                                        <!-- <td>
+                                {{ rev.role }}
+                              </td> -->
+                                        <td *ngIf="rev.review_status == 1"><button
+                                            class="custom-btn btn-success rounded tx-12">Reviewed</button></td>
+                                        <td *ngIf="rev.review_status == 0"><button
+                                            class="custom-btn btn-primary rounded tx-12"
+                                            style="width: 87px;">Pending</button></td>
+                                        <td> </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                              <div class="pd-15">
+                                <button class="custom-btn btn-danger pull-right" data-dismiss="modal"
+                                  aria-label="Close">close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- modal-dialog -->
+                    </div><!-- modal -->
+
+                  </div>
+  </div>
+              </ng-template>
+            </li>
+          </ul>
+          <!-- <div>Public</div> -->
+          <div [ngbNavOutlet]="nav" class="mg-l-20 mg-t-20 cont-tab-container"></div>
+          <div class="az-profile-body">
+            <div class="mg-b-20"></div>
+          </div><!-- az-profile-body -->
+        </div><!-- az-content-body -->
+      </div>
+    </div>
+  </div>
+ 
+
+
+</div>

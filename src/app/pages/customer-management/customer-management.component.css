@@ -1,0 +1,17 @@
+
+.userview-img-preview{
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 190px;
+    color: #07a7af;
+    border: 1px solid #fbc5c5;
+}
+.userview-img-preview span{
+    font-size: 6em;
+}
+.btn-success{
+  width: 90px;
+}
+.dataTables_processing{
+    margin-top: 30px !important;
+}

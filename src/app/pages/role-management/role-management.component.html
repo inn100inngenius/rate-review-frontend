@@ -1,0 +1,67 @@
+<div class="az-content pd-y-10 pd-sm-y-10 pd-lg-y-60 pd-xl-y-60">
+    <div class="container-fluid">
+      <div class="az-content-body d-flex flex-column">
+        <div class="row row-xs">
+              <div class="col-md-12">
+              <div class="card bd-0">
+                <div class="card-header tx-medium bd tx-white bg-gray">
+                  <div class="">
+                  <span class="az-content-label">Role List</span>
+                  <a routerLink="add" class="pull-right">
+                  <button type="button" class=" custom-btn btn-primary">
+                    <span> Add Role</span>
+                  </button>
+                  </a>
+                  </div>
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-style2">
+                      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">List View</li>
+                    </ol>
+                  </nav>
+                </div><!-- card-header -->
+                <div class="card-body bd bd-t-0 table-responsive min-ht-box">
+                  <div class="row">
+                    <div class="col-md-4 col-lg-3 mg-b-15">
+                      <div class="multiselect-bg">                              
+                        <!-- <angular2-multiselect name="multiselect1" [data]="dropdownListCustomers" [(ngModel)]="selectedItemsCustomers" 
+                        [settings]="customerSettings" 
+                        (onSelect)="onItemSelect($event)" 
+                        (onDeSelect)="OnItemDeSelect($event)"
+                        (onSelectAll)="onSelectAll($event)"
+                        (onDeSelectAll)="onDeSelectAll($event)">
+                          </angular2-multiselect> -->
+                        <ng-multiselect-dropdown 
+                        class="form-control " name="customers" [placeholder]="'Select customers'"
+                        [settings]="dropdownSettingsCustomer" [data]="customerList" [(ngModel)]="filterData.customers"
+                        (onSelect)="onCustomerChange(1)" (onDeSelect)="onCustomerChange(2)"
+                        (onSelectAll)="onCustomerChange(3)" (onDeSelectAll)="onCustomerChange(4)" required>
+                        </ng-multiselect-dropdown> 
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3 mg-b-15">
+                      <div class="multiselect-bg">                              
+                        <!-- <angular2-multiselect name="multiselect2" [data]="dropdownListProperties" [(ngModel)]="selectedItemsProperties" 
+                        [settings]="propertySettings" 
+                        (onSelect)="onItemSelect($event)" 
+                        (onDeSelect)="OnItemDeSelect($event)"
+                        (onSelectAll)="onSelectAll($event)"
+                        (onDeSelectAll)="onDeSelectAll($event)">
+                          </angular2-multiselect> -->
+                           <ng-multiselect-dropdown 
+                          class="form-control " name="customers" [placeholder]="'Select properties'"
+                          [settings]="dropdownSettingsProperty" [data]="propertyList" [(ngModel)]="filterData.properties"
+                          (onSelect)="onPropertyChange(1)" (onDeSelect)="onPropertyChange(2)"
+                          (onSelectAll)="onPropertyChange(3)" (onDeSelectAll)="onPropertyChange(4)" required>
+                          </ng-multiselect-dropdown>
+                      </div>
+                    </div>
+                </div>
+          <table style="width: 100%;"  id="example2" class=" table" datatable [dtOptions]="dtOptions"  ></table>
+        </div>
+              </div>
+            </div>
+          </div>
+      </div><!-- az-content-body -->
+    </div><!-- container -->
+  </div><!-- az-content -->

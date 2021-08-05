@@ -1,0 +1,71 @@
+
+@media (min-width: 992px){
+    .az-content-left-mail .btn-compose {
+        margin-right: 0px;
+    }
+}
+.az-content-left-mail .btn-compose {
+    margin-bottom: 8px;
+    width: 145px
+}
+@media (min-width: 992px){
+    .az-content-left-mail {
+        width: 170px;
+    }
+}
+::ng-deep .component-btn-group .btn{
+    min-height: unset;
+}
+::ng-deep .accordion .card .card-header {
+    background-color: #f1f6ff;
+    height: 40px !important;
+}
+::ng-deep .accordion .card-header {
+    background-color:#f1f6ff;
+}
+::ng-deep #group-container-basic span i ,
+::ng-deep #group-container-advanced span i {
+    padding: 6px 5px;
+    font-size: 14px;
+    margin-right: 0px !important;
+}
+
+::ng-deep .formio .formcomponents{
+    padding-right: 0px;
+    font-size: 14px;
+    margin-right: 0px !important;
+    padding-left: 0px;
+}
+
+/* ng-multiselect-dropdown */
+:host ::ng-deep ng-multiselect-dropdown{
+    padding: 0px;
+    }
+    :host ::ng-deep .multiselect-dropdown .dropdown-btn{
+    border:none;
+    }
+    ::ng-deep .multiselect-bg .form-control{
+    height: unset  !important;
+    min-height: 37px  !important;
+    }
+    ::ng-deep .multiselect-dropdown .dropdown-btn .selected-item{
+    margin-top: 2px;
+    }
+    /* wizard */
+    .ng-wizard-theme-arrows>ul.step-anchor {
+        background:#ffffff !important;
+    }
+    .custom-block-btn{
+        width: 85px !important;
+    }
+     
+    .ng-wizard-theme-dots>ul.step-anchor>li>a {
+        color: black !important;
+    }
+    :host >>> .ng-wizard-main ul li a small{
+      font-size: 13px;
+    }
+    :host >>> .ng-wizard-theme-dots>ul.step-anchor:before{
+        width: 36%;
+        left: 46px;
+    }

@@ -1,0 +1,414 @@
+<div class="az-content pd-y-20 pd-lg-y-30 pd-xl-y-40">
+  <div class="container-fluid">
+    <div class="az-content-body d-flex flex-column">
+      <div class="row row-xs">
+        <div class="col-md-12">
+          <div class="card bd-0">
+            <div class="card-header tx-medium bd tx-white bg-gray">
+              <div class="">
+                <span class="az-content-label">System Tasks</span>
+                <!-- <a routerLink="add" class="pull-right">
+                  <button class=" custom-btn">
+                    <span> Add Role</span>
+                  </button> 
+                  </a>-->
+              </div>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-style2">
+                  <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                  <li class="breadcrumb-item "><a routerLink="/system-tasks">System Tasks</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Add</li>
+                </ol>
+              </nav>
+            </div><!-- card-header -->
+            <div class="card-body bd bd-t-0 pd-t-0">
+              <div class="dynamic-forms bd pd-10 mg-t-25">
+                <form [formGroup]="systemTaskForm" (ngSubmit)="onSubmit()">
+
+                  <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
+                    <ng-wizard-step [description]="'Form Builder'" [state]="stepStates.normal">
+                      <div class="col-12">
+                        <div class="row">
+                          <div class="col-sm-12 col-md-8 bd bd-r-0 pd-l-20">
+                            <h6 class="az-content-label mg-10 text-center">Form Builder</h6>
+                            <form-builder class="col-md-6" [form]="form" [options]="options" (change)="onChange($event)">
+                            </form-builder>
+                          </div>
+                          <div class="col-sm-12 col-md-4 bd">
+                            <h6 class="az-content-label mg-10 text-center mg-b-30">Preview</h6>
+                            <formio *ngIf="showForm" [form]="jsonData"></formio>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="row  m-t-10 m-b-10 ">
+                        <div class="col-sm-12 col-md-8 pull-left bd">
+
+                          <h6 class="az-content-label mg-10 text-center">Form Builder</h6>
+                          <form-builder class="col-md-6" [form]="form" [options]="options" (change)="onChange($event)">
+                          </form-builder>
+                         
+                        </div>
+                        <div class="col-sm-12 col-md-4 pull-right bd form-preview">
+
+                          <h6 class="az-content-label mg-10 text-center mg-b-30">Preview</h6>
+                          <formio *ngIf="showForm" [form]="jsonData"></formio>
+                        </div>
+                      </div> -->
+                    
+                    </ng-wizard-step>
+                    <ng-wizard-step [description]="'General Details'" [canEnter]="isValidTypeBoolean"
+                      [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+                      <div class="col-12">
+                        <div class="row m-t-10 m-b-10">
+
+                          <!-- <div class="col-md-10 mg-t-5 mg-md-t-0">
+                              <input formControlName="form_title" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.form_title.errors }" required>
+                              <div *ngIf="submitted && f.form_title.errors" class="invalid-feedback">
+                                <div *ngIf="f.form_title.errors.required">Form Title is required</div>
+                              </div>
+                            </div> -->
+                          <!-- col -->
+                          <!-- step 1 -->
+                          <div class="col-md-4 col-lg-3 bd bd-gray-200">
+                            <div class="d-flex flex-row justify-content-center pd-t-10 mg-b-20">
+                              <div
+                                class="wd-30 ht-30 text-center tx-13 tx-bold bd bg-orange tx-white pd-t-5 rounded-50 mg-b-5">
+                                1</div>
+                              <span class="mg-l-10 tx-16 tx-medium tx-orange pd-t-3">Task Info</span>
+                            </div>
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-xl-4">
+                                <label class="form-label-left">Task Title<span class="tx-danger">*</span></label>
+                              </div><!-- col -->
+                              <div class="col-xl-8">
+                                <input type="text" formControlName="task_title" class="form-control"
+                                  [ngClass]="{ 'is-invalid': submitted && f.task_title.errors }" required>
+                                <div *ngIf="submitted && f.task_title.errors" class="invalid-feedback">
+                                  <div *ngIf="f.task_title.errors.required">Task title is required</div>
+                                </div>
+                              </div><!-- col -->
+                            </div><!-- row -->
+
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-xl-4">
+                                <label class="form-label-left">Start Date<span class="tx-danger">*</span></label>
+                              </div><!-- col -->
+                              <div class="col-xl-8">
+                                <div class="form-group mg-b-0">
+                                  <div class="input-group">
+
+                                    <input formControlName="start_date" class="form-control"
+                                      [ngClass]="{ 'is-invalid': submitted && f.start_date.errors }"
+                                      placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" required>
+                                    <div class="input-group-append">
+                                      <button class="custom-btn btn-indigo calendar" (click)="d.toggle()" type="button">
+                                        <i class="fa fa-calendar-alt tx-18"></i>
+                                      </button>
+                                    </div>
+                                    <div *ngIf="submitted && f.start_date.errors" class="invalid-feedback">
+                                      <div *ngIf="f.start_date.errors.required">Start date is required</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div><!-- col -->
+                            </div><!-- row -->
+
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-xl-4">
+                                <label class="form-label-left">End Date<span class="tx-danger">*</span></label>
+                              </div><!-- col -->
+                              <div class="col-xl-8">
+                                <div class="form-group mg-b-0">
+                                  <div class="input-group">
+                                    <input formControlName="due_date"
+                                      [ngClass]="{ 'is-invalid': submitted && f.due_date.errors }" class="form-control"
+                                      placeholder="yyyy-mm-dd" name="expDate" ngbDatepicker #e="ngbDatepicker" required>
+                                    <div class="input-group-append">
+                                      <button class="custom-btn btn-indigo calendar" (click)="e.toggle()" type="button">
+                                        <i class="fa fa-calendar-alt tx-18"></i>
+                                      </button>
+                                    </div>
+                                    <div *ngIf="submitted && f.due_date.errors" class="invalid-feedback">
+                                      <div *ngIf="f.due_date.errors.required">End date is required</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div><!-- col -->
+                            </div><!-- row -->
+
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-xl-4">
+                                <label class="form-label-left">Status</label>
+                              </div><!-- col -->
+                              <div class="col-xl-8">
+                                <input type="text" class="form-control" value="Not Started" readonly>
+                                <!-- <select class="form-control select2-no-search" required>
+                                    <option value="1">Not started</option>
+                                    <option value="2">In progress</option>
+                                    <option value="3">Completed</option>
+                                  </select>                   -->
+                              </div><!-- col -->
+                            </div><!-- row -->
+
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-xl-4">
+                                <label class="form-label-left">Priority<span class="tx-danger">*</span></label>
+                              </div><!-- col -->
+                              <div class="col-xl-8">
+                                <select formControlName="priority"
+                                  [ngClass]="{ 'is-invalid': submitted && f.priority.errors }"
+                                  class="form-control select2-no-search" required>
+                                  <option label="Choose one"></option>
+                                  <option value="1">High</option>
+                                  <option value="2">Medium</option>
+                                  <option value="3">Low</option>
+                                </select>
+                                <div *ngIf="submitted && f.priority.errors" class="invalid-feedback">
+                                  <div *ngIf="f.priority.errors.required">Priority is required</div>
+                                </div>
+                              </div><!-- col -->
+                            </div><!-- row -->
+
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-xl-4">
+                                <label class="form-label-left">Intervals</label>
+                              </div><!-- col -->
+                              <div class="col-xl-8">
+                                <select formControlName="intervals" class="form-control select2-no-search">
+                                  <option value="">Choose one</option>
+                                  <option value="1">Daily</option>
+                                  <option value="2">Weekly</option>
+                                  <option value="3">Monthly</option>
+                                  <option value="4">Yearly</option>
+                                </select>
+
+                              </div><!-- col -->
+                            </div><!-- row -->
+
+                            <!-- <div class="row row-xs justify-content-center mg-b-20">
+                                <div class="col-md-4">
+                                  <label class="form-label-left mg-b-0">Description</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                  <textarea formControlName="task_description"
+                                    [ngClass]="{ 'is-invalid': submitted && f.task_description.errors }" rows="2"
+                                    class="form-control" placeholder="" required></textarea>
+                                  <div *ngIf="submitted && f.task_description.errors" class="invalid-feedback">
+                                    <div *ngIf="f.task_description.errors.required">Description is required</div>
+                                  </div>
+                                </div>
+                              </div> -->
+
+
+
+                          </div>
+                          <!-- step 2 -->
+                          <div class="col-md-8 col-lg-9 bd bd-gray-200">
+                            <div class="row">
+                              <!-- Step 2 -->
+                              <div class="col-md-12 col-lg-4 bd-b">
+                                <div class="d-flex flex-row justify-content-center pd-t-10 mg-b-20">
+                                  <div
+                                    class="wd-30 ht-30 text-center tx-13 tx-bold bd bg-orange tx-white pd-t-5 rounded-50 mg-b-5">
+                                    2</div>
+                                  <span class="mg-l-10 tx-16 tx-medium tx-orange pd-t-3">Assigners Details</span>
+                                </div>
+
+                                <div class="row row-xs justify-content-center mg-b-20">
+                                  <div class="col-xl-4">
+                                    <label class="form-label-left">Properties<span class="tx-danger">*</span></label>
+                                  </div><!-- col -->
+                                  <div class="col-xl-8">
+                                    <div class="multiselect-bg">
+                                      <ng-multiselect-dropdown
+                                        [ngClass]="{ 'is-invalid': submitted && f.properties.errors }"
+                                        class="form-control " name="properties" [placeholder]="'Select properties'"
+                                        [settings]="dropdownSettings" [data]="propertyList" formControlName="properties"
+                                        (onSelect)="onPropertyChange()" (onDeSelect)="onPropertyChange()"
+                                        (onSelectAll)="onPropertySelectAll()" (onDeSelectAll)="onPropertyDeSelectAll()"
+                                        required>
+                                      </ng-multiselect-dropdown>
+                                      <div *ngIf="submitted && f.properties.errors" class="invalid-feedback">
+                                        <div *ngIf="f.properties.errors.required">Property is required</div>
+                                      </div>
+                                    </div>
+                                  </div><!-- col -->
+                                </div><!-- row  -->
+
+                                <div class="row row-xs justify-content-center mg-b-20">
+                                  <div class="col-xl-4">
+                                    <label class="form-label-left">Roles<span class="tx-danger">*</span></label>
+                                  </div><!-- col -->
+                                  <div class="col-xl-8">
+                                    <div class="multiselect-bg">
+                                      <ng-multiselect-dropdown [ngClass]="{ 'is-invalid': submitted && f.roles.errors }"
+                                        class="form-control " name="roles" [placeholder]="'Select Roles'"
+                                        [settings]="dropdownSettingsRole" [data]="roleList" formControlName="roles"
+                                        (onSelect)="onRoleChange()" (onDeSelect)="onRoleChange()"
+                                        (onSelectAll)="onRoleSelectAll()" (onDeSelectAll)="onRoleDeSelectAll()"
+                                        required>
+                                      </ng-multiselect-dropdown>
+                                      <div *ngIf="submitted && f.roles.errors" class="invalid-feedback">
+                                        <div *ngIf="f.roles.errors.required">Role is required</div>
+                                      </div>
+                                    </div>
+                                  </div><!-- col -->
+                                </div><!-- row -->
+
+                                <div class="row row-xs justify-content-center mg-b-20">
+                                  <div class="col-xl-4">
+                                    <label class="form-label-left">Users<span class="tx-danger">*</span></label>
+                                  </div><!-- col -->
+                                  <div class="col-xl-8">
+                                    <div class="multiselect-bg">
+                                      <ng-multiselect-dropdown [ngClass]="{ 'is-invalid': submitted && f.users.errors }"
+                                        class="form-control " name="users" [placeholder]="'Select Users'"
+                                        [settings]="dropdownSettingsUser" [data]="userList" formControlName="users"
+                                        (onSelect)="onUserChange()" (onDeSelect)="onUserChange()"
+                                        (onSelectAll)="onUserSelectAll()" (onDeSelectAll)="onUserDeSelectAll()"
+                                        required>
+                                      </ng-multiselect-dropdown>
+                                      <div *ngIf="submitted && f.users.errors" class="invalid-feedback">
+                                        <div *ngIf="f.users.errors.required">User is required</div>
+                                      </div>
+                                    </div>
+                                  </div><!-- col -->
+                                </div><!-- row -->
+
+                              </div>
+                              <!-- !Step 2 -->
+                              <!-- Step 3 -->
+                              <div class="col-md-6 col-lg-4 bd bd-t-0 bd-gray-200">
+
+                                <div class="d-flex flex-row justify-content-center pd-t-10 mg-b-20">
+                                  <div
+                                    class="wd-30 ht-30 text-center tx-13 tx-bold bd bg-orange tx-white pd-t-5 rounded-50 mg-b-5">
+                                    3</div>
+                                  <span class="mg-l-10 tx-16 tx-medium tx-orange pd-t-3">Reviewers</span>
+                                </div>
+
+                                <div class="content-ht-container mg-b-10">
+                                  <div class="dynamic-fields" formArrayName="reviewers"
+                                    *ngFor="let item of systemTaskForm.get('reviewers')['controls']; let i = index;">
+                                    <div [formGroupName]="i">
+                                      <div class="row row-xs justify-content-center mg-b-20">
+                                        <div class="col-xl-4">
+                                          <label class="form-label-left mg-b-0 pd-t-0-f">Reviewers <span
+                                              class="tx-danger">*</span></label>
+                                          <div class="tx-success">(level {{i+1}})</div>
+                                        </div>
+                                        <div class="col-lg-9 col-xl-6 mg-t-5 mg-md-t-0">
+                                          <select class="form-control" (change)="changeReviewer($event)"
+                                            formControlName="reviewer"
+                                            [ngClass]="{ 'is-invalid': submitted && f.reviewers.controls[i].controls.reviewer.errors }">
+                                            <option selected disabled value="">Select</option>
+                                            <!-- <option value="{{ele.id}}" *ngFor="let ele of rev" [disabled]="ele.isdisabled">
+                                            {{ele.name}}                        
+                                          </option> -->
+                                            <option [disabled]="selectedReviewers.indexOf(rItem.user_id) > -1  "
+                                              *ngFor="let rItem of reviewerList;" [value]="rItem.user_id">
+                                              {{rItem.user_name}} </option>
+                                          </select>
+                                        </div>
+                                        <div class="col-lg-3 col-xl-2 mg-t-5 mg-md-t-0 pd-t-10 text-center">
+                                          <span role="button"
+                                            *ngIf="(reviewers && i == reviewers.length-1) || !reviewers "
+                                            class="rounded-50 bg-info text-center pd-y-4 pd-x-4 tx-white op-8 mg-r-5 tx-8"><i
+                                              class="fa fa-plus tx-10" (click)="addItemReviewers()"></i></span>
+                                          <span role="button" *ngIf="reviewers && reviewers.length > 1"
+                                            class="rounded-50 bg-danger text-center pd-y-4 pd-x-4 tx-white op-8 tx-8"><i
+                                              class="fa fa-minus tx-10" (click)="removeItemReviewers( i)"></i></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+
+                              </div>
+                              <!-- !Step 3 -->
+                              <!-- Step 4 -->
+                              <div class="col-md-6 col-lg-4 bd-b bd-gray-200">
+                                <div class="d-flex flex-row justify-content-center pd-t-10 mg-b-20">
+                                  <div
+                                    class="wd-30 ht-30 text-center tx-13 tx-bold bd bg-orange tx-white pd-t-5 rounded-50 mg-b-5">
+                                    4</div>
+                                  <span class="mg-l-10 tx-16 tx-medium tx-orange pd-t-3">Approvers </span>
+                                </div>
+
+                                <div class="content-ht-container mg-b-10">
+                                  <div class="dynamic-fields" formArrayName="approvers"
+                                    *ngFor="let item of systemTaskForm.get('approvers')['controls']; let i = index;">
+                                    <div [formGroupName]="i">
+                                      <div class="row row-xs justify-content-center mg-b-20">
+                                        <div class="col-xl-4">
+                                          <label class="form-label-left mg-b-0 pd-t-0-f">Approvers <span
+                                              class="tx-danger">*</span> </label>
+                                          <div class="tx-success">(level {{i+1}})</div>
+                                        </div><!-- col -->
+                                        <div class="col-lg-9 col-xl-6 mg-t-5 mg-md-t-0">
+                                          <select class="form-control" (change)="changeApprover($event)"
+                                            formControlName="approver"
+                                            [ngClass]="{ 'is-invalid': submitted && f.approvers.controls[i].controls.approver.errors }">
+                                            <option selected disabled value="">Select</option>
+
+                                            <option [disabled]="selectedApprovers.indexOf(aItem.user_id) > -1  "
+                                              *ngFor="let aItem of approverList;" [value]="aItem.user_id">
+                                              {{aItem.user_name}} </option>
+
+                                          </select>
+                                          <div *ngIf="submitted && f.approvers.controls[i].controls.approver.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.approvers.controls[i].controls.approver.errors.required">
+                                              Approver is
+                                              required</div>
+                                          </div>
+                                        </div><!-- col -->
+                                        <div class="col-lg-3 col-xl-2 mg-t-5 mg-md-t-0 pd-t-10 text-center">
+                                          <span role="button"
+                                            *ngIf="(approvers && i == approvers.length-1) || !approvers "
+                                            class="rounded-50 bg-info text-center pd-y-4 pd-x-4 tx-white op-8 mg-r-5 tx-8"
+                                            (click)="addItemApprovers()"><i class="fa fa-plus tx-10"></i></span>
+                                          <span role="button" *ngIf="approvers && approvers.length > 1"
+                                            class="rounded-50 bg-danger text-center pd-y-4 pd-x-4 tx-white op-8 tx-8"
+                                            (click)="removeItemApprovers(i)"><i class="fa fa-minus tx-10"></i></span>
+                                        </div>
+                                      </div><!-- row -->
+                                    </div>
+                                  </div>
+                                </div>
+
+
+                              </div>
+                              <!-- !Step 4 -->
+
+
+
+                            </div>
+
+
+
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </ng-wizard-step>
+
+
+                    <!-- row -->
+
+                  </ng-wizard>
+                </form>
+                <!-- <div class="well jsonviewer">
+                    <pre id="json"><code class="language-json" #json></code></pre>
+                  </div> -->
+                <!-- <formio  (submit)="onSubmit($event)" [form]="jsonData"></formio> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- az-content-body -->
+  </div><!-- container -->
+</div><!-- az-content -->

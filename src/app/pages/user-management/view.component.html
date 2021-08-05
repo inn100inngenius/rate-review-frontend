@@ -1,0 +1,102 @@
+<!-- breadcrumb -->
+<!-- <div class="breadcrumb-header">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/home">
+                    <span class="home-icon">
+                        <span class="material-icons home-logo">home</span>
+                    </span>
+                </a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page" routerLink="/customer/dashboard">Customer Management</li>
+            <li class="breadcrumb-item" routerLink="/role-management" aria-current="page">User Management</li>
+            <li class="breadcrumb-item activeURL" aria-current="page">View User</li>
+        </ol>
+    </nav>
+</div> -->
+<!-- !breadcrumb -->
+<!-- Container -->
+<div class="container-fluid content-wrap">
+    <div class="customer-box">
+        <div class="card-head">
+            <span class="f-20">View User Details</span>
+        </div>
+        <div class="form-box">
+            <form>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="customerName" class="col-sm-4 col-form-label">
+                                <span class="material-icons label-icon">account_box</span>
+                                User Name
+                            </label>
+                            <div class="col-sm-8">
+                                <span class="bind-value">User 1</span>
+                            </div>
+                        </div>                    
+                        <div class="form-group row">
+                            <label for="userEmail" class="col-sm-4 col-form-label">
+                                <span class="material-icons label-icon">email</span>
+                                User Email
+                            </label>
+                            <div class="col-sm-8">
+                                <span class="bind-value">
+                                    user1@xyz.com
+                                </span>
+                            </div>
+                        </div>      
+                        <div class="form-group row">
+                            <label for="userRole" class="col-sm-4 col-form-label">
+                                <span class="material-icons label-icon">work</span>
+                                Assign Role
+                            </label>
+                            <div class="col-sm-8">
+                                <span class="bind-value">
+                                    Recepion
+                                </span>                                
+                            </div>
+                        </div>   
+                        <div class="form-group row">
+                            <label for="userProperty" class="col-sm-4 col-form-label">
+                                <span class="material-icons label-icon">hotel</span>
+                                Select Properties
+                            </label>
+                            <div class="col-sm-8">
+                                <span class="bind-value">
+                                    Property 1, Property 2
+                                </span> 
+                            </div>
+                        </div> 
+                        <div class="form-group row"> 
+                            <label for="userPassword" class="col-sm-4 col-form-label">
+                                <span class="material-icons label-icon">verified_user</span>
+                                Status
+                            </label>
+                            <div class="col-sm-8">
+                                <span class="bind-value">
+                                    Enable
+                                </span>
+                            </div>
+                        </div>  
+                        
+                    </div>                              
+                </div>
+
+                  <div class="form-group">
+                    <div class="action-bttn">
+                        <button type="submit" class="btn btn-outline-dark" routerLink="/user-management">
+                            <span class="material-icons">reply</span>
+                            Back
+                        </button>
+                        
+                    </div>                    
+                  </div>     
+                  
+            </form>
+        </div>
+        
+
+    </div>
+</div>
+<!-- !Container -->

@@ -1,0 +1,61 @@
+
+/* Date range */
+.date-range-calender{
+    color: #0970ca;
+}
+.form-group.hidden {
+    width: 0;
+    margin: 0;
+    border: none;
+    padding: 0;
+  }
+  .custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+  }
+  .custom-day.focused {
+    background-color: #e6e6e6;
+  }
+  .custom-day.range, .custom-day:hover {
+    background-color: rgb(2, 117, 216);
+    color: white;
+  }
+  .custom-day.faded {
+    background-color: rgba(2, 117, 216, 0.5);
+  }
+  /* .form-control:not(.form-control-lg):not(.form-control-sm), .swal-modal input.swal-content__input:not(.form-control-lg):not(.form-control-sm){
+    height: calc(1em + .5rem + 3px) !important;
+    font-size: .875rem !important;
+  } */
+
+  .icon-absolute{
+    position: absolute;
+    right: 5px;
+    cursor: pointer;
+    z-index: 3;
+    top: 10px;
+    font-size: 18px;
+  }
+
+  
+/* ng-multiselect-dropdown */
+:host ::ng-deep ng-multiselect-dropdown{
+  padding: 0px;
+  }
+  :host ::ng-deep .multiselect-dropdown .dropdown-btn{
+  border:none;
+  }
+  ::ng-deep .multiselect-bg .form-control{
+  height: unset  !important;
+  min-height: 37px  !important;
+  }
+  ::ng-deep .multiselect-dropdown .dropdown-btn .selected-item{
+  margin-top: 2px;
+  }
+
+  .table-responsive {
+    overflow-x: unset !important;
+  }

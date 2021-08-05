@@ -1,0 +1,642 @@
+<!-- <div class="az-content pd-y-20 pd-lg-y-30 pd-xl-y-40">
+    <div class="container"> -->
+
+
+      <div class="az-content pd-y-10 pd-lg-y-60 pd-xl-y-60">
+        <div class="container-fluid">
+          <div class="az-content-body d-flex flex-column">
+            <div class="row row-xs">
+              <div class="col-md-12">
+                <div class="card bd-0">
+                  <div class="card-header tx-medium bd tx-white bg-gray">
+                    <span class="az-content-label">View Task</span>
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb breadcrumb-style2">
+                        <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/task-management">Task Board</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">View</li>
+                      </ol>
+                    </nav>
+                  </div><!-- card-header -->
+                  <div class="card-body bd bd-t-0" id="myTableElementId">
+                    <div class="row row-xs align-items-center mg-b-20 box-center col-md-12">
+                      <div class=" bd-md-r"
+                        [ngClass]="{'col-md-4': hasForm, 'col-md-7': !hasForm }">
+                        <div class="">
+                          <h3 class="align-self-end pull-left tx-primary"><span>{{taskDetails?.task_title}}</span></h3>
+                        </div>
+                        <div class="row mg-b-10 mt-5">
+                          <div class="col-md-6 d-flex flex-row mt-3 padding-l-0">
+                            <div class="tx-medium tx-14  mg-b-5 wd-100"><i
+                                class="fa fa-calendar-check mg-r-5 tx-gray-600"></i> Created By</div>
+                            <div class="badge badge-light tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10 mn-wd-30p-f">
+                              {{taskDetails?.user_name}}</div>
+                          </div>
+                          <div class="col-md-6 d-flex flex-row mt-3 padding-l-0">
+                            <div class="tx-medium tx-14 mg-b-5 wd-100"><i class="fa fa-sort-amount-up mg-r-5 tx-gray-600"></i>
+                              Priority</div>
+      
+                            <div class="badge badge-danger tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10 mn-wd-30p-f"
+                              *ngIf="taskDetails?.priority == 1">
+                              <i class="fa fa-arrow-up"></i>&nbsp; High
+                            </div>
+                            <div class="badge badge-warning tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10 mn-wd-30p-f"
+                              *ngIf="taskDetails?.priority == 2"><i class="fa fa-sort"></i>&nbsp; Medium</div>
+                            <div class="badge badge-success tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10 mn-wd-30p-f"
+                              *ngIf="taskDetails?.priority == 3"><i class="fa fa-arrow-down"></i>&nbsp;Low</div>
+                          </div>
+      
+                          <div class="col-md-6 d-flex flex-row mt-3 padding-l-0">
+                            <div class="tx-medium tx-14  mg-b-5 wd-100"><i
+                                class="fa fa-calendar-check mg-r-5 tx-gray-600"></i> Start Date</div>
+                            <div class="badge badge-info tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10 mn-wd-30p-f">
+                              {{taskDetails?.start_date}}</div>
+                          </div>
+      
+                          <div class="col-md-6 d-flex flex-row mt-3 padding-l-0">
+                            <div class="tx-medium tx-14  mg-b-5 wd-100"><i
+                                class="fa fa-calendar-check mg-r-5 tx-gray-600"></i> End Date</div>
+                            <div class="badge badge-warning tx-12 ht-25 tx-bold tx-white pd-x-10 pd-y-6 mg-l-10 mn-wd-30p-f">
+                              {{taskDetails?.due_date}}</div>
+                          </div>
+                          <div class="col-md-6 d-flex flex-row mt-3 padding-l-0">
+                            <div class="tx-medium tx-14  mg-b-5 wd-100"><i class="fa fa-tasks mg-r-5 tx-gray-600"></i> Status
+                            </div>
+                            <div class="badge badge-secondary tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10 mn-wd-30p-f">
+                              {{ taskDetails?.task_status == 0 ? 'ToDo':
+                              taskDetails?.task_status == 1?'InProgress':
+                              taskDetails?.task_status == 2?'Completed':'Not Completed'}}
+                            </div>
+                          </div>
+                          <div class="col-md-6 d-flex flex-row mt-3 padding-l-0">
+                            <div class="tx-medium tx-14 mg-b-5 wd-100"><i class="fa fa-sort-amount-up mg-r-5 tx-gray-600"></i>
+                              Intervals</div>
+                            <div class="badge badge-light tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10 mn-wd-30p-f"> NA
+                            </div>
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="pd-r-20 mt-3">
+                          <!-- <div class="tx-medium tx-14  mg-t-15 mg-b-10">
+                            <i class="fa fa-user-tag mg-r-5 tx-gray-600"></i>
+                            Assigned Users
+                          </div>
+                          <div class="pd-l-25">
+                            <div *ngFor="let user of taskDetails?.task_users;"
+                              class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> {{user.user_name}}
+                            </div>
+                          </div> -->
+                          <div class="tx-medium tx-14  mg-t-15 mg-b-10">
+                            <i class="fa fa-user-tag mg-r-5 tx-gray-600"></i>
+                            Roles
+                          </div>
+                          <div class="pd-l-25">
+                            <div class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"
+                              *ngFor="let role of taskDetails?.task_roles;"> {{role.role_name}} </div>
+                          </div>
+                          <div class="tx-medium tx-14  mg-t-15 mg-b-10"><i class="fa fa-hotel mg-r-5 tx-gray-600"></i>
+                            Properties</div>
+                          <div class="pd-l-25">
+                            <div *ngFor="let property of taskDetails?.task_properties;"
+                              class="badge badge-light mg-r-7 tx-12 pd-y-8 pd-x-10 tx-bold mg-b-5"> {{property.property_name}}
+                            </div>
+                          </div>
+      
+      
+                          <div class="tx-medium tx-14  mg-t-15 mg-b-10"><i class="fa fa-indent mg-r-5 tx-gray-600"></i>
+                            Description
+                          </div>
+                          <div class="pd-l-25">
+                            <p class="text-justify tx-13 " [innerHtml]="taskDetails?.task_description">
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- basic details section ends -->
+                     
+                      <!-- system task form start -->
+                      <div  *ngIf="hasForm" class="col-md-5 mg-b-auto bd-md-r" style="min-height: 385px;">
+                       
+                        <div >
+                          
+                        <formio 
+                         [submission]='hasFormValue'
+                         (submit)="onSubmit($event)" [form]="jsonData"></formio>
+                        
+                      </div>
+                      
+                      </div>
+                      <!-- system task form ends -->
+                      <div class=" mg-b-auto"
+                        [ngClass]="{'col-md-3': hasForm , 'col-md-5': !hasForm }">
+                        <div class="az-content-body">
+                          <div class="mg-l-15">
+                            <div class="d-flex justify-content-start mg-b-10">
+                              <span class="tx-medium tx-14 mg-t-5 mg-b-10"><i class="fa fa-filter mg-r-5 tx-gray-600"></i>
+                                Sort Comments By User</span>
+                            </div>
+                            <div class="mb-3 mg-l-40">
+                              <select class="form-control select2-no-search mg-l-10  open-filter"
+                                (change)="getUserTaskPercentage()" [(ngModel)]="selectedValue">
+                                <option value="all" selected>All users</option>
+                                <option *ngFor="let cuser of taskDetails?.task_comment_users;" value="{{cuser.id}}">
+                                  {{cuser.user_name}}</option>
+                              </select>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                              <p class="tx-medium tx-14 mg-t-5 mg-b-10"><i class="fa fa-cogs mg-r-5 tx-gray-600"></i> Progress
+                              </p>
+                              <p class="mb-3 font-weight-medium" *ngIf="selectedValue == 'all'">
+                                {{taskDetails?.task_percentage}}%</p>
+                              <p class="mb-3 font-weight-medium" *ngIf="selectedValue != 'all'">{{userTaskPercentage}}%</p>
+      
+                            </div>
+                            <div class="mb-3 mg-l-40" *ngIf="selectedValue == 'all'" (click)="gotoTimeline(1)">
+                              <ngb-progressbar type="indigo" [value]="taskDetails?.task_percentage" [striped]="true"
+                                [animated]="true"><i>{{taskDetails?.task_percentage}}%</i></ngb-progressbar>
+                            </div> <!-- Default selected value -->
+                            <div class="mb-3 mg-l-40" *ngIf="selectedValue != 'all'" (click)="gotoTimeline(0)">
+                              <ngb-progressbar type="success" [value]="userTaskPercentage" [striped]="true" [animated]="true">
+                                <i>{{userTaskPercentage}}%</i>
+                              </ngb-progressbar>
+                            </div> <!-- Selected option value -->
+                            <!-- Selected option value -->
+                          </div><!-- az-chat-header -->
+      
+                          <div class="az-chat-msg-name">
+                            <div class="tx-medium tx-14 mg-t-5 mg-b-10"><i class="fa fa-comments mg-r-5 tx-gray-600"></i>
+                              Comments</div>
+                          </div>
+                          <div class="mg-y-10 mg-l-40">
+                            <div class="content-inner max-container-wraper pd-r-4"
+                              *ngIf="taskDetails?.task_comments.length > 0">
+                              <div *ngIf="selectedValue == 'all'">
+                                <div *ngFor="let comment of taskDetails?.task_comments;">
+                                  <div class="image-grouped">
+                                    <img src="assets/img/faces/face7.jpg" alt="profile image">
+                                    <span class="tx-medium pd-t-6 tx-13 pd-l-6 tx-gray-800">{{comment.user_name}}</span>
+                                  </div>
+                                  <div class="mg-l-40">
+                                    <div class="az-msg-wrapper bg-white bd bd-gray-300 wd-100p">
+                                      {{comment.comment}}
+                                    </div>
+                                    <!-- 2020-01-20 10:12 am -->
+                                    <div><span class="tx-12">{{comment.created_at | date: 'MM-dd-yyyy h:mm a'}}</span> <a><i class="icon ion-android-more-horizontal"></i></a></div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div *ngIf="selectedValue != 'all'">
+                                <div *ngFor="let comment of taskDetails?.task_comments;"
+                                  [hidden]="selectedValue != comment.comment_by">
+                                  <div class="image-grouped">
+                                    <img src="assets/img/faces/face7.jpg" alt="profile image">
+                                    <span class="tx-medium pd-t-6 tx-13 pd-l-6 tx-gray-800">{{comment.user_name}}</span>
+                                  </div>
+                                  <div class="mg-l-40">
+                                    <div class="az-msg-wrapper bg-white bd bd-gray-300 wd-100p">
+                                      {{comment.comment}}
+                                    </div>
+                                    <!-- 2020-01-20 10:12 am -->
+                                    <div><span class="tx-11 tx-gray-600">{{comment.created_at | date: 'yyyy-MM-dd h:mm
+                                        a'}}</span> <a ><i class="icon ion-android-more-horizontal"></i></a></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div> <!-- Default selected value -->
+                            <div class="mg-l-40 mg-t-10">
+                              <div class="mg-y-5 tx-orange tx-12" (click)="showTxtbox()" type="button"><i
+                                  class="fa fa-plus-circle mg-r-5"></i>Add
+                                comment</div>
+                              <textarea class="form-control" *ngIf="!isTxtboxShown" [(ngModel)]="model.comment"
+                                placeholder="Type your comment here..." required
+                                [ngClass]="{ 'is-invalid': submitted && !model.comment }"></textarea>
+                              <div *ngIf="submitted && !model.comment" class="invalid-feedback">
+                                <div *ngIf="!model.comment">Comment is required</div>
+                              </div>
+                            </div><!-- az-chat-footer -->
+                            <button *ngIf="!isTxtboxShown" type="button" (click)="addComment()"
+                              class="d-flex custom-btn rounded bg-primary mg-l-auto mg-y-5 mn-wd-30p-f">Comment</button>
+                          </div>
+                        </div><!-- az-chat-body -->
+                      </div>
+                      <!-- commnets section ends -->
+                    </div>
+                    <div class="row row-xs align-items-center mg-b-20 box-center col-md-12">
+                      <div class="col-lg-12">
+                        <!--  -->
+                        <div class="tx-medium tx-14  mg-t-15 mg-b-10">
+                          <i class="fa fa-user-tag mg-r-5 tx-gray-600"></i>
+                          Assigned Users
+                        </div>
+                        <div id="accordion" class="accordion" role="tablist" aria-multiselectable="true">
+                          <div class="card" *ngFor="let user of taskDetails?.task_users;let i =index;">
+                            <div class="card-header" role="tab" id="headingOne">
+                              <a data-toggle="collapse" class="collapse collapsed" href="#collapseOne{{user.user_name}}" aria-expanded="false" aria-controls="collapseOne{{user.user_name}}">
+                                {{user.user_name}}
+                              </a>
+                            </div><!-- card-header -->
+              
+                            <div id="collapseOne{{user.user_name}}" data-parent="#accordion" class="collapse " role="tabpanel" aria-labelledby="headingOne{{user.user_name}}">
+                              <div class="card-body">
+                                <div>
+                                  <formio  [submission]='user.form_values'
+                                  (submit)="onSubmit($event)" [form]="jsonData" readOnly=" true"></formio>
+                                </div>
+                                <div *ngFor="let roleprop of user?.roles_properties;"
+                                class="wrapper tx-12 d-none d-md-block">
+                                <span>{{roleprop.property_name}}</span>
+                                <span>- {{roleprop.role_name}}</span>
+                              </div>
+                              <div>Approvers</div>
+                              <div class="tab-pane fade show active"
+                                id="open-tickets" role="tabpanel" aria-labelledby="open-tickets">
+                              
+                                <!--  ------------------------------------------------------------>
+                                <a *ngFor="let user_task_approver of user?.user_task_approvers;"  class="tickets-card ">
+                                  <div class="tickets-details col-lg-6 col-12">
+                                    <div class="wrapper">
+                                      <h5>{{user_task_approver.user_name}}</h5>
+                                    </div>
+                                    <div *ngFor="let roleprop of user_task_approver?.roles_properties;"
+                                      class="wrapper tx-12 d-none d-md-block">
+                                      <span>{{roleprop.property_name}}</span>
+                                      <span>- {{roleprop.role_name}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                    <span class="tx-12 tx-warning" *ngIf="user.task_status == 0">Not Started</span>
+                                    <span class="tx-12 tx-primary" *ngIf="user.task_status == 1">InProgress</span>
+                                    <span class="tx-12 tx-danger" *ngIf="user.task_status == 2">Completed</span>
+                                    <span class="tx-12 tx-danger" *ngIf="user.task_status == 3">Not Completed</span>
+                                  </div>
+                                  
+                                    <div *ngIf="user_task_approver.isApproveBtn && user.task_status == 2" 
+                                    class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                      <button 
+                                        class="custom-btn rounded btn-success mg-r-10" href="#owner"
+                                        (click)="taskActionStatus(1,user.user_id)" data-toggle="modal"
+                                        data-effect="effect-scale" role="button" aria-expanded="false"
+                                        aria-controls="commentCollapse">
+                                        <i class="fa fa-thumbs-up pd-t-3 pd-r-6"></i>Approve</button>
+                                    </div>
+                                    <div *ngIf="user_task_approver.isApproveBtn && user.task_status == 2"  
+                                    class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                      <button class="custom-btn rounded btn-danger" href="#owner"
+                                          (click)="taskActionStatus(3,user.user_id)" data-toggle="modal"
+                                          data-effect="effect-scale" role="button" aria-expanded="false"
+                                          aria-controls="commentCollapse">
+                                          <i class="fa fa-thumbs-down pd-t-3 pd-r-6"></i>Reject</button>
+                                    </div>
+                                  
+                                 
+                                      <div *ngIf="user_task_approver.isPendingBtn  " 
+                                      class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                      <button class="custom-btn rounded btn-info mg-r-10" >
+                                        Pending</button>
+                                      </div>
+                              
+                                      <div  *ngIf="user_task_approver.isPendingBtn  " 
+                                       class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                        <button class="custom-btn rounded btn-info mg-r-10" >
+                                          Pending</button>
+                                      </div>
+                                      <div *ngIf="user_task_approver.action_type == 1  " 
+                                      class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                      <button class="custom-btn rounded btn-success mg-r-10" >
+                                        approved</button>
+                                        </div>
+                                        <div *ngIf="user_task_approver.action_type == 3  " 
+                                      class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                      <button class="custom-btn rounded btn-danger mg-r-10" >
+                                        Rejected</button>
+                                        </div>
+                                        <div *ngIf="user_task_approver.action_type == 1 ||  
+                                        user_task_approver.action_type == 3" 
+                                      class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                      <span class="" >
+                                        {{user_task_approver.comment}}</span>
+      
+                                    </div>
+                                  
+                                  
+                                </a>
+                                <!-- ----------------------------------------------------------------- -->
+                              </div>
+                              <div>Reviewers</div>
+                              <div class="tab-pane fade show active"
+                                id="open-tickets" role="tabpanel" aria-labelledby="open-tickets">
+                              
+                                <!--  ------------------------------------------------------------>
+                                <a *ngFor="let user_task_reviewer of user?.user_task_reviewers;"  class="tickets-card ">
+                                  <div class="tickets-details col-lg-6 col-12">
+                                    <div class="wrapper">
+                                      <h5>{{user_task_reviewer.user_name}}</h5>
+                                    </div>
+                                    <div *ngFor="let roleprop of user_task_reviewer?.roles_properties;"
+                                      class="wrapper tx-12 d-none d-md-block">
+                                      <span>{{roleprop.property_name}}</span>
+                                      <span>- {{roleprop.role_name}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                    <span class="tx-12 tx-warning" *ngIf="user.task_status == 0">Not Started</span>
+                                    <span class="tx-12 tx-primary" *ngIf="user.task_status == 1">InProgress</span>
+                                    <span class="tx-12 tx-danger" *ngIf="user.task_status == 2">Completed</span>
+                                    <span class="tx-12 tx-danger" *ngIf="user.task_status == 3">Not Completed</span>
+                                  </div>
+                                  
+                                    <div *ngIf="user_task_reviewer.isReviewBtn && user.task_status == 2" 
+                                    class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                      <button 
+                                        class="custom-btn rounded btn-warning mg-r-10" href="#owner"
+                                        (click)="taskActionStatus(2,user.user_id)" data-toggle="modal"
+                                        data-effect="effect-scale" role="button" aria-expanded="false"
+                                        aria-controls="commentCollapse">
+                                        <i class="fa fa-thumbs-up pd-t-3 pd-r-6"></i>Review</button>
+                                    </div>
+                                    <!-- <div *ngIf="user_task_reviewer.isApproveBtn && user.task_status == 2"  
+                                    class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                      <button class="custom-btn rounded btn-danger" href="#owner"
+                                          (click)="taskActionStatus(3,user.user_id)" data-toggle="modal"
+                                          data-effect="effect-scale" role="button" aria-expanded="false"
+                                          aria-controls="commentCollapse">
+                                          <i class="fa fa-thumbs-down pd-t-3 pd-r-6"></i>Reject</button>
+                                    </div>
+                                   -->
+                                 
+                                      <div *ngIf="user_task_reviewer.isPendingBtn  " 
+                                      class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                      <button class="custom-btn rounded btn-info mg-r-10" >
+                                        Pending</button>
+                                      </div>
+                              
+                                      <div  *ngIf="user_task_reviewer.isPendingBtn  " 
+                                       class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                        <button class="custom-btn rounded btn-info mg-r-10" >
+                                          Pending</button>
+                                      </div>
+                                      <div *ngIf="user_task_reviewer.action_type == 2  " 
+                                      class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                      <button class="custom-btn rounded btn-warning mg-r-10" >
+                                        Reviewed</button>
+                                        </div>
+                                        <!-- <div *ngIf="user_task_reviewer.action_type == 3  " 
+                                      class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                      <button class="custom-btn rounded btn-danger mg-r-10" >
+                                        Rejected</button>
+                                        </div> -->
+                                        <div *ngIf=" user_task_reviewer.action_type == 2" 
+                                      class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                      <span class="" >
+                                        {{user_task_reviewer.comment}}</span>
+      
+                                    </div>
+                                  
+                                  
+                                </a>
+                                <!-- ----------------------------------------------------------------- -->
+                              </div>
+      
+      
+      
+      
+                              </div>
+                            </div>
+                          </div>
+                          
+                          
+                        </div><!-- accordion -->
+                        
+                        <!--  -->
+                        <!-- <div class="card">
+                          <div class="card-body">
+                            <div class="nav-scroller">
+                              <ul class="nav nav-tabs tickets-tab-switch" role="tablist">
+                                <li class="nav-item">
+                                  <a class="nav-link rounded active" id="open-tab" data-toggle="tab" href="#open-tickets"
+                                    role="tab" aria-controls="open-tickets" aria-selected="true">Approvers <div class="badge">
+                                      {{taskDetails?.task_approvers.length}}</div></a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link rounded" id="pending-tab" data-toggle="tab" href="#pending-tickets"
+                                    role="tab" aria-controls="pending-tickets" aria-selected="false">Reviewers <div
+                                      class="badge">{{taskDetails?.task_reviewers.length}} </div></a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link rounded" id="onhold-tab" data-toggle="tab" href="#onhold-tickets"
+                                    role="tab" aria-controls="onhold-tickets" aria-selected="false">My Actions <div
+                                      class="badge">{{taskDetails?.task_users.length}} </div>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="tab-content border-0 tab-content-basic">
+                              <div *ngFor="let approver of taskDetails?.task_approvers;" class="tab-pane fade show active"
+                                id="open-tickets" role="tabpanel" aria-labelledby="open-tickets">
+                                <div class="tickets-date-group">
+                                  <span class="tx-medium tx-14 mg-b-5 align-self-center">
+                                    Approver Name : {{approver.user_name}}</span>
+                                </div>
+                                <a *ngFor="let user of taskDetails?.task_users;" class="tickets-card ">
+                                  <div class="tickets-details col-lg-8 col-12">
+                                    <div class="wrapper">
+                                      <h5>{{user.user_name}}</h5>
+                                    </div>
+                                    <div *ngFor="let roleprop of user?.roles_properties;"
+                                      class="wrapper tx-12 d-none d-md-block">
+                                      <span>{{roleprop.property_name}}</span>
+                                      <span>- {{roleprop.role_name}}</span>
+                                    </div>
+                                  </div>
+      
+                                  <div *ngFor="let action of user?.task_actions;"
+                                    class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                    <span
+                                      *ngIf="action.user_id == user.user_id && action.action_user_id == approver.approver_id "
+                                      class="badge badge-warning tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10 mn-wd-30p-f">{{
+                                      action.action_type == 1?'Approved':action.action_type == 3?'Rejected':''}}</span>
+                                  </div>
+                                  <div class="ticket-float col-lg-2 col-sm-6 d-none d-md-block"
+                                    *ngIf="user?.task_actions.length == 0">
+                                    <span class="badge badge-primary tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10 mn-wd-30p-f"> Pending</span>
+                                  </div>
+      
+                                  <div *ngFor="let action of user?.task_actions;"
+                                    class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                    <i class="category-icon typcn icon typcn-folder"></i>
+                                    <span
+                                      *ngIf="action.user_id == user.user_id && action.action_user_id == approver.approver_id "
+                                      class="tx-13">{{action.comment}}</span>
+                                  </div>
+                                  <div class="ticket-float col-lg-2 col-sm-6 d-none d-md-block"
+                                    *ngIf="user?.task_actions.length == 0">
+                                    <span class=""> </span>
+                                  </div>
+                                </a>
+                              </div>
+                              <div *ngFor="let reviewer of taskDetails?.task_reviewers;" class="tab-pane fade"
+                                id="pending-tickets" role="tabpanel" aria-labelledby="pending-tickets">
+                                <div class="tickets-date-group">
+                                  Reviewer Name : {{reviewer.user_name}}</div>
+                                <a *ngFor="let user of taskDetails?.task_users;" class="tickets-card ">
+                                  <div class="tickets-details col-lg-8 col-12">
+                                    <div class="wrapper">
+                                      <h5>{{user.user_name}}</h5>
+                                    </div>
+                                    <div *ngFor="let roleprop of user?.roles_properties;"
+                                      class="wrapper tx-12 d-none d-md-block">
+                                      <span>{{roleprop.property_name}}</span>
+                                      <span>- {{roleprop.role_name}}</span>
+                                    </div>
+                                  </div>
+      
+                                  <div *ngFor="let action of user?.task_review_actions;"
+                                    class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                    <span
+                                      *ngIf="action.user_id == user.user_id && action.action_user_id == reviewer.reviewer_id "
+                                      class="badge badge-warning tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10 mn-wd-30p-fd">{{ action.action_type == 2?'Reviewed':''}}</span>
+                                  </div>
+                                  <div class="ticket-float col-lg-2 col-sm-6 d-none d-md-block"
+                                    *ngIf="user?.task_review_actions.length == 0">
+                                    <span class="badge badge-primary tx-12 ht-25 tx-bold pd-x-10 pd-y-6 mg-l-10 mn-wd-30p-f"> Pending</span>
+                                  </div>
+      
+                                  <div *ngFor="let action of user?.task_review_actions;"
+                                    class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                    <i class="category-icon typcn icon typcn-folder"></i>
+                                    <span
+                                      *ngIf="action.user_id == user.user_id && action.action_user_id == reviewer.reviewer_id "
+                                      class="tx-13">{{action.comment}}</span>
+                                  </div>
+                                  <div class="ticket-float col-lg-2 col-sm-6 d-none d-md-block"
+                                    *ngIf="user?.task_review_actions.length == 0">
+                                    <span class=""> </span>
+                                  </div>
+                                </a>
+                              </div>
+      
+                              <div class="tab-pane fade" id="onhold-tickets" role="tabpanel" aria-labelledby="onhold-tickets">
+                                <div class="tickets-date-group"></div>
+                                <a *ngFor="let user of taskDetails?.task_users;" class="tickets-card ">
+                                  <div class="tickets-details col-lg-6 col-12">
+                                    <div class="wrapper">
+                                      <h5>{{user.user_name}}</h5>
+                                    </div>
+                                    <div *ngFor="let roleprop of user?.roles_properties;"
+                                      class="wrapper tx-12 d-none d-md-block">
+                                      <span>{{roleprop.property_name}}</span>
+                                      <span>- {{roleprop.role_name}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                    <span class="tx-12 tx-warning" *ngIf="user.task_status == 0">Not Started</span>
+                                    <span class="tx-12 tx-primary" *ngIf="user.task_status == 1">InProgress</span>
+                                    <span class="tx-12 tx-danger" *ngIf="user.task_status == 2">Completed</span>
+                                    <span class="tx-12 tx-danger" *ngIf="user.task_status == 3">Not Completed</span>
+                                  </div>
+                                  <div *ngIf="taskDetails.isApprover"
+                                    class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                    <a *ngIf="user?.approve_status != 1; else elseBlockShow">
+      
+                                      <button [disabled]="!taskDetails.approveBtn || user.task_status != 2"
+                                        class="custom-btn rounded btn-success mg-r-10" href="#owner"
+                                        (click)="taskActionStatus(1,user.user_id)" data-toggle="modal"
+                                        data-effect="effect-scale" role="button" aria-expanded="false"
+                                        aria-controls="commentCollapse">
+                                        <i class="fa fa-thumbs-up pd-t-3 pd-r-6"></i>Approve</button>
+                                    </a>
+                                    <ng-template #elseBlockShow>Approved</ng-template>
+                                  </div>
+                                  <div class="ticket-float col-lg-2 col-sm-6 d-none d-md-block"
+                                    *ngIf="!taskDetails.isApprover && taskDetails.isReviewer">
+                                    <a *ngIf="user?.review_status != 1; else elseBlockShow">
+      
+                                      <button
+                                        [disabled]="!taskDetails.reviewBtn || user.task_status != 2 ||user.approve_status != 1"
+                                        class="custom-btn rounded btn-warning" href="#owner"
+                                        (click)="taskActionStatus(2,user.user_id)" data-toggle="modal"
+                                        data-effect="effect-scale" role="button">
+                                        <i class="fa fa-book-reader pd-t-3 pd-r-6"></i>Review</button>
+                                    </a>
+                                    <ng-template #elseBlockShow>Reviewed</ng-template>
+                                  </div>
+      
+                                  <div class="ticket-float col-lg-2 col-sm-6 d-none d-md-block">
+                                    <a *ngIf="user.task_status != 2 || user.approve_status != 1; else elseBlockShow">
+      
+                                      <button
+                                        [disabled]="(!taskDetails.approveBtn || !taskDetails.reviewBtn) ||  user.task_status != 2 || user.approve_status != 1"
+                                        class="custom-btn rounded btn-danger" href="#owner"
+                                        (click)="taskActionStatus(3,user.user_id)" data-toggle="modal"
+                                        data-effect="effect-scale" role="button" aria-expanded="false"
+                                        aria-controls="commentCollapse">
+                                        <i class="fa fa-thumbs-down pd-t-3 pd-r-6"></i>Reject</button>
+                                    </a>
+                                    <ng-template #elseBlockShow></ng-template>
+                                  </div>
+      
+                                </a>
+      
+                              </div>
+                            </div>
+                          </div>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+      
+      
+          </div><!-- az-content-body -->
+        </div><!-- container -->
+      </div><!-- az-content -->
+      
+      
+      <!-- </div>
+        </div> -->
+      
+      <!-- action comment modal -->
+      <div id="owner" class="modal over-the-tooltip">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content modal-content-demo">
+            <div class="d-flex flex-row  bg-gray-200 pd-10">
+              <i class="fa fa-file-pdf tx-20 tx-gray-600 mg-x-5"></i>
+              <label class="mg-b-0 pull-left">Comment</label>
+            </div>
+            <div class="modal-body bd-t bd-orange bd-5">
+              <div class="media d-block ">
+                <div class="media-body">
+                  <div class="mg-b-10">
+                    <div class=" mg-t-5" id="comment-box">
+                      <div class="">
+                        <textarea class="form-control" [(ngModel)]="taskAction.comment" placeholder="Type comment here..."
+                          [ngClass]="{ 'is-invalid': submitted && !taskAction.comment }" required>
+                       </textarea>
+                        <div *ngIf="taskActionSubmitted && !taskAction.comment" class="invalid-feedback">
+                          <div *ngIf="!taskAction.comment">Comment is required</div>
+                        </div>
+                      </div>
+                    </div>
+      
+                  </div>
+                </div>
+                <i
+                  class="icon ion-md-document tx-100 tx-success rounded mg-sm-l-20 mg-t-20 mg-sm-t-0 lh-1 d-inline-block"></i>
+              </div>
+              <div class="">
+                <button type="button" (click)="addTaskAction()"
+                  class="custom-btn rounded btn-primary mg-l-5 wd-80 pull-right"> Save</button>
+      
+                <button type="button" id="taskActionModal" class="custom-btn rounded btn-danger pull-right"
+                  data-dismiss="modal" aria-label="Close">close</button>
+              </div>
+            </div>
+          </div>
+        </div><!-- modal-dialog -->
+      </div>
+      <!--  -->
+      
+  

@@ -1,0 +1,36 @@
+  <!-- breadcrumb -->
+ 
+  <!-- <div class="breadcrumb-header">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="#">
+              <span class="home-icon">
+                  <span class="material-icons home-logo">home</span>
+              </span>
+            </a>
+          </li>
+          <li *ngFor="let item of items; let idx = index"  class="breadcrumb-item" aria-current="page" >
+            {{ item }}
+          </li>
+       </ol>
+       <div class="identity">Hi,</div>
+    </nav>
+    
+  </div>   -->
+  <!-- !breadcrumb -->
+
+  <div class="breadcrumb-header" *ngIf="items.length > 0">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" *ngFor="let item of items; let idx = index" [routerLink]="item.path" 
+            [ngClass]="{'activeURL': idx === items.length - 1}">
+                    <span *ngIf="idx == 0;else other_content" class="home-icon">
+                        <span class="material-icons home-logo">home</span>
+                    </span>
+
+                <ng-template #other_content > {{ item.page }} </ng-template>
+            </li>
+        </ol>
+    </nav>
+</div>

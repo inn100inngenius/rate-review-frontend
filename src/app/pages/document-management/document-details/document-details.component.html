@@ -1,0 +1,521 @@
+<!-- <ol class="breadcrumb breadcrumb-style2">
+  <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+  <li class="breadcrumb-item"><a routerLink="/document-management">Document Overview</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Details</li>
+</ol> -->
+<!-- <div class="az-content az-content-profile"> -->
+<div class="card-body  bd-t-0 pd-0">
+  <div class="row mg-10 bd pd-20">
+    <div class="col-md-3 az-content-left-profile">
+
+      <div class="az-profile-overview">
+        <div class="text-center">
+          <i class="fa fa-file-pdf tx-100 mg-b-20"></i>
+        </div>
+        <div>
+          <h5 class="az-profile-name text-center" *ngIf="docDetails ">{{docDetails.document_name}}</h5>
+        </div>
+        <div class="mg-b-10">
+          <div class="text-center">
+           
+            <div *ngIf="docDetails?.approve_status == 1 && docDetails?.review_status == 0" class="badge badge-success tx-14 mg-y-10">
+              Approved</div>
+            <div *ngIf="docDetails?.approve_status == 1 && docDetails?.review_status == 1 " class="badge badge-warning tx-14 mg-y-10">
+                Reviewed</div>
+            <div *ngIf="docDetails?.approve_status == 2 " class="badge badge-danger tx-14 mg-y-10">
+                Rejected</div>
+            <div *ngIf="docDetails?.approve_status == 0 && docDetails?.review_status == 0" class="badge badge-primary tx-14 mg-y-10">
+                Pending</div>
+          </div>
+          <div class="pd-y-10">
+            <ngb-progressbar type="warning" [value]="40" [striped]="true" [animated]="true"><i>40%</i></ngb-progressbar>
+          </div>
+          <a href="#downloadList" class="modal-effect" data-toggle="modal" data-effect="effect-scale">
+            <div role="button" class="shadow-base text-center bd bd-2 bd-primary pd-y-10 rounded bg-gray-100">
+              <span class="tx-primary mg-r-10 tx-16 tx-medium">Total Downloads </span>
+              <span id="value" class="tx-white tx-bold rounded-10 mg-t-5 pd-x-10 pd-y-5 tx-22 counter-span">0</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="lh-10">
+          <table>
+            <!-- <tr class="bd-b bd-gray-200">
+                <td>ID </td><td>: </td><td class="tx-info pd-l-10"> <strong>{{docDetails.id}}</strong> </td>
+              </tr> -->
+            <tr class="bd-b bd-gray-200">
+              <td>Revision </td>
+              <td>: </td>
+              <td class="tx-info pd-l-10"> <strong>{{docDetails?.revision}}</strong> </td>
+            </tr>
+            <tr class="bd-b bd-gray-200">
+              <td>Author </td>
+              <td>: </td>
+              <td class="tx-info pd-l-10"> <strong>{{docDetails?.user_name}}</strong> </td>
+            </tr>
+            <!-- <tr class="bd-b bd-gray-200">
+                <td>Role </td><td>: </td><td class="tx-info pd-l-10"> <strong>General Manager</strong> </td>
+              </tr> -->
+            <tr class="bd-b bd-gray-200">
+              <td> Upload date </td>
+              <td>: </td>
+              <td class="tx-info pd-l-10"> <strong>{{docDetails?.created_at | date:'MM-dd-yyyy'}}</strong> </td>
+            </tr>
+            <!-- <tr class="bd-b bd-gray-200">
+              <td class="mn-wd-100"> Approval date </td>
+              <td>: </td>
+              <td class="tx-info pd-l-10"> <strong>N/A</strong> </td>
+            </tr> -->
+            <tr class="bd-b bd-gray-200">
+              <td> Expiry date </td>
+              <td>: </td>
+              <td class="tx-info pd-l-10"> <strong>{{docDetails?.expiry_date | date:'MM-dd-y'}}</strong> </td>
+            </tr>
+            <tr class="bd-b bd-gray-200">
+              <td> Remarks </td>
+              <td>: </td>
+              <td class="tx-info pd-l-10"> <strong>{{docDetails?.remarks}}</strong> </td>
+            </tr>
+            <tr class="bd-b bd-gray-200">
+              <td>File type </td>
+              <td>: </td>
+              <td class="tx-info pd-l-10"> <strong>{{docDetails?.f_type}}</strong> </td>
+            </tr>
+            <tr class="bd-b bd-gray-200">
+              <td>File size </td>
+              <td>: </td>
+              <td class="tx-info pd-l-10"> <strong>{{docDetails?.document_size}}</strong> </td>
+            </tr>
+          </table>
+        </div><!-- az-profile-bio -->
+
+        <div class="mg-t-20">
+          <label class="az-content-label wd-100p pd-10 bg-gray-100 tx-13 mg-b-10">Actions</label>
+          <div class="text-center az-profile-social-list">
+            <div class="mg-y-10">
+              <!-- <div>
+                  <a *ngIf="paramStatus == 1" class="" data-toggle="collapse" href="#commentCollapse" role="button" aria-expanded="false" aria-controls="commentCollapse">
+                    <button class="custom-btn bg-success rounded wd-150 mg-b-10 pos-relative"><i class="fa fa-thumbs-up pos-absolute l-25 t-5"></i>Approve</button>
+                  </a>
+                </div>
+                <div>
+                  <a *ngIf="paramStatus == 1" class="" data-toggle="collapse" href="#commentCollapse" role="button" aria-expanded="false" aria-controls="commentCollapse"> 
+                    <button class="custom-btn bg-danger rounded wd-150 mg-b-10 pos-relative"><i class="fas fa-trash pos-absolute l-25 t-5"></i>Reject</button>
+                  </a>
+                </div> -->
+              <div><button (click)="viewDocument()" class="custom-btn bg-teal rounded wd-150 mg-b-10 pos-relative"><i
+                    class="fa fa-eye pos-absolute l-25 t-5"></i>View</button></div>
+
+              <div><button routerLink="/document-management/document-checkin/{{docDetails?.document_id}}"
+                  class="custom-btn bg-teal rounded wd-150 mg-b-10 pos-relative"><i
+                    class="fa fa-sign-out-alt pos-absolute l-25 t-5"></i>CheckIn</button></div>
+              <div><button (click)="downloadMyFile()" class="custom-btn bg-info rounded wd-150 mg-b-10 pos-relative"><i
+                    class="fa fa-download pos-absolute l-25 t-5"></i>Download</button></div>
+              <div><button class="custom-btn bg-gray-700 rounded wd-150 mg-b-10 pos-relative"><i
+                    class="fa fa-share-alt pos-absolute l-25 t-5"></i>Share</button></div>
+
+              <!-- <div>
+                  <a *ngIf="paramStatus == 2" class="" data-toggle="collapse" href="#commentCollapse" role="button" aria-expanded="false" aria-controls="commentCollapse">
+                    <button class="custom-btn bg-warning rounded wd-150 mg-b-10 pos-relative"><i class="fa fa-download pos-absolute l-25 t-5"></i>Review</button>
+                  </a>
+                </div> -->
+            </div>
+          </div>
+
+          <!-- Approve & Reject -->
+          <div *ngIf="paramStatus != 0">
+
+            <div class="collapse mg-t-5" id="commentCollapse">
+              <div class="card card-body bd-0 pd-t-10">
+                <textarea class="form-control" placeholder="Type comment here..."></textarea>
+                <div class="d-flex">
+                  <button data-toggle="collapse" href="#commentCollapse"
+                    class="custom-btn rounded btn-secondary mg-l-auto mg-y-5 wd-100 mg-r-10"><i
+                      class="fa fa-window-close pd-t-3 pd-r-2"></i> Cancel</button>
+                  <button class="custom-btn rounded btn-primary mg-y-5 wd-100"><i class="fa fa-save pd-t-3 pd-r-2"></i>
+                    Save</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div><!-- az-profile-overview -->
+
+    </div><!-- az-content-left -->
+    <div class="col-md-9 az-content-body az-content-body-profile">
+      <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs tx-medium tx-12 pd-b-1-f pd-0-f mg-l-20 mg-b-10">
+        <li [ngbNavItem]="1">
+          <a ngbNavLink>REVIEWERS</a>
+          <ng-template ngbNavContent>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">User name</th>
+                    <!-- <th scope="col">Role</th> -->
+                    <th scope="col">Action</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Reviewed Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr *ngFor="let revw of docDetails?.doc_reviewers; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>
+                      {{ revw.user_name }}
+                    </td>
+                    <!-- <td>
+                      {{ revw.role }}
+                    </td> -->
+                    <td>
+                      <button *ngIf="revw.isReviewBtn" href="#docComment" data-toggle="modal" data-effect="effect-scale"
+                        role="button" aria-expanded="false" (click)="docActionStatus(3,revw.id)" type="button"
+                        class="custom-btn tx-12 wd-90 rounded btn-warning mg-r-5">
+                        Review
+                      </button>
+                    </td>
+                    <td>
+                      <span class="btn-group-sm btn-group-toggle" ngbRadioGroup name=""
+                        [(ngModel)]="revw.review_status">
+                        <button *ngIf="revw.review_status==0" class="custom-btn tx-12 wd-90 rounded btn-primary mg-r-5">
+                          Pending
+                        </button>
+                        <button *ngIf="revw.review_status==1" class="custom-btn tx-12 wd-90 rounded btn-success mg-r-5">
+                          Reviewed
+                        </button>
+                      </span>
+                    </td>
+                    <td>
+                      {{revw.comment}}
+                    </td>
+                    <td>
+                      <span *ngIf="revw.review_status==1">{{revw.updated_at | date:'MM-dd-yyyy h:mm:ss a'}}</span>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+          <a ngbNavLink>APPROVERS</a>
+          <ng-template ngbNavContent>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">User</th>
+                    <!-- <th scope="col">Role</th> -->
+                    <th scope="col">Action</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Commet</th>
+                    <th scope="col">Approved Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let app of docDetails?.doc_approvers; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>
+                      {{ app.user_name }}
+                    </td>
+                    <!-- <td>
+                      {{ app.role }}
+                    </td> -->
+                    <td>
+                      <!-- (click)="approveDocument(app.id)" -->
+                      <button *ngIf="app.isApproveBtn" href="#docComment" data-toggle="modal" data-effect="effect-scale"
+                        role="button" aria-expanded="false" (click)="docActionStatus(1,app.id)" type="button"
+                        class="custom-btn tx-12 wd-90 rounded btn-success mg-r-5">
+                        Approve
+                      </button>
+                      <button *ngIf="app.isApproveBtn" href="#docComment" data-toggle="modal" data-effect="effect-scale"
+                        role="button" aria-expanded="false" (click)="docActionStatus(2,app.id)" type="button"
+                        class="custom-btn tx-12 wd-90 rounded btn-danger mg-r-5">
+                        Reject
+                      </button>
+                    </td>
+                    <td>
+                      <span class="btn-group-sm btn-group-toggle" ngbRadioGroup name=""
+                        [(ngModel)]="app.approve_status">
+                        <button *ngIf="app.approve_status==0" class="custom-btn tx-12 wd-90 rounded btn-primary mg-r-5">
+                          Pending
+                        </button>
+                        <button *ngIf="app.approve_status==1" class="custom-btn tx-12 wd-90 rounded btn-success mg-r-5">
+                          Approved
+                        </button>
+                        <button *ngIf="app.approve_status==2" class="custom-btn tx-12 wd-90 rounded btn-danger mg-r-5">
+                          Rejected
+                        </button>
+                      </span>
+                    </td>
+                    <td>
+                      {{app.comment}}
+                    </td>
+                    <td>
+                      <span *ngIf="app.approve_status==1">{{app.updated_at | date:'MM-dd-yyyy h:mm:ss a'}}</span>
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="3">
+          <a ngbNavLink>REVISIONS</a>
+          <ng-template ngbNavContent>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Document</th>
+                    <th scope="col">Revision</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Date</th>
+                    <!-- <th scope="col">Information</th> -->
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let rev of docDetails?.doc_revisions; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ rev.document_name }}</td>
+                    <td>{{ rev.revision }}</td>
+                    <td class="text-center">
+                      {{rev.user_name}}
+                      <!-- <span class="badge rounded-50 badge-dark" data-toggle="tooltip" title="{{rev.user_name}}"><i class="fa fa-user-tie tx-12"></i></span> -->
+                    </td>
+                    <td>
+                      <span class="tx-medium tx-success" *ngIf="rev.status == 1">Approved</span>
+                      <span class="tx-medium tx-primary" *ngIf="rev.status == 2">Pending</span>
+                      <span class="tx-medium tx-danger" *ngIf="rev.status == 3">Rejected</span>
+                    </td>
+                    <td>{{ rev.created_at | date:'MM-dd-yyyy' }} </td>
+                    <td class="tx-15">
+                      <a (click)="downloadMyRevision(rev.id,rev.document_id,rev.f_name)" role="button" data-toggle="tooltip" title="Download"><i
+                          class="fa fa-download tx-info mg-r-6"></i></a>
+                      <a role="button" data-toggle="tooltip" title="Share"><i
+                          class="fa fa-share-alt tx-gray-700 mg-r-6"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-template>
+        </li>
+        <!-- <li [ngbNavItem]="4">
+            <a ngbNavLink>COMMENTS</a>
+            <ng-template ngbNavContent>
+              
+              <div class="az-profile-work-list pd-y-10 pd-x-25">
+                <div class="media">
+                  <div class="media-logo bg-success wd-30-f ht-30-f">R</div>
+                  <div class="media-body">
+                    <h6>UI/UX Designer at <a href="">Whatsapp</a></h6>
+                    <span>2016 - present</span>
+                    <p>Past Work: BootstrapDash, Inc.</p>
+                  </div>
+                </div>
+                <div class="media">
+                  <div class="media-logo bg-primary wd-30-f ht-30-f">S</div>
+                  <div class="media-body">
+                    <h6>Studied at <a href="">Buffer University</a></h6>
+                    <span>2002 - 2006</span>
+                    <p>Degree: Bachelor of Science in Computer Science</p>
+                  </div>
+                </div>
+              </div>
+
+            </ng-template>
+          </li> -->
+        <li [ngbNavItem]="5">
+          <a ngbNavLink>PROPERTIES</a>
+          <ng-template ngbNavContent>
+            <div class="col-12">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col"> Code</th>
+                      <th scope="col"> Name</th>
+                      <th scope="col">General Manager </th>
+                      <th scope="col">Cell phone</th>
+                      <th scope="col">Address</th>
+                      <th scope="col">State</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let prop of docDetails?.doc_properties; index as i">
+                      <th scope="row">{{ i + 1 }}</th>
+                      <td>{{ prop.property_code }}</td>
+                      <td>{{ prop.property_name }}</td>
+                      <td>{{ prop.alternative_email }}</td>
+                      <td>{{ prop.telefone }}</td>
+                      <td>{{ prop.address }}</td>
+                      <td>{{ prop.state }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="6">
+          <a ngbNavLink>ACTIVITIES</a>
+          <ng-template ngbNavContent>
+
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col" class="mn-wd-120">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Audit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let docAudit of docDetails?.doc_audits; index as i">
+                    <td>{{docAudit.created_at | date:'MM-dd-yyyy '}}</td>
+                    <td>{{docAudit.created_at | date:'HH:mm:ss aa '}}</td>
+                    <td>{{docAudit.user_name}}</td>
+                    <td>{{docAudit.description}}</td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="7">
+          <a ngbNavLink>TIMELINE</a>
+          <ng-template ngbNavContent>
+            <div *ngFor="let timeline of docDetails?.doc_timeline; index as i">
+              <div class="container-fluid d-flex flex-row justify-content-between bg-gray-200 rounded pd-y-3 mg-y-10">
+                <div class="image-grouped">
+                  <span class="tx-medium pd-5 tx-gray-800 text-uppercase ">{{timeline.user_name}}</span>
+                </div>
+              </div>
+              <div class="container-fluid timeline-container">
+                <ul class="timeline">
+                  <li *ngFor="let desc of timeline.timelines;"><span class="year">{{desc.created_at |
+                      date:'MM-dd-yyyy'}}</span>
+                    <ul class="content">
+                      <li><span class="badge badge-dark">{{desc.created_at | date:'HH:mm:ss aa'}}</span></li>
+                      <li>{{desc.description}}</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </ng-template>
+
+        </li>
+
+
+      </ul>
+
+      <div [ngbNavOutlet]="nav" class="mg-l-20 mg-t-20 cont-tab-container"></div>
+      <div class="az-profile-body">
+
+        <div class="mg-b-20"></div>
+
+      </div><!-- az-profile-body -->
+    </div><!-- az-content-body -->
+  </div>
+</div>
+
+
+
+<!-- REVIEWER MODAL -->
+<div id="downloadList" class="modal over-the-tooltip">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content modal-content-demo">
+      <div class="d-flex flex-row  bg-gray-200 pd-10">
+        <label class="mg-b-0 tx-15 pull-left">Download History</label>
+      </div>
+      <div class="modal-body bd-t bd-gray-800 bd-5">
+        <div class="az-content-body d-flex flex-column">
+          <div class="card-body  bd-t-0 pd-0">
+            <div class="row mg-10 pd-20 pd-b-0-f">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">IP Address</th>
+                    <th scope="col"> Date & Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr [hidden]="docAudit.type != 6" *ngFor="let docAudit of docDetails?.doc_audits; index as i">
+                    <td>{{docAudit.user_name}}</td>
+                    <td>{{docAudit.country_name}}</td>
+                    <td>{{docAudit.user_ip}}</td>
+                    <td>{{docAudit.created_at | date:'MM-dd-yyyy HH:mm:ss aa'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="pd-15">
+            <button class="custom-btn btn-danger pull-right" data-dismiss="modal" aria-label="Close">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- modal-dialog -->
+</div><!-- modal -->
+
+<!-- comment modal -->
+
+<div id="docComment" class="modal over-the-tooltip">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-demo">
+      <div class="d-flex flex-row  bg-gray-200 pd-10">
+        <i class="fa fa-file-pdf tx-15 tx-gray-600 mg-x-5"></i>
+        <label class="mg-b-0 pull-left">Comment</label>
+      </div>
+      <div class="modal-body bd-t bd-orange bd-5">
+        <div class="media d-block ">
+          <div class="media-body">
+            <div class="mg-b-10">
+              <div class=" mg-t-5" id="comment-box">
+                <div class="">
+                  <textarea class="form-control" [(ngModel)]="docAction.comment" placeholder="Type comment here..."
+                    [ngClass]="{ 'is-invalid': docActionSubmitted && !docAction.comment }" required>
+                   </textarea>
+                  <div *ngIf="docActionSubmitted && !docAction.comment" class="invalid-feedback">
+                    <div *ngIf="!docAction.comment">Comment is required</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <i
+            class="icon ion-md-document tx-100 tx-success rounded mg-sm-l-20 mg-t-20 mg-sm-t-0 lh-1 d-inline-block"></i>
+        </div>
+        <div class="">
+          <button type="button" (click)="addDocAction()" class="custom-btn rounded btn-primary mg-l-5 wd-80 pull-right">
+            Save</button>
+
+          <button type="button" id="docActionModal" class="custom-btn rounded btn-danger pull-right"
+            data-dismiss="modal" aria-label="Close">close</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- modal-dialog -->
+</div>

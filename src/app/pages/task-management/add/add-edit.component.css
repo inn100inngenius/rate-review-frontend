@@ -1,0 +1,247 @@
+
+/* modal add task */
+.card-head{
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 31px;
+  color: #636363;
+  float: left;
+  width: 100%;
+  padding: 7px 4%;
+  border-bottom: 1px solid #e5e5e5;    
+}
+.closeBtn{
+  position: absolute;
+  right: 36px;
+  top: 25px;
+  cursor:pointer;
+}
+.form-box{
+  width: 100%;
+  padding: 21px 3% 0 2%;
+  color: #636262;
+  float: left;
+}
+.form-label-left {
+  padding-top: 8px;
+  text-align: left;
+  min-width: 95%;
+}
+
+.form-label-left:after{
+  content: ':';
+  padding: 0px 0px 0px 5px;
+  color: rgb(44, 44, 44);
+  float: right;
+}
+.desc-label-left {
+  padding-top: 8px;
+  text-align: left;
+}
+@media screen and (min-width: 1024px){
+  .desc-label-left {
+    padding-top: 8px;
+    text-align: left;
+    width: 155%;
+  }
+}
+
+.desc-label-left:after{
+  content: ':';
+  padding: 0px 0px 0px 5px;
+  color: rgb(44, 44, 44);
+  float: right;
+}
+.row{
+  margin-left: 0 !important;
+}
+input{
+  font-size: 14px;
+}
+.req-asterisk:after {
+  content:" *";
+  color: red;
+}
+
+.action-bttn{
+  text-align: right;
+}
+.action-bttn button{
+  font-size: 14px;
+  padding: 1px 11px 3px 6px;
+  margin: 1% 0 1% 1%;
+  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+}
+.action-bttn button span{
+  font-size: 15px;
+  padding: 4px 5px 0;
+  float: left;
+}
+
+
+.selected-list{
+  border: 1px solid #cecece !important;
+  border-radius: 5px !important;
+}
+.c-btn{
+  border: 1px solid #cecece !important;
+  border-radius: 5px !important;
+}
+
+.label-icon{
+float: left;
+padding-right: 5px;
+color: #c7bdff;
+}
+/* multiselect */
+:host >>> .selected-list .c-list .c-token {
+
+background:#8271dd !important ;
+color: white;
+}
+:host >>> .cuppa-dropdown{
+border: 1px solid #ced4da;
+border-radius: .25rem;
+}
+
+:host >>> .pure-checkbox input[type=checkbox]:checked+label:before {
+background: #8271dd !important ;
+}
+:host >>> .pure-checkbox input[type=checkbox]+label:before {
+color: #8271dd;
+border: 1px solid #8271dd;
+}
+:host >>> .selected-item {
+background: #e9f4ff;
+}
+:host >>> .pure-checkbox input[type=checkbox]:checked+label:after {
+color: #fff;
+}
+.multiselect-bg{
+background: #ffffff;
+}
+/* attachment */
+
+.upload-files-input{
+margin: 2px;
+position: absolute;
+opacity: 0;
+}
+.upload-files-label{
+position: relative;
+width: 100%;
+padding: 6px;
+text-align: center;
+color: #fdfdfd;
+cursor: pointer;
+border-radius: 4px;
+background: linear-gradient(180deg, #0782C7 0%, #0B99E9 100%);
+}
+.upload-files-label span{
+position: absolute;
+left: 24%;
+font-size: 25px;
+margin: -2px;
+}
+
+
+.file-input-wrapper {
+margin: 2px;
+overflow: hidden;
+position: relative;
+background-color: #fff;
+cursor: pointer;
+}
+
+.file-input-wrapper>input[type="file"] {
+font-size: 40px;
+position: absolute;
+top: 0;
+right: 0;
+opacity: 0;
+cursor: pointer;
+width: 100%;
+}
+
+.file-input-wrapper>.btn-file-input {
+background: linear-gradient(180deg, #6d6d6d 0%, #a9a8a8 100%);
+border-radius: 4px;
+color: #fff;
+display: inline-block;
+margin: 0 0 0 -1px;
+padding: 6px;
+width: 100%;
+cursor: pointer;
+border: none;
+}
+
+.file-input-wrapper:hover>.btn-file-input {
+background-color: #494949;
+}
+
+#img_text {
+float: right;
+margin-right: -80px;
+margin-top: -14px;
+}
+/* ng-multiselect-dropdown */
+:host ::ng-deep ng-multiselect-dropdown{
+padding: 0px;
+}
+:host ::ng-deep .multiselect-dropdown .dropdown-btn{
+border:none;
+}
+::ng-deep .multiselect-bg .form-control{
+height: unset  !important;
+min-height: 37px  !important;
+}
+::ng-deep .multiselect-dropdown .dropdown-btn .selected-item{
+margin-top: 2px;
+}
+
+/* Files drop box */
+.ngx-file-drop__drop-zone{
+border: 2px solid #0782d0 !important;
+border-radius: 6px !important;
+}
+.ngx-upload-file-icon{
+opacity: .5;
+color: #309cfb;
+}
+
+.content-ht-container{
+  min-height: 167px !important;
+  max-height: 167px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  }
+
+@media screen and (min-width: 767px) and (max-width: 1024px){
+  .content-ht-container{
+    min-height: 264px !important;
+    max-height: 264px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    }
+}
+
+
+/* width */
+::-webkit-scrollbar {
+width: 5px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+border: 1px solid #ececec;
+border-radius: 50px;
+background: #eaeefc; 
+} 
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: #6787f0; 
+border-radius: 50px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #466ceb; 
+}

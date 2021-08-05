@@ -1,0 +1,43 @@
+﻿.notification-dropdown{
+    height: 350px;
+    overflow-y: scroll;
+}
+.unread-notification {
+    /* .az-notification-list .media:hover::before { */
+        
+        background-color: #f4f5f8  !important;
+       
+    /* } */
+}
+.menu-profile-img{
+    background: #0040ff;
+    color: #fbfbfb;
+    padding-top: 3px;
+    width: 35px;
+    text-align: center;
+    height: 35px;
+    border-radius: 100%;
+    margin-left: -10px;
+    z-index: 0;
+    border: 4px solid #fff;
+    transform: scale(1);
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+    cursor:pointer;
+}
+.menu-drop-profile-img{
+    font-size: 45px;
+    background: #3c60af;
+    color: #fbfbfb;
+    padding-top: 3px;
+    width: 80px;
+    text-align: center;
+    height: 80px;
+    border-radius: 100%;
+    margin-left: -10px;
+    z-index: 0;
+    border: 4px solid #fff;
+    transform: scale(1);
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}

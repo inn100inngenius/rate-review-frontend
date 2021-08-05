@@ -1,0 +1,236 @@
+<div class="az-content pd-lg-y-60 pd-xl-y-60">
+  <div class="container-fluid">
+    <div class="az-content-body d-flex flex-column">
+      <div class="row row-xs">
+        <div class="col-md-12">
+          <div class="card bd-0">
+            <div class="card-header tx-medium bd tx-white bg-gray">
+              <span class="az-content-label">Add Hotel</span>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-style2">
+                  <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                  <li class="breadcrumb-item" aria-current="page"><a routerLink="/userSetting">UserSetting</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Add</li>
+                </ol>
+              </nav>
+            </div>
+            <div class="card-body bd bd-t-0">
+              <form [formGroup]="userRegisterForm" (ngSubmit)="onSubmit()" style="margin:0 auto;">
+                <div class="row row-xs justify-content-center mg-b-20">
+                  <div class="col-md-2">
+                    <label class="form-label mg-b-0 required">Hotel Name <span class="tx-danger"> *</span></label>
+                  </div>
+                  <div class="col-md-4 mg-t-5 mg-md-t-0">
+                    <input type="text" formControlName="HotelName" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.HotelName.errors }">
+                    <div *ngIf="submitted && f.HotelName.errors" class="invalid-feedback">
+                      <div *ngIf="f.HotelName.errors.required">This field is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row row-xs justify-content-center mg-b-20">
+                  <div class="col-md-2">
+                    <label class="form-label mg-b-0 required">State <span class="tx-danger"> *</span></label>
+                  </div>
+                  <div class="col-md-4 mg-t-5 mg-md-t-0">
+                    <select class="form-control select2-no-search" (change)="onStateChange($event.target)"
+                      formControlName="State" [ngClass]="{ 'is-invalid': submitted && f.State.errors }" required>
+                      <option label="Select State"></option>
+                      <option *ngFor="let state of StateList;">
+                        {{state}}</option>
+
+                    </select>
+                    <div *ngIf="submitted && f.Booking.errors" class="invalid-feedback">
+                      <div *ngIf="f.Booking.errors.required">This field is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row row-xs justify-content-center mg-b-20">
+                  <div class="col-md-2">
+                    <label class="form-label mg-b-0 required">City <span class="tx-danger"> *</span></label>
+                  </div>
+                  <div class="col-md-4 mg-t-5 mg-md-t-0">
+                    <select class="form-control select2-no-search" (change)="onCityChange($event.target)"
+                      formControlName="City" [ngClass]="{ 'is-invalid': submitted && f.City.errors }" required>
+                      <option label="Select City"></option>
+                      <option *ngFor="let item of CityList;" [value]="item.id">
+                        {{item.name}}</option>
+
+                    </select>
+                    <div *ngIf="submitted && f.Booking.errors" class="invalid-feedback">
+                      <div *ngIf="f.Booking.errors.required">This field is required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row row-xs justify-content-center mg-b-20">
+                  <div class="col-md-2">
+                    <label class="form-label mg-b-0 required">Booking.Com <span class="tx-danger"> *</span></label>
+                  </div>
+                  <div class="col-md-4 mg-t-5 mg-md-t-0">
+                    <select class="form-control select2-no-search" (change)="onBookingChange($event.target)"
+                      formControlName="Booking" [ngClass]="{ 'is-invalid': submitted && f.Booking.errors }" required>
+                      <option label="Select property"></option>
+                      <option *ngFor="let item of BookingList;" [value]="item.id">
+                        {{item.name}}</option>
+                    </select>
+                    <div *ngIf="submitted && f.Booking.errors" class="invalid-feedback">
+                      <div *ngIf="f.Booking.errors.required">This field is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row row-xs justify-content-center mg-b-20">
+                  <div class="col-md-2">
+                    <label class="form-label mg-b-0 required">Hotel.com <span class="tx-danger"> *</span></label>
+                  </div>
+                  <div class="col-md-4 mg-t-5 mg-md-t-0">
+                    <!-- <input type="text" formControlName="Hotel" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.Hotel.errors }"> -->
+
+                    <select class="form-control select2-no-search" (change)="onHotelChange($event.target)"
+                      formControlName="Hotel" [ngClass]="{ 'is-invalid': submitted && f.Hotel.errors }" required>
+                      <option label="Select property"></option>
+                      <option *ngFor="let item of HotelList;" [value]="item.id">
+                        {{item.name}}</option>
+                    </select>
+                    <div *ngIf="submitted && f.Hotel.errors" class="invalid-feedback">
+                      <div *ngIf="f.Hotel.errors.required">This field is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row row-xs justify-content-center mg-b-20">
+                  <div class="col-md-2">
+                    <label class="form-label mg-b-0 required">Expedia.com <span class="tx-danger"> *</span></label>
+                  </div>
+                  <div class="col-md-4 mg-t-5 mg-md-t-0">
+                    <!-- <input type="text" formControlName="Expedia" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.Expedia.errors }"> -->
+                    <select class="form-control select2-no-search" (change)="onExpediaChange($event.target)"
+                      formControlName="Expedia" [ngClass]="{ 'is-invalid': submitted && f.Expedia.errors }" required>
+                      <option label="Select property"></option>
+                      <option *ngFor="let item of ExpediaList;" [value]="item.id">
+                        {{item.name}}</option>
+                    </select>
+                    <div *ngIf="submitted && f.Expedia.errors" class="invalid-feedback">
+                      <div *ngIf="f.Expedia.errors?.email || f.Expedia.errors?.required">This field is required</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="row row-xs justify-content-center mg-b-20" *ngIf="isAddMode">
+                      <div class="col-md-2">
+                        <label class="form-label mg-b-0 required">Password <span class="tx-danger"> *</span></label>
+                      </div>
+                      <div class="col-md-4 mg-t-5 mg-md-t-0">
+                        <input type="password" formControlName="user_password"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.user_password.errors }">
+                        <div *ngIf="submitted && f.user_password.errors" class="invalid-feedback">
+                          <div *ngIf="f.user_password.errors.required">Password is required</div>
+                        </div>
+                      </div>
+                    </div> -->
+                <hr />
+                <h4>Room Type</h4>
+
+                <div class="dynamic-fields" formArrayName="items"
+                  *ngFor="let item of userRegisterForm.get('items')['controls']; let i = index;">
+                  <div [formGroupName]="i">
+                    <div class="row row-xs justify-content-center mg-b-20">
+                      <div class="col-md-2 mg-t-5 mg-md-t-0">
+                        <label class="form-label mg-b-0 required"> Room Type <span class="tx-danger"> *</span></label>
+                        <input type="text" formControlName="RoomType" class="form-control"
+                          [ngClass]="{ 'is-invalid': submitted && f.items.controls[i].controls.RoomTyperrors }">
+
+                        <!-- <select class="form-control select2-no-search" (change)="onPropertyChange($event.target,i)"
+                          formControlName="properties"
+                          [ngClass]="{ 'is-invalid': submitted && f.items.controls[i].controls.properties.errors }"
+                          required>
+                          
+                          <option label="Select property"></option>
+                          <option *ngFor="let item of propertyList;" [value]="item.id">
+                            {{item.name}}</option>
+
+                        </select> -->
+                        <div *ngIf="submitted && f.items.controls[i].controls.RoomType.errors" class="invalid-feedback">
+                          <div *ngIf="f.items.controls[i].controls.RoomType.errors.required">Field is required
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-2 mg-t-5 mg-md-t-0">
+                        <label class="form-label mg-b-0 required"> Booking.Com {{i}}<span class="tx-danger"> *</span></label>
+                        <!-- (change)="onPropertyChange($event.target,i)" -->
+                        <select class="form-control select2-no-search" formControlName="Booking"
+                          [ngClass]=" { 'is-invalid' : submitted && f.items.controls[i].controls.Booking.errors }"
+                          required>
+                          <option label="Select"></option>
+                          <option *ngFor="let item of BookingTypeList;" [value]="item.id">
+                            {{item.name}}</option>
+
+                        </select>
+                        <div *ngIf="submitted && f.items.controls[i].controls.Booking.errors" class="invalid-feedback">
+                          <div *ngIf="f.items.controls[i].controls.Booking.errors.required">Field is required
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-2 mg-t-5 mg-md-t-0">
+                        <label class="form-label mg-b-0 required"> Hotel.Com <span class="tx-danger"> *</span></label>
+                        <select class="form-control select2-no-search" formControlName="Hotel"
+                          [ngClass]="{ 'is-invalid': submitted && f.items.controls[i].controls.Hotel.errors }" required>
+                          <option label="Select"></option>
+                          <option *ngFor="let item of HotelTypeList;" [value]="item.id">{{item.name}}
+                          </option>
+                        </select>
+                        <div *ngIf="submitted && f.items.controls[i].controls.Hotel.errors" class="invalid-feedback">
+                          <div *ngIf="f.items.controls[i].controls.Hotel.errors.required">Field is required</div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-2 mg-t-5 mg-md-t-0">
+                        <label class="form-label mg-b-0 required"> Expedia.Com <span class="tx-danger"> *</span></label>
+                        <!-- (change)="onPropertyChange($event.target,i)" -->
+                        <select class="form-control select2-no-search" formControlName="Expedia"
+                          [ngClass]=" { 'is-invalid' : submitted && f.items.controls[i].controls.Expedia.errors }"
+                          required>
+                          <option label="Select"></option>
+                          <option *ngFor="let item of ExpediaTypeList;" [value]="item.id">
+                            {{item.name}}</option>
+
+                        </select>
+                        <div *ngIf="submitted && f.items.controls[i].controls.Expedia.errors" class="invalid-feedback">
+                          <div *ngIf="f.items.controls[i].controls.Expedia.errors.required">Field is required
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="col-md-1 col-lg-1 mg-t-5 mg-md-t-0 pd-t-6 text-center">
+                        <span _ngcontent-cye-c225="" (click)="addItem()"
+                          *ngIf="(items && i == items.length-1) || !items " role="button"
+                          class="rounded-50 bg-info text-center pd-y-5 pd-x-6 tx-white op-8 mg-r-10 tx-9">
+                          <i _ngcontent-cye-c225="" class="fa fa-plus tx-10"></i>
+                        </span>
+
+
+                        <span _ngcontent-cye-c225="" role="button"
+                          class="rounded-50 bg-danger text-center pd-y-5 pd-x-6 tx-white op-8 tx-9"
+                          (click)="removeItem(i)" *ngIf="items && items.length > 1">
+                          <i _ngcontent-cye-c225="" class="fa fa-minus tx-10"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row row-xs mg-b-20 justify-content-center">
+                  <div class="col-6 justify-content-end" style="margin: 0 auto;">
+                    <button type="button" class="btn-danger custom-btn" routerLink="/userSetting">Cancel</button>
+                    <button class="btn-primary mg-r-5 mg-l-10 custom-btn">Save</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

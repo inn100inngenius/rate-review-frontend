@@ -1,0 +1,32 @@
+
+
+  <div class="az-content pd-lg-y-60 pd-xl-y-60 pd-none">
+    <div class="container-fluid">
+      <div class="az-content-body az-content-body-calendar d-flex flex-column">
+        <div class="row row-xs">
+              <div class="col-md-12">
+              <div class="card bd-0">
+                <div class="card-header tx-medium bd tx-white bg-gray ds-none">
+                  <span class="az-content-label">Calendar</span>
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-style2">
+                      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                      <li class="breadcrumb-item" aria-current="page"><a routerLink="/task-management">Task Board</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Calendar</li>
+                    </ol>
+                  </nav>
+                </div><!-- card-header -->
+                <div class="card-body bd bd-t-0 bd-none">
+                  <full-calendar #calendar [options]="calendarOptions"  id="calendar" class="az-calendar"></full-calendar>
+
+                   
+                </div>
+              </div>
+            </div>
+          </div>
+
+        
+
+      </div><!-- az-content-body -->
+    </div><!-- container -->
+  </div><!-- az-content -->

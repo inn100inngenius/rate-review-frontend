@@ -1,0 +1,52 @@
+﻿/* #morrisBar1 svg, #vmap2 svg{
+width:95%;
+} */
+.logo{
+    height: 65px;
+    width: 65px;
+}
+.card-header{
+    border-radius: 15px;
+}
+.review-row-comment {
+    font-weight: 400;
+    font-size: medium;
+}
+
+.rating-box{
+    color: white;
+    background-color:green;
+    border-radius: 4px;
+}
+
+.mat-tab-label-container{
+    background-color: blue !important;
+    font-weight: bolder !important;
+    
+}
+
+.mat-tab-label-active{    
+    background-color: white !important;
+}
+.mat-tab-group {
+    margin-bottom: 48px !important;
+
+}
+.card-dashboard-twentyfive .card-label {
+    font-weight: 600;
+    color: #000000;
+}
+::ng-deep .highcharts-credits{
+    display: none !important;
+}
+
+::ng-deep .ds-none{
+    display:none !important;
+}
+::ng-deep .bd-none{
+    border: none !important;
+}
+::ng-deep  .pd-none{
+    padding: 0 !important;
+
+}

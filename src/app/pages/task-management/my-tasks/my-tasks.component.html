@@ -1,0 +1,83 @@
+<div class="az-content pd-b-10 pd-lg-t-60 pd-xl-t-60">
+  <div class="container-fluid">
+    <div class="az-content-body d-flex flex-column">
+      <div class="row row-xs">
+        <div class="col-md-12">
+          <div class="card bd-0">
+            <div class="card-header tx-medium bd tx-white bg-gray custom-card-header">
+              <div class="">
+                <span class="az-content-label">My Tasks</span>
+                <!-- <a routerLink="add" class="pull-right">
+                  <button class="btn-primary custom-btn rounded">
+                    <span>Create New</span>
+                  </button>
+                </a> -->
+              </div>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-style2 breadcrumb-cust-style">
+                  <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                  <li class="breadcrumb-item"><a routerLink="/task-management">Dashboard</a></li>
+                  <li class="breadcrumb-item"><a routerLink="/task-management/taskboard">Task Board</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">My Tasks</li>
+                </ol>
+              </nav>
+
+              <div class="mytask-action-buttons">
+                <button (click)="createTask()" class="btn-primary custom-btn rounded">Create New</button>
+              </div>
+              
+
+            </div><!-- card-header -->
+            <div class="card-body bd table-responsive">
+              <div class="az-content-body az-content-body-profile">
+
+                <ul ngbNav #nav="ngbNav" [(activeId)]="active"
+                  class="nav-tabs tx-medium tx-12 pd-b-1-f pd-0-f mg-l-20 mg-b-10">
+                  <li [ngbNavItem]="1">
+                    <a ngbNavLink class="tx-15">My Tasks</a>
+                    <ng-template ngbNavContent>
+
+                      <div class="table-responsive">
+                        <table style="width: 100%;" id="example2" class=" table" datatable [dtOptions]="dtOptions">
+                        </table>
+
+
+                      </div>
+                    </ng-template>
+                  </li>
+                  <li [ngbNavItem]="2">
+                    <a ngbNavLink class="tx-15">My Approvals</a>
+                    <ng-template ngbNavContent>
+                      <div class="table-responsive">
+                        <table style="width: 100%;" id="example2" class=" table" datatable [dtOptions]="dtOptions1">
+                        </table>
+
+
+                      </div>
+                    </ng-template>
+                  </li>
+                  <li [ngbNavItem]="3">
+                    <a ngbNavLink class="tx-15">My Reviews</a>
+                    <ng-template ngbNavContent>
+                      <div class="table-responsive">
+                        <table style="width: 100%;" id="example2" class=" table" datatable [dtOptions]="dtOptions2">
+                        </table>
+
+                      </div>
+                    </ng-template>
+                  </li>
+                </ul>
+                <div [ngbNavOutlet]="nav" class="mg-l-20 mg-t-20 cont-tab-container"></div>
+                <div class="az-profile-body">
+                  <div class="mg-b-20"></div>
+                </div><!-- az-profile-body -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+      </div>
+    </div><!-- az-content-body -->
+  </div><!-- container -->
+</div><!-- az-content -->

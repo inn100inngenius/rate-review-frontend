@@ -1,0 +1,299 @@
+/* You can add global styles to this file, and also import other style files */
+@import './assets/azia/lib/fontawesome-free/css/all.min.css';
+@import './assets/azia/lib/morris.js/morris.css';
+@import './assets/azia/lib/jqvmap/jqvmap.min.css';
+
+// @import './assets/azia/lib/datatables.net-dt/css/jquery.dataTables.min.css';
+// @import './assets/azia/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css';
+@import './assets/azia/lib/select2/css/select2.min.css';
+
+@import './assets/azia/css/azia.css';
+
+@import './assets/login/css/util.css';
+@import './assets/login/css/main.css';
+
+
+// @import '~ng-wizard/themes/ng_wizard.min.css';
+/* If a theme other than default is used, the css file for that theme is required. */
+// @import '~ng-wizard/themes/ng_wizard_theme_arrows.min.css';
+// @import '~ng-wizard/themes/ng_wizard_theme_circles.min.css';
+@import '~ng-wizard/themes/ng_wizard_theme_dots.min.css';
+
+// tree
+@import '~@circlon/angular-tree-component/css/angular-tree-component.css';
+
+// Header
+.inn-logo{
+  width: 70px;
+}
+@media (max-width: 991px){
+  .logo-with-menu-wrap{
+    width: 50%;
+  }
+}
+@media (min-width: 992px){
+	.az-header {
+	    position: fixed !important;
+	    z-index: 100 !important;
+	    height: 52px !important;
+	    width: 100% !important;
+        top: 0 !important;
+        
+	}
+}
+.az-content-calendar{
+	padding-top: 80px !important;
+}
+@media (min-width: 992px){
+	.az-content-dashboard,.az-content-dashboard-eight,.az-content-profile{
+	    padding-top: 80px !important;
+	}
+}
+@media (min-width: 1200px){
+	.pd-xl-y-40 {
+	    padding-top: 80px !important;
+	}
+}
+.az-content{
+    min-height: 96vh !important;
+}
+.az-header-menu .nav-item > .nav-link {
+   cursor: pointer;
+}
+.az-navbar-dashboard-eight{
+	top: 52px;
+    position: fixed;
+    width: 100%;
+    z-index: 9;
+    right: 0px;
+}
+@media only screen and (min-width: 992px) {
+	.az-header-menu .nav-item>.nav-link{
+		color:#fff !important;
+	}
+	
+  }
+
+.az-header-menu-header{
+	background: #0040ff;
+}
+.az-header-menu-header .close{
+	color: #fff;
+}
+// charts
+#vmap2{
+    min-width: 100px;
+    min-height: 100px;
+}
+#morrisBar1{
+  min-width: 100px;
+  min-height: 100px;
+}
+#morrisBar1 svg{
+  max-width:100%;
+  min-height:342px;
+}
+#vmap2 svg{
+  max-width:100%;
+  min-height:260px;
+}
+#compositeline canvas,
+#compositeline2 canvas,
+#compositeline3 canvas,
+#compositeline4 canvas{
+    max-width: 250px;
+    height: 20px;
+}
+
+.pull-right{
+	float:right !important;
+}
+.pull-left{
+	float:left !important;
+}
+.custom-btn{
+	padding: 3px 18px !important;
+  border: 0 !important;
+  color:white !important;
+}
+// table
+.ng-table{
+	display: table;
+    width: 100%;
+    border-spacing: 4px;
+    border-color: gray;
+    text-indent: initial;
+    border-collapse: collapse;
+}
+.ng-table tr , .ng-table th{
+	padding: 9px 8px;
+    line-height: 1.462;
+}
+
+// ng-wizard
+.ng-wizard-theme-dots>ul.step-anchor {
+    width: 400px;
+    margin: 0 auto;
+}
+@media screen and (max-width: 768px){
+	.ng-wizard-theme-dots>ul.step-anchor>li {
+		width: 100%;
+	}
+  .table-responsive{
+    // width: calc(100vw - 40px) !important;
+    width: calc(74vw - 5px) !important;
+  }
+}
+//breadcumbs
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "/" !important;
+}
+.table th{
+  color: #0040ff !important;
+}
+table.dataTable tbody td.sorting_1{
+  background-color: unset !important;
+}
+table.dataTable thead .sorting_asc{
+  background-color: unset !important;
+}
+
+// Folder directory
+.folder-dir-wrap{
+  padding-right: 0 !important;
+}
+.folder-dir-inner-wrap{
+  overflow: hidden;
+}
+.card-header{
+  height: 60px !important;
+}
+table.dataTable thead .sorting::before {
+  content: '\f106';
+  top: 40%;
+}
+table.dataTable thead .sorting::after, table.dataTable thead .sorting::before {
+  font-family: 'Font Awesome 5 Free';
+ 
+}
+table.dataTable thead .sorting::after {
+  content: '\f107';
+  top: 60%;
+}
+table.dataTable thead .sorting_asc::after {
+  content: '\f107';
+}
+table.dataTable thead .sorting_asc::after, table.dataTable thead .sorting_desc::after {
+  font-family: 'Font Awesome 5 Free';
+ 
+}
+table.dataTable thead .sorting_desc::after {
+  content: '\f106';
+}
+.table-responsive #example2{
+  width: 100% !important;
+}
+.az-navbar .nav-link.with-sub::after {
+  content: '\f107' ;
+  font-family: 'Font Awesome 5 Free' ;
+}
+.az-content {
+    margin-top: 10px !important;
+}
+.form-label {
+  padding-top: 8px;
+  text-align: right;
+}
+
+.form-label:after{
+  content: ':';
+  padding: 0px 0px 0px 5px;
+  color: rgb(44, 44, 44);
+}
+// .required:after { 
+//   color: #d00;
+//   content: "*";
+//   position: absolute;
+//   margin-left: 4px;
+//   top:7px;
+// }
+@media screen and (max-width: 768px){
+    .form-label {
+    padding-top: 8px;
+    text-align: right;
+  }
+  .az-content-body{
+  margin-top: 20px !important;
+  }
+}
+div:focus{
+  outline:none;
+}
+.bd-orange{
+  border-color: #fd7e14;
+}
+.min-ht-box{
+  min-height: 70vh;
+}
+
+// table center align
+table.dataTable td ,table.dataTable thead th {
+  text-align: center;
+}
+.table thead th, .table thead td ,.table tr td {
+  text-align: center;
+}
+button:focus {
+  outline: none;
+}
+// task-status-clr
+.bd-todo{
+  border-color: #0040ff;
+}
+.bd-inprogress{
+  border-color:  #ff9f1a;
+}
+.bd-completed{
+  border-color: #0079bf;
+}
+.bd-approved{
+  border-color: #f2d600;
+}
+.bd-done{
+  border-color: #61bd4f;
+}
+.bd-rejected{
+  border-color: #eb5a46;
+}
+.bd-notcompleted{
+  border-color: #eb5a46;
+}
+
+.bg-todo{
+ background: #0040ff;
+}
+.bg-inprogress{
+  background:  #ff9f1a;
+}
+.bg-completed{
+  background: #0079bf;
+}
+.bg-approved{
+  background: #f2d600;
+}
+.bg-done{
+  background: #61bd4f;
+}
+.bg-rejected{
+  background: #eb5a46;
+}
+.bg-notcompleted{
+  background: #eb5a46;
+}
+
+.more-user{
+  width:35px !important;
+  height:35px !important;
+  margin-left:-4px !important;
+}

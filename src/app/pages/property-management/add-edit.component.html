@@ -1,0 +1,363 @@
+<div class="az-content pd-y-10 pd-sm-y-10 pd-lg-y-60 pd-xl-y-60">
+    <div class="container-fluid">
+      <div class="az-content-body d-flex flex-column">
+        <div class="row row-xs">
+          <div class="col-md-12">
+            <div class="card bd-0">
+              <div class="card-header tx-medium bd tx-white bg-gray">
+                <span class="az-content-label">Add Property</span>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb breadcrumb-style2">
+                    <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                    <li class="breadcrumb-item "><a routerLink="/property-management">Property</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Add</li>
+                  </ol>
+                </nav>
+              </div>
+              <div class="card-body bd bd-t-0">
+               <form [formGroup]="propertyForm" >
+                <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
+  
+                  <ng-wizard-step  [description]="'General Details'"
+                    [canEnter]="isValidTypeBoolean" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+                    <div>
+                      <div class="mg-b-10 mg-t-30" >
+                        <div class="row row-xs justify-content-center mg-b-20" *ngIf="userType == 1">
+                          <div class="col-md-2">
+                            <label class="form-label mg-b-0">Customer <span class="tx-danger">*</span></label>
+                          </div>
+                          <div class="col-md-4 mg-t-5 mg-md-t-0">
+                            <select class="form-control" formControlName="customer_id" 
+                            [ngClass]="{ 'is-invalid': submitted && f.customer_id.errors }" required>
+                            <option value="">Select Customer</option>
+                              <option *ngFor="let customer of customersList;" value="{{customer.user_id}}">{{customer.user_name}}</option>
+                            
+                            </select>
+                           
+                          
+                            <div *ngIf="submitted && f.customer_id.errors" class="invalid-feedback">
+                              <div *ngIf="f.customer_id.errors.required">Customer is required</div>
+                            </div>
+                          </div>
+                        </div>
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Property Code <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="property_code" 
+                                [ngClass]="{ 'is-invalid': submitted && f.property_code.errors }" required>
+                              
+                                <div *ngIf="submitted && f.property_code.errors" class="invalid-feedback">
+                                  <div *ngIf="f.property_code.errors.required">Property Code is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                         
+                        
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Property Name <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="property_name" 
+                                [ngClass]="{ 'is-invalid': submitted && f.property_name.errors }" required>
+                                <div *ngIf="submitted && f.property_name.errors" class="invalid-feedback">
+                                  <div *ngIf="f.property_name.errors.required">Property Name is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                          
+                         
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Total Rooms Available <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="total_rooms"
+                                 [ngClass]="{ 'is-invalid': submitted && f.total_rooms.errors }"   required>
+                                <div *ngIf="submitted && f.total_rooms.errors" class="invalid-feedback">
+                                  <div *ngIf="f.total_rooms.errors.required">Total Rooms Available is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                         
+                          
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Franchise Name <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="branch_name"  
+                                [ngClass]="{ 'is-invalid': submitted && f.branch_name.errors }"  required>
+                                <div *ngIf="submitted && f.branch_name.errors" class="invalid-feedback">
+                                  <div *ngIf="f.branch_name.errors.required">Branch name is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                        
+                          
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Organization Name <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="organisation_name"
+                                 [ngClass]="{ 'is-invalid': submitted && f.organisation_name.errors }" required>
+                                <div *ngIf="submitted && f.organisation_name.errors" class="invalid-feedback">
+                                  <div *ngIf="f.organisation_name.errors.required">Organisation name is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                        
+                         
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Property Opened date <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <div class="input-group">
+                                <input type="text" class="form-control" formControlName="opened_date" 
+                                 [ngClass]="{ 'is-invalid': submitted && f.opened_date.errors }" 
+                                 placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" required>
+                                 <div class="input-group-append">
+                                  <span (click)="d.toggle()" type="button" class="bg-gray-300 pd-x-15 pd-y-8">
+                                    <i class="fa fa-calendar-alt tx-info"></i>
+                                  </span>
+                                </div>
+                                <div *ngIf="submitted && f.opened_date.errors" class="invalid-feedback">
+                                  <div *ngIf="f.opened_date.errors.required">Property Opened date is required</div>
+                                </div>
+                              </div>
+                                
+                              </div>
+                            </div>               
+                       
+                          </div>
+                    </div>
+                  </ng-wizard-step>
+                  
+                  <ng-wizard-step  [description]="'Address'" [state]="stepStates.normal">
+                    <div class=" mg-b-10 mg-t-30">
+                       
+                         
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Address <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="address"
+                                [ngClass]="{ 'is-invalid': submitted && f.address.errors }"  required>
+                                <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                  <div *ngIf="f.address.errors.required">Organisation name is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                         
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">City/Town <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="city_town" 
+                                [ngClass]="{ 'is-invalid': submitted && f.city_town.errors }"  required>
+                                <div *ngIf="submitted && f.city_town.errors" class="invalid-feedback">
+                                  <div *ngIf="f.city_town.errors.required">Organisation name is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                         
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">State <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="state"
+                                [ngClass]="{ 'is-invalid': submitted && f.state.errors }"    required>
+                                <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                  <div *ngIf="f.state.errors.required">Organisation name is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                         
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Zip Code <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="zip_code" 
+                                [ngClass]="{ 'is-invalid': submitted && f.zip_code.errors }"  required>
+                                <div *ngIf="submitted && f.zip_code.errors" class="invalid-feedback">
+                                  <div *ngIf="f.zip_code.errors.required">Organisation name is required</div>
+                                </div>
+                              </div>
+                              
+                            </div>               
+                         
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Bussiness Phone 1 <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="bus_phone_1"
+                                [ngClass]="{ 'is-invalid': submitted && f.bus_phone_1.errors }"  required>
+                                <div *ngIf="submitted && f.bus_phone_1.errors" class="invalid-feedback">
+                                  <div *ngIf="f.bus_phone_1.errors.required">Bussiness Phone is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                         
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Bussiness Phone 2 <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control"  formControlName="bus_phone_2"  
+                                [ngClass]="{ 'is-invalid': submitted && f.bus_phone_2.errors }" required>
+                                <div *ngIf="submitted && f.bus_phone_2.errors" class="invalid-feedback">
+                                  <div *ngIf="f.bus_phone_2.errors.required">Bussiness Phone is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                          
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Bussiness Fax <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="bus_fax" 
+                                [ngClass]="{ 'is-invalid': submitted && f.bus_fax.errors }" required>
+                                <div *ngIf="submitted && f.bus_fax.errors" class="invalid-feedback">
+                                  <div *ngIf="f.bus_fax.errors.required">Bussiness Fax is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                         
+                      
+                          </div>
+                  </ng-wizard-step>
+                  
+                  <ng-wizard-step  [description]="'Key Staff'"
+                    [canEnter]="isValidFunctionReturnsObservable.bind(this)" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+                    <div class=" mg-b-10 mg-t-30">
+                       
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Key Staff Name <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="general_manager" 
+                                [ngClass]="{ 'is-invalid': submitted && f.general_manager.errors }" required>
+                                <div *ngIf="submitted && f.general_manager.errors" class="invalid-feedback">
+                                  <div *ngIf="f.general_manager.errors.required">Key staff name is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                         
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Key staff Email <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="manager_email" 
+                                [ngClass]="{ 'is-invalid': submitted && f.manager_email.errors }" required>
+                                <div *ngIf="submitted && f.manager_email.errors" class="invalid-feedback">
+                                  <div *ngIf="f.manager_email.errors?.email || f.manager_email.errors?.required">Key staff email is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                         
+                            
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Alternative Email <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="alternative_email"
+                                [ngClass]="{ 'is-invalid': submitted && f.alternative_email.errors }"  required>
+                                <div *ngIf="submitted && f.alternative_email.errors" class="invalid-feedback">
+                                  <div *ngIf="f.alternative_email.errors?.email || f.alternative_email.errors?.required">Alternative email is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                            <div class="row row-xs justify-content-center mg-b-20" *ngIf="isAddMode">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Password <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="password" class="form-control" formControlName="password"
+                                [ngClass]="{ 'is-invalid': submitted && f.password.errors }"  required>
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                  <div *ngIf="f.password.errors.required">Password is required</div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Management Company <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="management_company"
+                                [ngClass]="{ 'is-invalid': submitted && f.management_company.errors }"  required>
+                                <div *ngIf="submitted && f.management_company.errors" class="invalid-feedback">
+                                  <div *ngIf="f.management_company.errors.required">Management company is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                         
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-md-2">
+                                <label class="form-label mg-b-0">Cell Phone <span class="tx-danger">*</span></label>
+                              </div>
+                              <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                <input type="text" class="form-control" formControlName="cell_phone" 
+                                [ngClass]="{ 'is-invalid': submitted && f.cell_phone.errors }" required>
+                                <div *ngIf="submitted && f.cell_phone.errors" class="invalid-feedback">
+                                  <div *ngIf="f.cell_phone.errors.required">Management company is required</div>
+                                </div>
+                              </div>
+                            </div>               
+                         
+                          </div>
+                  </ng-wizard-step>
+                 
+                <ng-wizard-step  [description]="'Contacts'">
+                   <div class=" mg-b-10 mg-t-30">
+                       
+                          <div class="table-responsive">
+                    <table class="table table-hover mg-b-0">
+                      <thead>
+                        <tr>
+                          <th>Contact Name</th>
+                          <th>Email</th>
+                          <th>Number</th>
+                          <th>Support</th>
+                          <th>Emergency</th>
+                        </tr>
+                      </thead>
+                      <tbody formArrayName="contact_details">
+                        <tr *ngFor="let item of propertyForm.get('contact_details')['controls']; let i = index;" 
+                         [formGroupName]="i">
+                          <td scope="row"><input formControlName="contact_name" [value]="" type="text" class=""></td>
+                          <td><input type="text" class="" formControlName="email" [value]=""></td>
+                          <td><input type="text" class="" formControlName="number" [value]=""></td>
+                          <td><input type="checkbox" class="" formControlName="support" [value]=""></td>
+                          <td><input type="checkbox" class="" formControlName="emergency" [value]=""></td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                  </ng-wizard-step>
+                </ng-wizard> 
+              </form>
+              </div>
+            </div>
+        </div>
+      </div>
+      </div><!-- az-content-body -->
+    </div><!-- container -->
+  </div><!-- az-content -->
+
+  

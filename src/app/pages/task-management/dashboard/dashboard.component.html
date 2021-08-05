@@ -1,0 +1,270 @@
+<div class="az-content az-content-dashboard">
+  <div class="container-fluid">
+    <div class="az-content-body">
+      <div class="az-dashboard-one-title">
+        <div>
+          <h2 class="az-dashboard-title">Task Dashboard</h2>
+        </div>
+        <div class="az-content-header-right">
+          <div class="media" *ngIf="localStorageService.getValue().userType == 1 " [style.width.px]="200">
+            <div class="media-body">
+              <div class="multiselect-bg">   
+                <ng-multiselect-dropdown 
+                  class="form-control " name="customers" [placeholder]="'All customers'"
+                  [settings]="dropdownSettingsCustomer" [data]="customerList" [(ngModel)]="filterData.customers"
+                  (onSelect)="onCustomerChange(1)" (onDeSelect)="onCustomerChange(2)"
+                  (onSelectAll)="onCustomerChange(3)" (onDeSelectAll)="onCustomerChange(4)" required>
+                </ng-multiselect-dropdown>                           
+                
+              </div>
+            </div><!-- media-body -->
+          </div><!-- media -->
+         
+          <div class="media"  [style.width.px]="200" *ngIf="localStorageService.getValue().userType == 1 || localStorageService.getValue().userType == 2">
+            <div class="media-body">
+              <div class="multiselect-bg">   
+                <ng-multiselect-dropdown 
+                  class="form-control " name="properties" [placeholder]="'All properties'"
+                  [settings]="dropdownSettings" [data]="propertyList" [(ngModel)]="filterData.properties"
+                  (onSelect)="onPropertyChange(1)" (onDeSelect)="onPropertyChange(2)"
+                  (onSelectAll)="onPropertyChange(3)" (onDeSelectAll)="onPropertyChange(4)" required>
+                </ng-multiselect-dropdown>                           
+                
+              </div>
+            </div><!-- media-body -->
+          </div><!-- media -->
+          <div class="media">
+            <div class="media-body">
+              <button type="button" routerLink="taskboard" class="custom-btn btn-purple m-1">View TaskBoard</button>
+
+            </div><!-- media-body -->
+          </div><!-- media -->
+          <div class="media">
+            <div class="media-body">
+              <button  type="button" routerLink="add" class="custom-btn btn-success">Create New Task</button>
+
+            </div><!-- media-body -->
+          </div><!-- media -->
+        </div>
+      </div><!-- az-dashboard-one-title -->
+
+      <div class="row row-sm mg-b-20">
+       
+        <div class="col-lg-7 mg-t-20 mg-lg-t-0">
+          <div class="card card-dashboard-four">
+            <div class="card-header">
+              <h6 class="card-title">Task Status Analysis</h6>
+            </div><!-- card-header -->
+            <div class="card-body row">
+              <div class="col-md-6 d-flex align-items-center">
+                <div class="chart">
+                  <canvas baseChart 
+                  [data]="pieChartData" 
+                  [labels]="pieChartLabels" 
+                  [chartType]="pieChartType"
+                  [options]="pieChartOptions"
+                  [plugins]="pieChartPlugins"
+                  [legend]="pieChartLegend" 
+                  [colors]="colors">
+                </canvas>
+                </div>
+              </div><!-- col -->
+              <div class="col-md-6 col-lg-6 mg-lg-l-auto mg-t-20 mg-md-t-0">
+                <div class="az-traffic-detail-item">
+                  <div>
+                    <span class="tx-14">To Do</span>
+                    <span>{{taskStatusCount?.todo}} <span>({{taskStatusCount?.todoPer}}%)</span></span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar bg-todo " [style.width.%]="taskStatusCount?.todoPer" role="progressbar" [attr.aria-valuenow]="taskStatusCount?.todoPer" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div><!-- progress -->
+                </div>
+                <div class="az-traffic-detail-item">
+                  <div>
+                    <span class="tx-14">In Progress</span>
+                    <span>{{taskStatusCount?.inprogress}} <span>({{taskStatusCount?.inprogressPer}}%)</span></span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar bg-inprogress " [style.width.%]="taskStatusCount?.inprogressPer" role="progressbar" [attr.aria-valuenow]="taskStatusCount?.inprogressPer" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div><!-- progress -->
+                </div>
+                <div class="az-traffic-detail-item">
+                  <div>
+                    <span class="tx-14">Completed</span>
+                    <span>{{taskStatusCount?.completed}} <span>({{taskStatusCount?.completedPer}}%)</span></span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar bg-completed " [style.width.%]="taskStatusCount?.completedPer" role="progressbar" [attr.aria-valuenow]="taskStatusCount?.completedPer" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div><!-- progress -->
+                </div>
+                <div class="az-traffic-detail-item">
+                  <div>
+                    <span class="tx-14">Not Completed</span>
+                    <span>{{taskStatusCount?.notcompleted}} <span>({{taskStatusCount?.notcompletedPer}}%)</span></span>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar bg-notcompleted" [style.width.%]="taskStatusCount?.notcompletedPer" role="progressbar" [attr.aria-valuenow]="taskStatusCount?.notcompletedPer" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div><!-- progress -->
+                </div>
+               
+              </div><!-- col -->
+            </div><!-- card-body -->
+          </div><!-- card-dashboard-four -->
+        </div><!-- col -->
+        <div class="col-lg-5 mg-t-20 mg-lg-t-0">
+          <div class="row row-sm">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <div class="card card-dashboard-two">
+                <div class="card-header mg-b-5">
+                  <h6 class="col-md-2 pull-right pd-0">{{approvedCount}}  </h6>
+                  <p class="col-md-10 pull-left pd-0 mg-t-5 tx-14">Approved Tasks</p>
+                </div><!-- card-header -->
+                <div class="card-body">
+                  <div class="chart-wrapper pd-5">
+                    <canvas baseChart 
+                    [datasets]="barChartDataApprove"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [plugins]="barChartPlugins"
+                    [legend]="barChartLegend"
+                    [colors]="barChartColorsApprove"
+                    [chartType]="barChartType">
+                  </canvas>
+                  </div><!-- chart-wrapper -->
+                </div><!-- card-body -->
+              </div><!-- card -->
+            </div><!-- col -->
+            <div class="col-sm-12 col-md-6 col-lg-6 mg-t-20 mg-sm-t-0">
+              <div class="card card-dashboard-two">
+                <div class="card-header mg-b-5">
+                  <h6 class="col-md-2 pull-right pd-0">{{reviewedCount}}</h6>
+                  <p class="col-md-10 pull-left pd-0 mg-t-5  tx-14">Reviewed Tasks</p>
+                </div><!-- card-header -->
+                <div class="card-body">
+                  <div class="chart-wrapper pd-5">
+                    <canvas baseChart 
+                    [datasets]="barChartDataReview"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [plugins]="barChartPlugins"
+                    [legend]="barChartLegend"
+                    [colors]="barChartColorsReview"
+                    [chartType]="barChartType">
+                  </canvas>
+                  </div><!-- chart-wrapper -->
+                </div><!-- card-body -->
+              </div><!-- card -->
+            </div><!-- col -->
+            <div class="col-sm-12 col-md-6 col-lg-6 mg-t-20">
+              <div class="card card-dashboard-two">
+                <div class="card-header mg-b-5">
+                  <h6 class="col-md-2 pull-right pd-0">{{rejectedCount}}  </h6>
+                  <p class="col-md-10 pull-left pd-0 mg-t-5  tx-14">Rejected Tasks</p>
+                </div><!-- card-header -->
+                <div class="card-body">
+                  <div class="chart-wrapper pd-5">
+                    <canvas baseChart 
+                    [datasets]="barChartDataReject"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [plugins]="barChartPlugins"
+                    [legend]="barChartLegend"
+                    [colors]="barChartColorsRejected"
+                    [chartType]="barChartType">
+                  </canvas>
+                  </div><!-- chart-wrapper -->
+                </div><!-- card-body -->
+              </div><!-- card -->
+            </div><!-- col -->
+            <div class="col-sm-12 col-md-6 col-lg-6 mg-t-20 ">
+              <div class="card card-dashboard-two">
+                <div class="card-header mg-b-5">
+                  <h6 class="col-md-2 pull-right pd-0">{{systemTaskCount}} </h6>
+                  <p class="col-md-10 pull-left pd-0 mg-t-5  tx-14">System Tasks</p>
+                </div><!-- card-header -->
+                <div class="card-body">
+                  <div class="chart-wrapper pd-5">
+                    <canvas baseChart 
+                    [datasets]="barChartDataSystemTask"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [plugins]="barChartPlugins"
+                    [legend]="barChartLegend"
+                    [colors]="barChartColorsSystemTask"
+                    [chartType]="barChartType">
+                  </canvas>
+                  </div><!-- chart-wrapper -->
+                </div><!-- card-body -->
+              </div><!-- card -->
+            </div><!-- col -->
+          </div><!-- row -->
+        </div><!--col -->
+      </div><!-- row -->
+
+      <div class="row row-sm mg-b-20">
+        <div class="col-lg-4">
+          <div class="card card-dashboard-pageviews">
+            <div class="card-header">
+              <h6 class="card-title">User status by tasks</h6>
+            </div><!-- card-header -->
+            <div class="table-responsive dash-table">
+              <table style="width:99% !important;" id="example2" class=" table user-status-task" datatable [dtOptions]="dtOptions4">
+              </table>
+            </div>
+          </div><!-- card -->
+
+        </div><!-- col -->
+        <div class="col-lg-8 mg-t-20 mg-lg-t-0">
+          <div class="card card-dashboard-four">
+            <div class="card-header">
+              <h6 class="card-title">My Actions</h6>
+              <div class="col-lg-12 col-sm-12">
+                <ul class="nav  justify-content-center" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#tasks" role="tab">
+                       My Tasks
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#approvals" role="tab">
+                       My Approvals
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">
+                      My Reviews
+                    </a>
+                  </li> 
+                             
+                </ul>
+              </div>
+            </div><!-- card-header -->
+            <div class="card-body row">
+               <div class="tab-content text-center col-md-12">
+              <div class="tab-pane active" id="tasks" role="tabpanel">
+                <div class="table-responsive dash-table">
+                  <table   class="table w-100" datatable [dtOptions]="dtOptions1">
+                  </table>
+                </div>
+              </div>
+              <div class="tab-pane" id="approvals" role="tabpanel">
+                <div class="table-responsive dash-table">
+                  <table  class="table w-100" datatable [dtOptions]="dtOptions2">
+                  </table>
+                </div>
+              </div>
+              <div class="tab-pane" id="reviews" role="tabpanel">
+                <div class="table-responsive dash-table">
+                  <table  class="table w-100" datatable [dtOptions]="dtOptions">
+                  </table>
+                </div>
+              </div>
+              
+            </div>
+            </div><!-- card-body -->
+          </div><!-- card-dashboard-four -->
+        </div><!-- col -->
+      </div><!-- row -->
+    </div><!-- az-content-body -->
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('assets/Login/images/img-01.jpg');">
+			<div class="wrap-login100 m-t-30">
+				<form [formGroup]="loginForm" class="login100-form validate-form" (submit)="onSubmit()">
+					<div class="login100-form-avatar">
+						<img src="assets/gallery/faces/logo.png" alt="AVATAR">
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
+
+						<input class="input100" type="email" name="email" formControlName="email" 
+						[ngClass]="{ 'is-invalid': submitted && f.email.errors }"  placeholder="Email">
+
+						<div *ngIf="submitted && f.email.errors" class="validation-quote">
+							<div *ngIf="f.email.errors.required">Email is required</div>
+						  </div>
+						  <span class="focus-input100"></span>
+						  <span class="login-field-icon">
+							  <i class="fa fa-user"></i>
+						  </span>			
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
+						<input class="input100" type="password" name="password" formControlName="password" 
+						[ngClass]="{ 'is-invalid': submitted && f.password.errors }"  placeholder="Password">
+						<div *ngIf="submitted && f.password.errors" class="validation-quote">
+							<div *ngIf="f.password.errors.required">Password is required</div>
+						  </div>
+						<span class="focus-input100"></span>
+						<span class="login-field-icon">
+							<i class="fa fa-lock"></i>
+						</span>
+					</div>
+
+					<div class="container-login100-form-btn p-t-10">
+
+						<button class="login-form-btn">
+							
+							<!-- <a  class="tx-medium"> Login </a> -->
+						
+							Login
+						</button>
+					</div>
+
+					<div class="text-center w-full p-t-25">
+						<a routerLink="/forgot-password" class="forgot-pwd">
+							Forgot Password?
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,228 @@
+.nav-tabs .nav-link.active{
+    border-bottom: 2px solid #1a52fb !important;
+    color: #1a52fb !important;
+}
+.mn-wd-100{
+    min-width: 100px !important;
+}
+.mn-wd-120{
+    min-width: 120px !important;
+}
+.cont-tab-container{
+    min-height: 90% !important;
+    max-height: 90% !important;
+    overflow: auto !important;
+}
+
+.counter-span{
+  background: rgb(24,17,143);
+  background: linear-gradient(0deg, rgba(24,17,143,1) 0%, rgba(42,42,182,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+button{
+  border: none;
+  outline:none;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border: 1px solid #ececec;
+    border-radius: 50px;
+    background: #eaeefc; 
+  } 
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #6787f0; 
+    border-radius: 50px;
+  }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #466ceb; 
+  }
+
+  // Timeline
+  
+  @media screen and (max-width:576px){
+    .main-timeline .title{ font-size: 12px; }
+  }
+  .progress{
+    background-color: #f5f5f5 !important;
+  }
+  .progress .progress-bar{
+    height: 10px !important;
+  }
+  .progress-bar{
+    height: 10px !important;
+  }
+  .form-label {
+    text-align: left !important;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  ul::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  
+  ul.timeline {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 25px 20px 0;
+    width: 100%;
+  }
+  
+  ul.timeline > li {
+    width: calc( 100% / 5);
+  }
+  
+  ul.timeline > li:nth-of-type(odd) > .content {
+    transform: translateY(calc(-100% - 24px));
+  }
+  
+  ul .year {
+    color: #ffd402;
+    background: #3f444c;
+    display: block;
+    position: relative;
+    padding-left: 24px;
+    line-height: 24px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  ul .year::before {
+    content: '';
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    background: #ffd402;
+    border-radius: 50%;
+    left: -24px;
+    top: calc( (40 - 24) / 2 * -1px);
+  }
+  
+  ul .year.new {
+    border-radius: 0 24px 24px 0;    
+    color: #eef1f3;
+  }
+
+  ul .new.completed-task{
+    color: #11c605;
+  }
+  ul .year.new.completed-task::before{
+    background: #11c605;    
+  }
+  
+  ul .year.new::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    display: block;
+    border: 20px solid #3f444c;
+    box-sizing: border-box;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    position: absolute;
+    right: -30px;
+    top: -9.5px;
+  }
+  
+  ul .content {
+    border-left: 8px solid #ffd402;
+    margin-left: -8px;
+    padding: 15px 0;
+    padding-right: 24px;
+    overflow: auto;
+    max-height: 130px;
+  }
+  
+  ul .content > li {
+    padding-left: 20px;
+    border-bottom: 4px solid #eef4f7;
+    padding-bottom: 8px;
+    position: relative;
+    margin-left: -8px;
+  }
+  
+  ul .content > li:last-of-type {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  
+  ul .content > li::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #eef4f7;
+    left: 2px;
+    top: 8px;
+  }
+  
+  @media screen and (max-width: 1140px) {
+    ul.timeline > li {
+      width: calc( 100% / 4);
+    }
+  }
+  
+  @media screen and (max-width: 991px) {
+    ul.timeline > li {
+      width: calc( 100% / 2);
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+    ul.timeline {
+      display: block;
+    }
+  
+    ul.timeline > li {
+      width: 100%;
+    }
+  
+    ul.timeline > li:nth-of-type(odd) .content {
+      transform: none;
+    }
+  }
+  @media screen and (min-width: 1300px) {
+    .timeline-container{
+      margin-top: 12%;
+    }
+  }
+  @media screen and (min-width: 790px) and (max-width:1299px) {
+    .timeline-container{
+      margin-top: 19%;
+    }
+  }
+  @media screen and (min-width: 768px) and (max-width:789px) {
+    .timeline-container{
+      margin-top: 26%;
+      margin-bottom: 0;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .timeline-container{
+      margin-top: 0;
+      margin-bottom: 8%;
+    }
+  }
+
+  ::ng-deep app-document-details{
+    width: 100%;
+  }
+
+  .modal-content .mg-b-0.pull-left{
+    text-transform: uppercase;
+  }

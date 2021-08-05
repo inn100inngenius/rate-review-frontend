@@ -1,0 +1,151 @@
+<div class="col-md-12">
+  <div class="card bd-0">
+    <div class="card-body table-responsive">
+      <div>
+        <!-- <table id="example2" class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Document</th>
+              <th>Rev</th>
+              <th>Author</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Information</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>5</td>
+              <td>Tiger_Nixon_report.doc</td>
+              <td class="text-center">2.0</td>
+              <td class="text-center"><span class="badge rounded-50 badge-dark" data-toggle="tooltip" title="Admin"><i
+                    class="fa fa-user-tie tx-12"></i></span></td>
+              <td>25 Dec 2020</td>
+              <td class="tx-medium tx-orange">Review</td>
+              <td class="text-center">
+                <a href="#approver" class="modal-effect" data-toggle="modal" data-effect="effect-scale"><span
+                    class="badge rounded-50 tx-12 mg-r-6 badge-primary">A</span></a>
+                <a href="#reviewer" class="modal-effect" data-toggle="modal" data-effect="effect-scale"><span
+                    class="badge rounded-50 tx-12 mg-r-6 badge-success">R</span></a>
+              </td>
+              <td class="tx-15">
+                <a data-toggle="tooltip" title="CheckIn" routerLink="/document-management/document-checkin"><i
+                    class="fa fa-sign-in-alt tx-primary mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="CheckOut"><i class="fa fa-sign-out-alt tx-success mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Forward to approval"><i class="fa fa-share tx-pink mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Download"><i class="fa fa-download tx-info mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Share"><i class="fa fa-share-alt tx-gray-700 mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Information" (click)="documentDetails(2)"><i
+                    class="fa fa-info-circle tx-danger mg-r-6"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Garrett_Winters_report.doc</td>
+              <td class="text-center">1.0</td>
+              <td class="text-center"><span class="badge rounded-50 badge-dark" data-toggle="tooltip" title="Admin"><i
+                    class="fa fa-user-tie tx-12"></i></span></td>
+              <td>29 Nov 2020</td>
+              <td class="tx-medium tx-primary">Pending</td>
+              <td class="text-center">
+                <a href="#approver" class="modal-effect" data-toggle="modal" data-effect="effect-scale"><span
+                    class="badge rounded-50 tx-12 mg-r-6 badge-primary">A</span></a>
+                <a href="#reviewer" class="modal-effect" data-toggle="modal" data-effect="effect-scale"><span
+                    class="badge rounded-50 tx-12 mg-r-6 badge-success">R</span></a>
+              </td>
+              <td class="tx-15">
+                <a data-toggle="tooltip" title="CheckIn" routerLink="/document-management/document-checkin"><i
+                    class="fa fa-sign-in-alt tx-primary mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="CheckOut"><i class="fa fa-sign-out-alt tx-success mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Forward to approval"><i class="fa fa-share tx-pink mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Download"><i class="fa fa-download tx-info mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Share"><i class="fa fa-share-alt tx-gray-700 mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Information" (click)="documentDetails(0)"><i
+                    class="fa fa-info-circle tx-danger mg-r-6"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Ashton_Cox_report.doc</td>
+              <td class="text-center">2.0</td>
+              <td class="text-center"><span class="badge rounded-50 badge-dark" data-toggle="tooltip" title="Admin"><i
+                    class="fa fa-user-tie tx-12"></i></span></td>
+              <td>13 Jun 2020</td>
+              <td class="tx-medium tx-orange">Review</td>
+              <td class="text-center">
+                <a href="#approver" class="modal-effect" data-toggle="modal" data-effect="effect-scale"><span
+                    class="badge rounded-50 tx-12 mg-r-6 badge-primary">A</span></a>
+                <a href="#reviewer" class="modal-effect" data-toggle="modal" data-effect="effect-scale"><span
+                    class="badge rounded-50 tx-12 mg-r-6 badge-success">R</span></a>
+              </td>
+              <td class="tx-15">
+                <a data-toggle="tooltip" title="CheckIn" routerLink="/document-management/document-checkin"><i
+                    class="fa fa-sign-in-alt tx-primary mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="CheckOut"><i class="fa fa-sign-out-alt tx-success mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Forward to approval"><i class="fa fa-share tx-pink mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Download"><i class="fa fa-download tx-info mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Share"><i class="fa fa-share-alt tx-gray-700 mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Information" (click)="documentDetails(1)"><i
+                    class="fa fa-info-circle tx-danger mg-r-6"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Cedric_Kelly_report.doc</td>
+              <td class="text-center">3.0</td>
+              <td class="text-center"><span class="badge rounded-50 badge-dark" data-toggle="tooltip" title="Admin"><i
+                    class="fa fa-user-tie tx-12"></i></span></td>
+              <td>17 Oct 2020</td>
+              <td class="tx-medium tx-primary">Pending</td>
+              <td class="text-center">
+                <a href="#approver" class="modal-effect" data-toggle="modal" data-effect="effect-scale"><span
+                    class="badge rounded-50 tx-12 mg-r-6 badge-primary">A</span></a>
+                <a href="#reviewer" class="modal-effect" data-toggle="modal" data-effect="effect-scale"><span
+                    class="badge rounded-50 tx-12 mg-r-6 badge-success">R</span></a>
+              </td>
+              <td class="tx-15">
+                <a data-toggle="tooltip" title="CheckIn" routerLink="/document-management/document-checkin"><i
+                    class="fa fa-sign-in-alt tx-primary mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="CheckOut"><i class="fa fa-sign-out-alt tx-success mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Forward to approval"><i class="fa fa-share tx-pink mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Download"><i class="fa fa-download tx-info mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Share"><i class="fa fa-share-alt tx-gray-700 mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Information" (click)="documentDetails(2)"><i
+                    class="fa fa-info-circle tx-danger mg-r-6"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Airi_Satou_report.doc</td>
+              <td class="text-center">1.0</td>
+              <td class="text-center"><span class="badge rounded-50 badge-dark" data-toggle="tooltip" title="Admin"><i
+                    class="fa fa-user-tie tx-12"></i></span></td>
+              <td>03 Dec 2020</td>
+              <td class="tx-medium tx-orange">Review</td>
+              <td class="text-center">
+                <a href="#approver" class="modal-effect" data-toggle="modal" data-effect="effect-scale"><span
+                    class="badge rounded-50 tx-12 mg-r-6 badge-primary">A</span></a>
+                <a href="#reviewer" class="modal-effect" data-toggle="modal" data-effect="effect-scale"><span
+                    class="badge rounded-50 tx-12 mg-r-6 badge-success">R</span></a>
+              </td>
+              <td class="tx-15">
+                <a data-toggle="tooltip" title="CheckIn" routerLink="/document-management/document-checkin"><i
+                    class="fa fa-sign-in-alt tx-primary mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="CheckOut"><i class="fa fa-sign-out-alt tx-success mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Forward to approval"><i class="fa fa-share tx-pink mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Download"><i class="fa fa-download tx-info mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Share"><i class="fa fa-share-alt tx-gray-700 mg-r-6"></i></a>
+                <a data-toggle="tooltip" title="Information" (click)="documentDetails(2)"><i
+                    class="fa fa-info-circle tx-danger mg-r-6"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table> -->
+        <table style="width: 100%;"  id="example2" class=" table" datatable [dtOptions]="dtOptions"  ></table>
+
+      </div>
+    </div>
+  </div>
+</div>

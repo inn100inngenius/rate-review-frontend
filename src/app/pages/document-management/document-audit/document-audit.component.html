@@ -1,0 +1,79 @@
+<!-- <div class="az-content pd-y-10 pd-sm-y-10 pd-lg-y-60 pd-xl-y-60">
+    <div class="container-fluid">
+      <div class="az-content-body d-flex flex-column">
+        <div class="row row-xs">
+          <div class="col-md-12">
+            <div class="card bd-0">
+              <div class="card-header tx-medium bd tx-white bg-gray">
+                <span class="az-content-label">Audit Trails</span>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb breadcrumb-style2">
+                    <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Audit Trails</li>
+                  </ol>
+                </nav>
+              </div> -->
+              <!-- card-header -->
+              <div class="card-body bd bd-t-0">
+                <div class="row row-sm mg-b-20">
+                  <div class="col-lg-3">
+                    <p class="mg-b-5">User Name</p>
+                    <select class="form-control select2-no-search">
+                      <option label="Select user"></option>
+                      <option value="1">User 1</option>
+                      <option value="2">User 2</option>
+                      <option value="3">User 3</option>
+                      <option value="4">User 4</option>
+                      <option value="5">User 5</option>
+                    </select>
+                  </div><!-- col-3 -->
+  
+                  <div class="col-lg-6">
+                    <p class="mg-b-5">Date range</p>
+                    <form class="form-inline">
+                      <div class="form-group hidden">
+                        <div class="input-group">
+                          <input name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker"
+                            [autoClose]="'outside'" [displayMonths]="1"
+                            [dayTemplate]="t" outsideDays="hidden"  tabindex="-1">
+                          <ng-template #t let-date let-focused="focused">
+                            <span class="custom-day" [class.focused]="focused" 
+                            >
+                              {{ date.day }}
+                            </span>
+                          </ng-template>
+                        </div>
+                      </div>
+                      <div class="form-group wd-50p mg-b-10">
+                        <div class="input-group wd-95p-f">
+                          <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
+                           
+                            >
+                          <div class="input-group-append">
+                            <i class="fas fa-calendar-alt icon-absolute" (click)="datepicker.toggle()"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group wd-50p date-right-range">
+                        <div class="input-group wd-95p-f">
+                          <input #dpToDate class="form-control" placeholder="yyyy-mm-dd" name="dpToDate"
+                            >
+                          <div class="input-group-append">
+                            <i class="fas fa-calendar-alt icon-absolute" (click)="datepicker.toggle()"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-lg-2">
+                    <button type="button" class="btn btn-primary pd-t-8-f pd-b-8-f mg-md-t-25">Filter</button>
+                  </div>
+  
+                </div>
+                <div class="table-responsive">
+                  <table style="width: 100%;"  id="example2" class=" table" datatable [dtOptions]="dtOptions"  ></table>
+  
+               
+                </div>
+              </div>
+           

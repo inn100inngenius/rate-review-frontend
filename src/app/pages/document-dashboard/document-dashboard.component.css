@@ -1,0 +1,49 @@
+.identity{
+    float: right;
+    color: #FA7E0B;
+    font-weight: 500;
+    position: absolute;
+    top: 58px;
+    right: 20px;
+}
+.layout-wrapper{
+    background: #ffffff !important;
+}
+.share-blue{
+    color: #0f85ed;
+}
+.download-green{
+    color: #07a913;
+}
+.copy-blue{
+    color: #6f89a1;
+}
+.move-indigo{
+    color: #a91f98;
+}
+.rename-blue{
+    color: #731fe3;
+}
+.delete-red{
+    color: #e31f1f;
+}
+.p-r-2{
+    padding-right: 2%;
+}
+.float-r{
+    float: right;
+}
+/* Folder overview */
+.folder-overview{
+    min-height: 376px;
+    max-height: 376px;
+    overflow: auto;
+    border: 1px solid #e2edff;
+    padding: 2%;
+}
+::-webkit-scrollbar {
+    width: 5px;
+  }
+.content-body{
+    padding: 10px 20px !important;
+}

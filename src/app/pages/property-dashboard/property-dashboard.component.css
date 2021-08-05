@@ -1,0 +1,189 @@
+.f-20{
+    font-size: 20px !important;
+}
+.identity{
+    float: right;
+    color: #FA7E0B;
+    font-weight: 500;
+    position: absolute;
+    top: 58px;
+    right: 20px;
+}
+/* Cards */
+.card-wraper{
+    margin-top: 2%;
+    float: left;
+    width: 102%;
+}
+.card-box{
+    width: 100%;
+    height: 126px;
+    background: linear-gradient(242.29deg, #FFFFFF 2.48%, #DBE3ED 97.27%);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    margin: 7px 0 28px;
+    transition: 0.5s;
+}
+.card-box:hover{
+    box-shadow: none;
+    cursor: pointer;
+}
+.bounded-span{
+    position: absolute;
+    width: 63px;
+    height: 56px;
+    background: rgba(5, 191, 2, 0.5);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    top: -13px;
+    left: 29px;
+    transition: 0.3s;
+}
+.bounded-span:hover{ 
+    top: -5px;
+    cursor: pointer;
+} 
+
+.bounded-span span{
+    color: #ffffff;
+    font-size: 2.2em;
+    padding: 17% 22%;
+}
+
+/* Card bound styles */
+.yellow-wish{
+    background: rgba(241, 177, 11, 0.5);
+}
+.green-wish{
+    background: rgba(5, 191, 2, 0.5);
+}
+.blue-wish{
+    background: rgba(1, 178, 252, 0.5);
+}
+.indigo-wish{
+    background: rgba(191, 2, 184, 0.5);
+}
+.red-wish{
+    background: rgba(248, 0, 0, 0.22);
+}
+.green-dark-wish{
+    background: #0A9210;
+}
+
+.card-para{
+    width: 100%;
+    padding: 14px 8px;
+    text-align: right;
+}
+.card-para-1{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 120.5%;
+    color: #8A8A8A;
+}
+.card-para-2{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 120.5%;
+    color: #8A8A8A;
+}
+.card-para-count{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 75%;
+    color: #8A8A8A;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+hr{
+    margin: 10px 0 !important;
+}
+
+/* Graphic cards */
+.graphic-cards{
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    margin-bottom: 2%;
+}
+.graph-header{
+    margin: 20px 0 10px;
+}
+.btn {
+    color: #ffff;
+    padding: 1px 13px;
+    font-size: 12px;
+    cursor: pointer !important;
+    border-radius: 0;
+  }
+.btn-actice{
+    background-color: #05BF02;
+    color: #ffffff;
+}
+.graph-filter{
+    float: right;
+}
+canvas{
+    width: 100% !important;
+    height: 540px !important;
+}
+
+/* Routing Cards */
+.routing-cards{
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    margin-bottom: 1%;
+}
+.routing-card{
+    background: linear-gradient(261.75deg, rgba(254, 0, 86, 0.72) 0.07%, rgba(18, 125, 251, 0.75) 100%);
+    box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.59);
+    padding: 4% 0 0;
+    margin: 3% 0%;
+    text-align: center;
+    float: left;
+    width: 100%;
+    border-radius: 8px;
+    min-height: 124px;
+    color: #ffffff;
+}
+.routing-card:hover{
+    transition: all 0.5s ease;
+    cursor: pointer;
+    box-shadow: none;
+    text-shadow: none !important;
+    background: linear-gradient(261.75deg, rgba(206, 3, 71, 0.72) 0.07%, rgba(3, 96, 204, 0.75) 100%);
+}
+.routing-card-icon{
+    width: 100%;
+    font-size: 4em;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.routing-card-title{
+    width: 100%;
+    text-align: center;
+    font-size: 1.3em;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.table-top-box{
+    border-radius: 8px 8px 0 0;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 31px;
+    color: #575555;
+    float: left;
+    width: 100%;
+    padding: 9px 3%;
+    background: linear-gradient(90deg, rgba(6, 110, 233, 0.19) 0%, rgba(92, 166, 254, 0.19) 100%);
+}
+.table-top-box button{
+    float: right;
+    font-size: 14px;
+    padding: 5px 10px;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+}
+.table-top-box button span{
+    font-size: 18px;
+    float: left;
+    padding: 1px 3px 0 0;
+}

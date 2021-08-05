@@ -1,0 +1,41 @@
+<div class="az-navbar az-navbar-two az-navbar-dashboard-eight">
+    <div class="container-fluid">
+      <div class="az-navbar-header">
+        <a routerLink="/home" class="az-logo">azia</a>
+      </div><!-- az-navbar-header -->
+      <div class="az-navbar-search">
+        <input type="search" class="form-control" placeholder="Search for anything...">
+        <button class="btn"><i class="fas fa-search "></i></button>
+      </div><!-- az-navbar-search -->
+      <ul class="nav">
+        <li class="nav-label">Main Menu</li>
+        <li class="nav-item ">
+          <a routerLink="/customer/dashboard" class="nav-link "><i class="fa fa-home az-nav-lnk-icon tx-gray-700"></i>Overview</a>
+        
+        </li><!-- nav-item -->
+       
+        <li class="nav-item">
+          <a routerLink="/property-management" class="nav-link "><i class="fa fa-hotel az-nav-lnk-icon tx-gray-700"></i>Properties</a>
+          
+        </li><!-- nav-item -->
+        <li class="nav-item nav-item-mega">
+          <a routerLink="/role-management" class="nav-link "><i class="fa fa-user-tag az-nav-lnk-icon tx-gray-700"></i>Roles</a>
+         
+        </li><!-- nav-item -->
+        <li class="nav-item">
+          <a routerLink="/user-management" class="nav-link "><i class="fa fa-users az-nav-lnk-icon tx-gray-700"></i>Users</a>
+        </li><!-- nav-item -->
+        <li class="nav-item">
+          <a routerLink="/task-management" class="nav-link "><i class="fa fa-tasks az-nav-lnk-icon tx-gray-700"></i>Tasks</a>
+        </li><!-- nav-item -->
+        <li class="nav-item">
+          <a class="nav-link with-sub" style="cursor: pointer;"><i class="fa fa-file-alt az-nav-lnk-icon tx-gray-700"></i>Documents</a>         
+          <ul class="nav-sub">
+            <li class="nav-sub-item"><a routerLink="/document-management" class="nav-sub-link">Document Features</a></li>
+            <li class="nav-sub-item"><a routerLink="/document-management/revision-control" class="nav-sub-link">Revision Control</a></li>
+            <li class="nav-sub-item"><a routerLink="/document-management/advance-tracking" class="nav-sub-link">Advance Tracking</a></li>            
+          </ul>        
+        </li><!-- nav-item -->
+      </ul><!-- nav -->
+    </div><!-- container-fluid -->
+  </div><!-- az-navbar -->

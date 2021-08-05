@@ -1,0 +1,33 @@
+<div class="az-content pd-y-10 pd-sm-y-10 pd-lg-y-60 pd-xl-y-60">
+    <div class="container-fluid">
+      <div class="az-content-body d-flex flex-column">
+        <div class="row row-xs">
+              <div class="col-md-12">
+              <div class="card bd-0">
+                <div class="card-header tx-medium bd tx-white bg-gray">
+                  <div class="">
+                  <span class="az-content-label">System Task List</span>
+                  <a routerLink="add" class="pull-right">
+                  <button type="button" class=" custom-btn btn-primary">
+                    <span> Add System Task</span>
+                  </button>
+                  </a>
+                  </div>
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-style2">
+                      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">List View</li>
+                    </ol>
+                  </nav>
+                </div><!-- card-header -->
+                <div class="card-body bd bd-t-0 table-responsive">
+                  <table style="width: 100%;"  id="example2" class=" table" datatable [dtOptions]="dtOptions"  ></table>
+
+          <!-- <table style="width: 100%;"  id="example2" class=" table" datatable [dtOptions]="dtOptions"  ></table> -->
+        </div>
+              </div>
+            </div>
+          </div>
+      </div><!-- az-content-body -->
+    </div><!-- container -->
+  </div><!-- az-content -->

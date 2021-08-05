@@ -1,0 +1,192 @@
+<div class="az-content pd-lg-y-60 pd-xl-y-60">
+    <div class="container-fluid">
+        <div class="az-content-body d-flex flex-column">
+            <div class="row row-xs">
+                <div class="col-md-12">
+                    <div class="card bd-0">
+                        <div class="card-header tx-medium bd tx-white bg-gray" *ngIf="!showDetails">
+                            <span class="az-content-label">Hotel Setting</span>
+                            <button style="float: right;" class="btn-primary custom-btn rounded" (click)="addDetails()">
+                                <span> Add Hotel</span>
+                            </button>
+                        </div>
+                        <div class="card-body bd bd-t-0" *ngIf="!showDetails">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <table>
+                                        <tr>
+                                            <th>Hotel Name</th>
+                                            <th>Booking.com Name</th>
+                                        </tr>
+                                        <tr *ngFor="let item of BookingListData">
+                                            <td>{{item.hotelName}}</td>
+                                            <td>{{item.bHotelName}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-4">
+                                    <table>
+                                        <tr>
+                                            <th>Hotel Name</th>
+                                            <th>Hotel.com Name</th>
+                                        </tr>
+                                        <tr *ngFor="let item of HoltelListData">
+                                            <td>{{item.hotelName}}</td>
+                                            <td>{{item.hHotelName}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-4">
+                                    <table>
+                                        <tr>
+                                            <th>Hotel Name</th>
+                                            <th>Expedia.com Name</th>
+                                        </tr>
+                                        <tr *ngFor="let item of ExpediaListData">
+                                            <td>{{item.hotelName}}</td>
+                                            <td>{{item.eHotelName}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-header tx-medium bd tx-white bg-gray" *ngIf="showDetails">
+                            <span class="az-content-label">Add Hotel</span>
+                            <button style="float: right;" class="btn-primary custom-btn rounded" (click)="addDetails()">
+                                <span> X</span>
+                            </button>
+                        </div>
+                        <div class="card-body bd bd-t-0" *ngIf="showDetails">
+                            <form (ngSubmit)="onSubmit()" style="margin:0 auto;">
+                                <div class="row row-xs justify-content-center mg-b-20">
+                                    <div class="col-md-2">
+                                        <label class="form-label mg-b-0 required">State <span class="tx-danger">
+                                                *</span></label>
+                                    </div>
+                                    <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                        <select class="form-control select2-no-search"
+                                            (change)="onStateChange($event.target)" name="State" [(ngModel)]="state"
+                                            required>
+                                            <option label="Select State"></option>
+                                            <option *ngFor="let state of StateList;">
+                                                {{state}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                                <div class="row row-xs justify-content-center mg-b-20">
+                                    <div class="col-md-2">
+                                        <label class="form-label mg-b-0 required">City <span class="tx-danger">
+                                                *</span></label>
+                                    </div>
+                                    <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                        <select class="form-control select2-no-search" name="City" [(ngModel)]="city"
+                                            (change)="onCityChange($event.target)" required>
+                                            <option label="Select City"></option>
+                                            <option *ngFor="let item of CityList;" [value]="item.id">
+                                                {{item.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                                <div class="row row-xs justify-content-center mg-b-20">
+                                    <div class="col-md-2">
+                                        <label class="form-label mg-b-0 required">Website <span class="tx-danger">
+                                                *</span></label>
+                                    </div>
+                                    <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                        <select class="form-control select2-no-search"
+                                            (change)="onHotelListChange($event.target)" name="HotelTypeId"
+                                            [(ngModel)]="hotelTypeId" required>
+                                            <option label="Select Hotel"></option>
+                                            <option value="1">Booking.Com</option>
+                                            <option value="2">Hotel.Com</option>
+                                            <option value="3">Expedia.Com</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span style="font: bold;" *ngIf="hotelTypeId == 1">{{10 -
+                                            BookingListData.length}} Hotel Selection Remaining</span>
+                                        <span style="font: bold;" *ngIf="hotelTypeId == 2">{{10 -
+                                            HoltelListData.length}} Hotel Selection Remaining</span>
+                                        <span style="font: bold;" *ngIf="hotelTypeId == 3">{{10 -
+                                            ExpediaListData.length}} Hotel Selection Remaining</span>
+                                    </div>
+                                </div>
+                                <div class="row row-xs justify-content-center mg-b-20">
+                                    <div class="col-md-2">
+                                        <label class="form-label mg-b-0 required">Hotel<span class="tx-danger">
+                                                *</span></label>
+                                    </div>
+                                    <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                        <select (change)="filterProductItem($event.target)" [(ngModel)]="urlId" required
+                                            name="urlId" class="form-control">
+                                            <option label="Select Hotel"></option>
+                                            <option *ngFor="let ptitem of BookingList" value="{{ptitem.id}}">
+                                                {{ptitem.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                                <div class="row row-xs justify-content-center mg-b-20">
+                                    <div class="col-md-2">
+                                        <label class="form-label mg-b-0 required">Hotel Name<span class="tx-danger">
+                                                *</span></label>
+                                    </div>
+                                    <div class="col-md-4 mg-t-5 mg-md-t-0">
+                                        <input type="text" name="hotelName" required [(ngModel)]="hotelName"
+                                            class="form-control" placeholder="Hotel Name">
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                                <div class="formcontainer" *ngIf="urlId">
+                                    <div class="col-md-12 productsgridbox">
+                                        <div class="row" *ngFor="let item of bookingDataList; let i = index">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <select [(ngModel)]="item.BookingType" required
+                                                        #BookingType="ngModel" name="BookingType{{i}}"
+                                                        class="form-control">
+                                                        <option label="Select Room Type"></option>
+                                                        <option *ngFor="let ptitem of BookingTypeList"
+                                                            value="{{ptitem.id}}">{{ptitem.name}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="text" name="RoomType{{i}}" required #RoomType="ngModel"
+                                                        [(ngModel)]="item.RoomType" class="form-control"
+                                                        placeholder="Room Type">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div *ngIf="bookingDataList.length > 1" class="addmorebtn pl90">
+                                                    <a (click)="removebooking(item)">- Remove item</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="addmorebtn pl90">
+                                            <a (click)="addbooking()">+ Add more item</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row row-xs mg-b-20 justify-content-center">
+                                    <div class="col-6 justify-content-end" style="margin: 0 auto;">
+                                        <button type="button" class="btn-danger custom-btn"
+                                            (click)="addDetails()">Cancel</button>
+                                        <button class="btn-primary mg-r-5 mg-l-10 custom-btn">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

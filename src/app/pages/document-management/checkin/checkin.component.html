@@ -1,0 +1,346 @@
+    <!-- <div class="container-fluid">
+      <div class="az-content-body d-flex flex-column">
+         <div class="row row-xs">
+              <div class="col-md-12">
+              <div class="card bd-0">
+                <div class="card-header tx-medium bd tx-white bg-gray">
+                  <span class="az-content-label">Document Checkin</span>
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-style2">
+                        <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/document-management">Document Overview</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Checkin</li>
+                    </ol>
+                  </nav>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>  -->
+    
+<div class="col-md-12">
+  <form [formGroup]="docForm" >
+  <div class="card-body  bd-t-0">
+    <div class="row">
+      <div class="col-md-6 col-lg-6 col-xl-3 bd bd-gray-200">
+        <div class="d-flex flex-row justify-content-center pd-t-10 mg-b-20">
+          <div class="wd-30 ht-30 text-center tx-13 tx-bold bd bg-orange tx-white pd-t-5 rounded-50 mg-b-5">1</div>
+          <span class="mg-l-10 tx-16 tx-medium tx-orange pd-t-3">Document Info</span>
+        </div>
+
+        <!-- <div class="row row-xs justify-content-end mg-b-20">
+          <div class="col-xl-4">
+            <label class="form-label-left mg-b-0 pd-t-0-f">Document Type<span class="tx-danger">*</span></label>
+          </div>
+          <div class="col-xl-8 mg-t-5 mg-md-t-0">
+            <input type="text" formControlName="doc_type" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.doc_type.errors }" required>
+            <div *ngIf="submitted && f.doc_type.errors" class="invalid-feedback">
+              <div *ngIf="f.doc_type.errors.required">Document type is required</div>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- <div class="row row-xs justify-content-end mg-b-20">
+          <div class="col-xl-4">
+            <label class="form-label-left mg-b-0 pd-t-0-f">Approval Date<span class="tx-danger">*</span></label>
+          </div>
+          <div class="col-xl-8 mg-t-5 mg-md-t-0">
+            <div class="form-group mg-b-0">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                       name="appDate" ngbDatepicker #d="ngbDatepicker" formControlName="approval_date"
+                       [ngClass]="{ 'is-invalid': submitted && f.approval_date.errors }" required>
+                      
+                <div class="input-group-append">
+                  <button class="custom-btn btn-indigo calendar" (click)="d.toggle()" type="button">
+                    <i class="fa fa-calendar-alt tx-18"></i>
+                  </button>
+                </div>
+                <div *ngIf="submitted && f.approval_date.errors" class="invalid-feedback">
+                  <div *ngIf="f.approval_date.errors.required">Approval date is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="row row-xs justify-content-end mg-b-20">
+          <div class="col-xl-4">
+            <label class="form-label-left mg-b-0">Revision<span class="tx-danger">*</span></label>
+          </div><!-- col -->
+          <div class="col-xl-8 mg-t-5 mg-md-t-0">
+            <div class="form-group mg-b-0">
+              <div class="input-group">
+                <div class="col-lg-12">
+                  <label class="rdiobox">
+                    <input name="revision" (change)="revisionChange($event)"  type="radio" value="1">
+                    <span>Major </span>
+                  </label>
+                </div><!-- col-3 -->
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                  <label class="rdiobox">
+                    <input name="revision" (change)="revisionChange($event)" type="radio" checked value="2">
+                    <span>Minor</span>
+                  </label>
+                </div><!-- col-3 -->
+              </div><!-- col -->
+            </div>
+          </div><!-- col -->
+        </div><!-- row -->
+        <div class="row row-xs justify-content-end mg-b-20">
+          <div class="col-xl-4">
+            <label class="form-label-left mg-b-0">Version<span class="tx-danger">*</span></label>
+          </div><!-- col -->
+          <div class="col-xl-8 mg-t-5 mg-md-t-0">
+            <div class="form-group mg-b-0">
+              <div class="input-group">
+                  <input type="text"  formControlName="version" class="form-control" readonly>
+              </div><!-- col -->
+            </div>
+          </div><!-- col -->
+        </div><!-- row -->
+        <div class="row row-xs justify-content-end mg-b-20">
+          <div class="col-xl-4">
+            <label class="form-label-left mg-b-0">Expiry Date<span class="tx-danger">*</span></label>
+          </div><!-- col -->
+          <div class="col-xl-8 mg-t-5 mg-md-t-0">
+            <div class="form-group mg-b-0">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" formControlName="expiry_date" name="expDate"
+                  ngbDatepicker #e="ngbDatepicker" [ngClass]="{ 'is-invalid': submitted && f.expiry_date.errors }"
+                  required>
+
+                <div class="input-group-append">
+                  <button class="custom-btn btn-indigo calendar" (click)="e.toggle()" type="button">
+                    <i class="fa fa-calendar-alt tx-18"></i>
+                  </button>
+                </div>
+                <div *ngIf="submitted && f.expiry_date.errors" class="invalid-feedback">
+                  <div *ngIf="f.expiry_date.errors.required">Expiry date is required</div>
+                </div>
+              </div>
+            </div>
+          </div><!-- col -->
+        </div><!-- row -->
+        <div class="row row-xs justify-content-end mg-b-20">
+          <div class="col-xl-4">
+            <label class="form-label-left mg-b-0">Remarks</label>
+          </div><!-- col -->
+          <div class="col-xl-8 mg-t-5 mg-md-t-0">
+            <textarea rows="2" class="form-control" placeholder="" formControlName="remarks"></textarea>
+          </div><!-- col -->
+        </div><!-- row -->
+        <div class="row row-xs justify-content-end mg-b-20">
+          <div class="col-xl-4">
+            <label class="form-label-left mg-b-0">Choose file</label>
+          </div><!-- col -->
+          <div class="col-xl-8 mg-t-5 mg-md-t-0">
+
+            <ngx-dropzone [multiple]="false" [removable]="true" (change)="onSelect($event)">
+              <ngx-dropzone-label>Drop it here</ngx-dropzone-label>
+              <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+              </ngx-dropzone-preview>
+            </ngx-dropzone>
+
+            <!-- <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" 
+              (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+                  <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                    <i class="fa fa-upload ngx-upload-file-icon position-absolute tx-50"></i>
+                      Drop files here / 
+                      <a (click)="openFileSelector()" class="tx-success"> Click here</a>
+                  </ng-template>
+              </ngx-file-drop>      -->
+          </div><!-- col -->
+        </div><!-- row -->
+
+        <!-- <div class="col-md-8 mg-t-5 mg-md-t-0 offset-md-4">
+              <div class="upload-table pd-t-20">
+                  <table class="table">
+                      <thead>                                    
+                      </thead>
+                      <tbody class="upload-name-style">
+                          <tr *ngFor="let item of files; let i=index">
+                              <td><strong>{{ item.relativePath }}</strong></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div> -->
+      </div>
+      <!-- !Step 2 -->
+      <!-- Step 3 -->
+      <div class="col-md-6 col-lg-6 col-xl-3 bd bd-gray-200">
+
+        <!-- assigners -->
+        <div class="">
+          <div class="d-flex flex-row justify-content-center pd-t-10 mg-b-20">
+            <div class="wd-30 ht-30 text-center tx-13 tx-bold bd bg-orange tx-white pd-t-5 rounded-50 mg-b-5">
+              2</div>
+            <span class="mg-l-10 tx-16 tx-medium tx-orange pd-t-3">Assigners Details</span>
+          </div>
+
+          <div class="row row-xs justify-content-center mg-b-20">
+            <div class="col-xl-4">
+              <label id="prop" class="form-label-left">Properties<span class="tx-danger">*</span></label>
+            </div><!-- col -->
+            <div class="col-xl-8">
+              <div class="multiselect-bg">
+                <ng-multiselect-dropdown [ngClass]="{ 'is-invalid': submitted && f.properties.errors }"
+                  class="form-control " name="properties" [placeholder]="'Select properties'"
+                  [settings]="dropdownSettings" [data]="propertyList" formControlName="properties"
+                  (onSelect)="onPropertyChange(1)" (onDeSelect)="onPropertyChange(1)"
+                  (onSelectAll)="onPropertySelectAll()" (onDeSelectAll)="onPropertyDeSelectAll()" required>
+                </ng-multiselect-dropdown>
+                <div *ngIf="submitted && f.properties.errors" class="invalid-feedback">
+                  <div *ngIf="f.properties.errors.required">Property is required</div>
+                </div>
+              </div>
+            </div><!-- col -->
+          </div><!-- row  -->
+
+          <div class="row row-xs justify-content-center mg-b-20">
+            <div class="col-xl-4">
+              <label class="form-label-left">Roles<span class="tx-danger">*</span></label>
+            </div><!-- col -->
+            <div class="col-xl-8">
+              <div class="multiselect-bg">
+                <ng-multiselect-dropdown [ngClass]="{ 'is-invalid': submitted && f.roles.errors }" class="form-control "
+                  name="roles" [placeholder]="'Select Roles'" [settings]="dropdownSettingsRole" [data]="roleList"
+                  formControlName="roles" (onSelect)="onRoleChange(1)" (onDeSelect)="onRoleChange(1)"
+                  (onSelectAll)="onRoleSelectAll()" (onDeSelectAll)="onRoleDeSelectAll()" required>
+                </ng-multiselect-dropdown>
+                <div *ngIf="submitted && f.roles.errors" class="invalid-feedback">
+                  <div *ngIf="f.roles.errors.required">Role is required</div>
+                </div>
+              </div>
+            </div><!-- col -->
+          </div><!-- row -->
+
+          <div class="row row-xs justify-content-center mg-b-20">
+            <div class="col-xl-4">
+              <label class="form-label-left">Users<span class="tx-danger">*</span></label>
+            </div><!-- col -->
+            <div class="col-xl-8">
+              <div class="multiselect-bg">
+                <ng-multiselect-dropdown [ngClass]="{ 'is-invalid': submitted && f.users.errors }" class="form-control "
+                  name="users" [placeholder]="'Select Users'" [settings]="dropdownSettingsUser" [data]="userList"
+                  formControlName="users" (onSelect)="onUserSelect($event)" required>
+                </ng-multiselect-dropdown>
+                <div *ngIf="submitted && f.users.errors" class="invalid-feedback">
+                  <div *ngIf="f.users.errors.required">User is required</div>
+                </div>
+              </div>
+            </div><!-- col -->
+          </div><!-- row -->
+
+        </div>
+        <!-- assigners end -->
+
+      </div>
+      <!-- !Step 3 -->
+      <!-- Step 4 -->
+      <div class="col-md-6 col-lg-6 col-xl-3 bd bd-gray-200">
+        <div class="d-flex flex-row justify-content-center pd-t-10 mg-b-20">
+          <div class="wd-30 ht-30 text-center tx-13 tx-bold bd bg-orange tx-white pd-t-5 rounded-50 mg-b-5">
+            3</div>
+          <span class="mg-l-10 tx-16 tx-medium tx-orange pd-t-3">Reviewers</span>
+        </div>
+
+        <div class="content-ht-container mg-b-10">
+          <div class="dynamic-fields" formArrayName="reviewers"
+            *ngFor="let item of docForm.get('reviewers')['controls']; let i = index;">
+            <div [formGroupName]="i">
+              <div class="row row-xs justify-content-center mg-b-20">
+                <div class="col-xl-4">
+                  <label class="form-label-left mg-b-0 pd-t-0-f">Reviewers <span class="tx-danger">*</span></label>
+                  <div class="tx-success">(level {{i+1}})</div>
+                </div>
+                <div class="col-lg-9 col-xl-6 mg-t-5 mg-md-t-0">
+                  <select class="form-control" (change)="changeReviewer($event)" formControlName="reviewer"
+                    [ngClass]="{ 'is-invalid': submitted && f.reviewers.controls[i].controls.reviewer.errors }">
+                    <option selected disabled value="">Select</option>
+                    <!-- <option value="{{ele.id}}" *ngFor="let ele of rev" [disabled]="ele.isdisabled">
+                  {{ele.name}}                        
+                </option> -->
+                    <option [disabled]="selectedReviewers.indexOf(rItem.user_id.toString()) > -1  "
+                      *ngFor="let rItem of reviewerList;" [value]="rItem.user_id">{{rItem.user_name}}</option>
+                  </select>
+                  <div *ngIf="submitted && f.reviewers.controls[i].controls.reviewer.errors" class="invalid-feedback">
+                    <div *ngIf="f.reviewers.controls[i].controls.reviewer.errors.required">Approver is
+                      required</div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-xl-2 mg-t-5 mg-md-t-0 pd-t-10 text-center">
+                  <span role="button" *ngIf="(reviewers && i == reviewers.length-1) || !reviewers "
+                    class="rounded-50 bg-info text-center pd-y-4 pd-x-4 tx-white op-8 mg-r-5 tx-8"><i
+                      class="fa fa-plus tx-10" (click)="addItemReviewers()"></i></span>
+                  <span role="button" *ngIf="reviewers && reviewers.length > 1"
+                    class="rounded-50 bg-danger text-center pd-y-4 pd-x-4 tx-white op-8 tx-8"><i
+                      class="fa fa-minus tx-10" (click)="removeItemReviewers( i)"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+
+      </div>
+      <div class="col-md-6 col-lg-6 col-xl-3 bd bd-gray-200">
+        
+        <div class="d-flex flex-row justify-content-center pd-t-10 mg-b-20">
+          <div class="wd-30 ht-30 text-center tx-13 tx-bold bd bg-orange tx-white pd-t-5 rounded-50 mg-b-5">
+            4</div>
+          <span class="mg-l-10 tx-16 tx-medium tx-orange pd-t-3">Approvers </span>
+        </div>
+
+        <div class="content-ht-container mg-b-10">
+          <div class="dynamic-fields" formArrayName="approvers"
+            *ngFor="let item of docForm.get('approvers')['controls']; let i = index;">
+            <div [formGroupName]="i">
+              <div class="row row-xs justify-content-center mg-b-20">
+                <div class="col-xl-4">
+                  <label class="form-label-left mg-b-0 pd-t-0-f">Approvers <span class="tx-danger">*</span> </label>
+                  <div class="tx-success">(level {{i+1}})</div>
+                </div><!-- col -->
+                <div class="col-lg-9 col-xl-6 mg-t-5 mg-md-t-0">
+                  <select class="form-control" (change)="changeApprover($event)" formControlName="approver"
+                    [ngClass]="{ 'is-invalid': submitted && f.approvers.controls[i].controls.approver.errors }">
+                    <option selected disabled value="">Select</option>
+
+                    <option [disabled]="selectedApprovers.indexOf(aItem.user_id.toString()) > -1  "
+                      *ngFor="let aItem of approverList;" [value]="aItem.user_id">{{aItem.user_name}}</option>
+                  </select>
+                  <div *ngIf="submitted && f.approvers.controls[i].controls.approver.errors" class="invalid-feedback">
+                    <div *ngIf="f.approvers.controls[i].controls.approver.errors.required">Approver is
+                      required</div>
+                  </div>
+                </div><!-- col -->
+                <div class="col-lg-3 col-xl-2 mg-t-5 mg-md-t-0 pd-t-10 text-center">
+                  <span role="button" *ngIf="(approvers && i == approvers.length-1) || !approvers "
+                    class="rounded-50 bg-info text-center pd-y-4 pd-x-4 tx-white op-8 mg-r-5 tx-8"
+                    (click)="addItemApprovers()"><i class="fa fa-plus tx-10"></i></span>
+                  <span role="button" *ngIf="approvers && approvers.length > 1"
+                    class="rounded-50 bg-danger text-center pd-y-4 pd-x-4 tx-white op-8 tx-8"
+                    (click)="removeItemApprovers(i)"><i class="fa fa-minus tx-10"></i></span>
+                </div>
+              </div><!-- row -->
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+   
+
+      <div class="col-12 d-flex justify-content-center mg-t-20">
+        <a routerLink="/document-management"><button class="btn-danger custom-btn">Cancel</button></a>
+        <button class="btn-az-primary mg-r-5 mg-l-10 custom-btn" (click)="onSubmit()">CheckIn</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>

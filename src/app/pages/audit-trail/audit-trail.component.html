@@ -1,0 +1,53 @@
+<div class="az-content pd-y-10 pd-sm-y-10 pd-lg-y-60 pd-xl-y-60">
+  <div class="container-fluid">
+    <div class="az-content-body d-flex flex-column">
+      <div class="row row-xs">
+        <div class="col-md-12">
+          <div class="card bd-0">
+            <div class="card-header tx-medium bd tx-white bg-gray">
+              <span class="az-content-label">Audit Trails</span>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-style2">
+                  <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Audit Trails</li>
+                </ol>
+              </nav>
+            </div><!-- card-header -->
+            <div class="card-body bd bd-t-0">
+              <div class="row row-sm mg-b-20">
+                <div class="col-lg-3">
+                  <p class="mg-b-5">Search</p>
+                  <input type="text"  class="form-control " name="search">
+                </div><!-- col-3 -->
+                <div class="col-lg-3">
+                  <p class="mg-b-5">User Name</p>
+                  <div class="multiselect-bg"> 
+                    <ng-multiselect-dropdown 
+                        class="form-control " name="users" [placeholder]="'Select users'"
+                        [settings]="dropdownSettingsUser" [data]="userList" [(ngModel)]="filterData.users"
+                        (onSelect)="onUserChange(1)" (onDeSelect)="onUserChange(2)"
+                        (onSelectAll)="onUserChange(3)" (onDeSelectAll)="onUserChange(4)" required>
+                      </ng-multiselect-dropdown>                                  
+                  
+                  </div>
+                  
+                </div><!-- col-3 -->
+               
+
+               
+                <div class="col-lg-2">
+                  <button type="button" class="custom-btn btn-primary pd-t-8-f pd-b-8-f mg-md-t-25">Filter</button>
+                </div>
+
+              </div>
+              <div class="table-responsive">
+                <table style="width: 100%;"  id="example2" class=" table" datatable [dtOptions]="dtOptions"  ></table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- az-content-body -->
+  </div><!-- container -->
+</div><!-- az-content -->

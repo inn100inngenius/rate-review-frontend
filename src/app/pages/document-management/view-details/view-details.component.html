@@ -1,0 +1,147 @@
+<div class="az-content pd-y-10 pd-sm-y-10 pd-lg-y-60 pd-xl-y-60">
+    <div class="container-fluid">
+        <div class="az-content-body d-flex flex-column">
+            <div class="card-header tx-medium bd tx-white bg-gray">
+              <div>
+                <span class="az-content-label">Documents Details</span>
+              </div>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-style2">
+                  <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                  <li class="breadcrumb-item"><a routerLink="/document-management">Document Overview</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Details</li>
+                </ol>
+              </nav>
+            </div>
+
+            <div class="card-body bd bd-t-0 pd-0">
+                <div class="mg-10 bd">
+                    <div class="d-flex flex-row justify-content-between pd-10 bg-gray-100 bd-b tx-primary tx-20 tx-medium">
+                        <span>Logo Design.doc</span>
+                        <i class="fa fa-file-pdf tx-12 tx-gray-200"></i>
+                    </div>
+                    <div class="d-flex flex-row mg-y-10">
+                        <div class="col-md-8">
+                            <div class="d-flex flex-row justify-content-between">
+                                <div class="badge badge-primary tx-14">Pending</div> 
+                              </div>
+                            <div class="bg-gray-100 tx-medium mg-y-10 pd-y-5 pd-x-10">Basic Info</div>
+                            <div class="row pd-x-10">
+                              <div class="col-md-6">
+                                <div class="pd-b-5 tx-gray-800"> Created by <strong class="tx-info">User 3</strong> </div>
+                                <div class="pd-b-5 tx-gray-800"> Modified by <strong class="tx-info">User 4</strong> </div>
+                                <div class="pd-b-5 tx-gray-800"> Checked in by <strong class="tx-info">Customer 1</strong> </div>
+                                <div class="pd-b-5 tx-gray-800"> Content type <strong class="tx-danger">PDF</strong> </div>
+                              </div>
+                              <div  class="col-md-6">
+                                <div class="pd-b-5 tx-gray-800"> Created at <strong class="tx-info">2020-04-30</strong> </div>
+                                <div class="pd-b-5 tx-gray-800"> Modified at <strong class="tx-info">2020-06-21</strong> </div>
+                                <div class="pd-b-5 tx-gray-800"> Checked in at <strong class="tx-info">2020-06-25</strong> </div>
+                                <div class="pd-b-5 tx-gray-800"> File size <strong class="tx-warning">556.9 kb</strong> </div>
+                              </div>
+                            </div>
+                            
+                            <div class="d-flex flex-row justify-content-between mg-y-10">
+                              <button class="custom-btn bg-primary rounded">Download</button>
+                              <button class="custom-btn bg-success rounded">Checkout</button>
+                              <button class="custom-btn bg-success rounded">Approve</button>
+                              <button class="custom-btn bg-danger rounded">Reject</button>
+                              <button class="custom-btn bg-gray-700 rounded">Share</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                          <div class="pd-15 pd-b-10 bd tx-gray-800 tx-medium bg-gray-100 folder-directory-select-box">
+                            <div class="text-center">
+                              <i class="fa fa-file-pdf tx-100 mg-b-20"></i>
+                            </div>
+                            <div class="pd-y-10">                          
+                              <ngb-progressbar type="warning" [value]="40" [striped]="true" [animated]="true"><i>40%</i></ngb-progressbar>
+                            </div>
+                          </div>
+                        </div>                       
+
+                    </div>
+
+                    <div>
+                      <div class="card bd-0 pd-x-15 pd-b-10">
+                        <div class="card-header bg-gray-200 bd-b-0-f pd-b-0">
+                          <nav class="nav nav-tabs">
+                            <a class="nav-link active" data-toggle="tab" href="#approvers">Approvers</a>
+                            <a class="nav-link" data-toggle="tab" href="#reviewers">Reviwers</a>
+                            <a class="nav-link" data-toggle="tab" href="#tabCont3">Revisions</a>
+                            <a class="nav-link" data-toggle="tab" href="#tabCont4">Comments</a>
+                          </nav>
+                        </div><!-- card-header -->
+                        <div class="card-body bd bd-t-0 tab-content">
+                          <div id="approvers" class="tab-pane active show table-responsive">
+                            <table id="example2" class="table">
+                              <thead>
+                                  <tr>
+                                      <th scope="col">Approvers</th>
+                                      <th scope="col">Approval Date</th>
+                                      <th scope="col">Status</th> </tr>
+                              </thead>
+                              <tbody>                                
+                                  <tr *ngFor="let item of approver"> 
+                                   <td>
+                                          {{item.name}}
+                                      </td>
+                                      <td>
+                                        {{item.date}}
+                                      </td>
+                                      <td>
+                                          <span class="btn-group-sm btn-group-toggle" ngbRadioGroup name="" [(ngModel)]="item.status">    
+                                              <button *ngIf="item.status==0" class="custom-btn tx-12 wd-90 rounded btn-primary mg-r-5">
+                                                  Pending              
+                                              </button>
+                                              <button *ngIf="item.status==1" class="custom-btn tx-12 wd-90 rounded btn-success mg-r-5">
+                                                  Approved
+                                              </button>
+                                            </span>   
+                                      </td>
+                                  </tr>
+                                </tbody>
+                            </table>   
+                          </div><!-- tab-pane -->
+                          <div id="reviewers" class="tab-pane">
+                            <table id="example2" class="table">
+                              <thead>
+                                  <tr>
+                                      <th scope="col">Reviewers</th>
+                                      <th scope="col">Review Date</th>
+                                      <th scope="col">Status</th>       
+                                  </tr>
+                              </thead>
+                              <tbody>                                
+                                  <tr *ngFor="let item of reviewer">                                    
+                                      <td>
+                                          {{item.name}}
+                                      </td>
+                                      <td>
+                                        {{item.date}}
+                                      </td>
+                                       <td>
+                                          <span class="btn-group-sm btn-group-toggle" ngbRadioGroup name="" [(ngModel)]="item.status">    
+                                              <button *ngIf="item.status==0" class="custom-btn tx-12 wd-90 rounded btn-primary mg-r-5">
+                                                  Pending              
+                                              </button>
+                                              <button *ngIf="item.status==1" class="custom-btn tx-12 wd-90 rounded btn-success mg-r-5">
+                                                  Approved
+                                              </button>
+                                            </span>   
+                                      </td>
+                                  </tr>
+                                </tbody>
+                            </table>   
+                          </div>
+                          <div id="tabCont3" class="tab-pane">This is tab content 3...</div>
+                        </div><!-- card-body -->
+                      </div><!-- card -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

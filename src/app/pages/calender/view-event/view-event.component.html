@@ -1,0 +1,26 @@
+    <div class="modal-header" >
+      <h6 class="event-title">Event Name</h6>
+      <nav class="nav nav-modal-event">
+        <a class="nav-link"><i class="icon ion-md-open"></i></a>
+        <a  class="nav-link"><i class="icon ion-md-trash"></i></a>
+        <a  class="nav-link" (click)="activeModal.dismiss('Cross click')"><i class="icon ion-md-close" ></i></a>
+      </nav>
+    </div><!-- modal-header -->
+    <div class="modal-body">
+      <div class="row row-sm">
+        <div class="col-sm-6">
+          <label class="tx-13 tx-gray-600 mg-b-2">Start Date</label>
+          <p class="event-start-date">January 6, 2021 12:00 AM</p>
+        </div>
+        <div class="col-sm-6">
+          <label class="tx-13 mg-b-2">End Date</label>
+          <p class="event-end-date">January 8, 2021 12:00 AM</p>
+        </div><!-- col-6 -->
+      </div><!-- row -->
+
+      <label class="tx-13 tx-gray-600 mg-b-2 d-none">Description</label>
+      <p class="event-desc tx-gray-900 mg-b-30"></p>
+
+      <!-- <a  class="btn btn-primary wd-80" (click)="activeModal.dismiss('Cross click')">Close</a> -->
+    </div><!-- modal-body -->
+ 

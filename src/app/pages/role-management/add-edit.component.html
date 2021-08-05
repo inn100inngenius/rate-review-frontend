@@ -1,0 +1,86 @@
+<div class="az-content pd-lg-y-60 pd-xl-y-60">
+    <div class="container-fluid">
+      <div class="az-content-body d-flex flex-column">
+        <div class="row row-xs">
+              <div class="col-md-12">
+              <div class="card bd-0">
+                <div class="card-header tx-medium bd tx-white bg-gray">
+                  <span class="az-content-label">Add Role</span>
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-style2">
+                      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                      <li class="breadcrumb-item" aria-current="page"><a routerLink="/role-management">Roles</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Add</li>
+                    </ol>
+                  </nav>
+                </div><!-- card-header -->
+                <div class="card-body bd bd-t-0">
+                  <form [formGroup]="roleRegisterForm" (ngSubmit)="onSubmit()">
+                    <div class="row row-xs justify-content-center mg-b-20">
+                      <div class="col-md-2">
+                        <label id="property" class="form-label mg-b-0">Assign Properties<span class="tx-danger">*</span></label>
+                      </div><!-- col -->
+                      <div class="col-md-4 mg-t-5 mg-md-t-0">
+                        <div class="multiselect-bg">                              
+                          <ng-multiselect-dropdown  
+                          [ngClass]="{ 'is-invalid': submitted && f.properties.errors }"
+                          name="properties"
+                          class="form-control "
+                          [placeholder]="'Select properties'"
+                          [settings]="dropdownSettings"
+                          [data]="propertyList"
+                          formControlName="properties"
+                          (onSelect)="onItemSelect($event)">
+                      </ng-multiselect-dropdown>
+                      <div *ngIf="submitted && f.properties.errors" class="invalid-feedback">
+                        <div *ngIf="f.properties.errors.required">Property is required</div>
+                      </div>
+                    </div>
+                    
+                      </div><!-- col -->
+                    </div><!-- row -->
+                    <div class="row row-xs justify-content-center mg-b-20">
+                      <div class="col-md-2">
+                        <label class="form-label mg-b-0 required">Role Name<span class="tx-danger">*</span></label>
+                      </div><!-- col -->
+                      <div class="col-md-4 mg-t-5 mg-md-t-0">
+                        <input formControlName="role_name" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.role_name.errors }">
+                        <div *ngIf="submitted && f.role_name.errors" class="invalid-feedback">
+                          <div *ngIf="f.role_name.errors.required">Role Name is required</div>
+                        </div>
+                      </div><!-- col -->
+                    </div><!-- row -->
+                    <div class="row row-xs justify-content-center mg-b-20">
+                      <div class="col-md-2">
+                        <label class="form-label mg-b-0 required">Role Description
+                          <span class="tx-danger">*</span>
+                        </label>
+                      </div><!-- col -->
+                      <div class="col-md-4 mg-t-5 mg-md-t-0">
+                        <textarea style="height: 70px !important; " formControlName="role_description" class=" full-col form-control" [ngClass]="{ 'is-invalid': submitted && f.role_description.errors }"></textarea>
+                        <div *ngIf="submitted && f.role_description.errors" class="invalid-feedback">
+                          <div *ngIf="f.role_description.errors.required">Role Description is required</div>
+                        </div>
+                      </div><!-- col -->
+                    </div><!-- row -->
+                    <div class="row row-xs mg-b-20 ">
+                      <div class="col-6 d-flex justify-content-end mg-b-20" style="margin: 0 auto;">
+                        <button class="btn-danger custom-btn" routerLink="/role-management">Cancel</button>
+                        <button class="btn-primary mg-r-5 mg-l-10 custom-btn">Save</button>
+                      </div>                      
+                    </div>
+                    <!-- <div class="col-12 d-flex justify-content-center mg-b-20">
+                      <button class="btn-danger custom-btn" (click)="onReset()">Reset</button>
+                      <button class="btn-az-primary mg-r-5 mg-l-10 custom-btn">Save</button>
+                    </div> -->
+                  </form>                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+        
+
+      </div><!-- az-content-body -->
+    </div><!-- container -->
+  </div><!-- az-content -->

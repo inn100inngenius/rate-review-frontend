@@ -1,0 +1,118 @@
+
+/* modal add task */
+
+
+.row{
+  margin-left: 0 !important;
+}
+input{
+  font-size: 14px;
+}
+.form-label-left {
+  padding-top: 8px;
+  text-align: left;
+  min-width: 91%;
+}
+
+.form-label-left:after{
+  content: ':';
+  padding: 0px 0px 0px 5px;
+  color: rgb(44, 44, 44);
+  float: right;
+}
+
+.selected-list{
+  border: 1px solid #cecece !important;
+  border-radius: 5px !important;
+}
+.c-btn{
+  border: 1px solid #cecece !important;
+  border-radius: 5px !important;
+}
+
+/* multiselect */
+:host >>> .selected-list .c-list .c-token {
+
+background:#8271dd !important ;
+color: white;
+}
+:host >>> .cuppa-dropdown{
+border: 1px solid #ced4da;
+border-radius: .25rem;
+}
+
+:host >>> .pure-checkbox input[type=checkbox]:checked+label:before {
+background: #8271dd !important ;
+}
+:host >>> .pure-checkbox input[type=checkbox]+label:before {
+color: #8271dd;
+border: 1px solid #8271dd;
+}
+:host >>> .selected-item {
+background: #e9f4ff;
+}
+:host >>> .pure-checkbox input[type=checkbox]:checked+label:after {
+color: #fff;
+}
+.multiselect-bg{
+background: #ffffff;
+}
+/* attachment */
+
+.folder-directory-box{
+  background: #e4eeff !important;
+  max-height: calc(100% - 80px) !important;
+  min-height: calc(100% - 80px) !important;
+  overflow: auto !important;
+  margin-bottom: 20px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  border: 1px solid #ececec;
+  border-radius: 50px;
+  background: #eaeefc; 
+} 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6787f0; 
+  border-radius: 50px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #466ceb; 
+}
+
+/* Files drop box */
+.ngx-file-drop__drop-zone{
+  border: 2px solid #0782d0 !important;
+  border-radius: 6px !important;
+}
+.ngx-upload-file-icon{
+  opacity: .5;
+  color: #309cfb;
+}
+/* ng-multiselect-dropdown */
+:host ::ng-deep ng-multiselect-dropdown{
+  padding: 0px;
+  }
+  :host ::ng-deep .multiselect-dropdown .dropdown-btn{
+  border:none;
+  }
+  ::ng-deep .multiselect-bg .form-control{
+  height: unset  !important;
+  min-height: 37px  !important;
+  }
+  ::ng-deep .multiselect-dropdown .dropdown-btn .selected-item{
+  margin-top: 2px;
+  }
+::ng-deep app-upload-document{
+  width:100%;
+}
+.select-folder{
+  background: #e4eeff;
+}

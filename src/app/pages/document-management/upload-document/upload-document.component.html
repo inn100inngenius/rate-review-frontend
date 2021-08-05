@@ -1,0 +1,353 @@
+
+              <form [formGroup]="docForm">
+                <!-- card-body bd bd-t-0 -->
+                <div class="card-body  bd-t-0">
+              
+                  <div class="row pd-lg-r-10 pd-xl-r-15-f">
+                    <!-- Step 1 -->
+                    <div class="col-md-4 col-lg-3 bd bd-gray-200 select-folder">
+              
+                      <div class="d-flex flex-row justify-content-center pd-t-10 mg-b-20">
+                        <div class="wd-30 ht-30 text-center tx-13 tx-bold bd bg-orange tx-white pd-t-5 rounded-50 mg-b-5">1</div>
+                        <span class="mg-l-10 tx-16 tx-medium tx-orange pd-t-3">Select Folder</span>
+                      </div>
+              
+                      <div class="pd-10 tx-gray-800 tx-medium  folder-directory-box">
+                        <a href="#newfolder" class="modal-effect" data-toggle="modal" data-effect="effect-flip-vertical">
+                          <button type="button" class="custom-btn bg-primary"><i class="fa fa-folder-open pd-l-15"></i><span class="tx-12 pd-l-5">New folder</span></button>
+                        </a>
+                        <!-- <app-tree></app-tree> -->
+                        <tree-root #tree [nodes]="nodes" [options]="options" (toggleExpanded)="toggleExpanded($event)"
+                          (click)="clickHandler($event)">
+                          <ng-template #treeNodeTemplate let-node let-index="index">
+                            <div class="d-flex">
+                              <i class="fa fa-folder tx-15 pd-t-3 tx-warning mg-r-5"></i>
+                              <span class="tx-15">{{ node.data.node_name }}</span>
+                            </div>
+                          </ng-template>
+                        </tree-root>
+              
+                      </div>
+              
+                    </div>
+                    <!-- !Step 1 -->
+                    <!-- Step 2 -->
+                    <div class="col-md-8 col-lg-9 bd pd-l-0-f bd-gray-200">
+                      <div class="row">
+                        <div class="col-md-12 col-lg-4 bd-b bd-gray-200">
+                          <div class="d-flex flex-row justify-content-center pd-t-10 mg-b-20">
+                            <div class="wd-30 ht-30 text-center tx-13 tx-bold bd bg-orange tx-white pd-t-5 rounded-50 mg-b-5">2</div>
+                            <span class="mg-l-10 tx-16 tx-medium tx-orange pd-t-3">Document Info</span>
+                          </div>
+                          <div class="row row-xs justify-content-end mg-b-20">
+                            <div class="col-xl-4">
+                              <label class="form-label-left mg-b-0">Expiry Date<span class="tx-danger">*</span></label>
+                            </div><!-- col -->
+                            <div class="col-xl-8 mg-t-5 mg-md-t-0">
+                              <div class="form-group mg-b-0">
+                                <div class="input-group">
+                                  <input class="form-control" placeholder="yyyy-mm-dd" formControlName="expiry_date" name="expDate"
+                                    ngbDatepicker #e="ngbDatepicker" [ngClass]="{ 'is-invalid': submitted && f.expiry_date.errors }"
+                                    class="form-control" required>
+              
+                                  <div class="input-group-append">
+                                    <span class="bg-gray-300 pd-x-15 pd-y-4" (click)="e.toggle()" type="button">
+                                      <i class="fa fa-calendar-alt tx-info"></i>
+                                    </span>
+                                  </div>
+                                  <div *ngIf="submitted && f.expiry_date.errors" class="invalid-feedback">
+                                    <div *ngIf="f.expiry_date.errors.required">Expiry date is required</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div><!-- col -->
+                          </div><!-- row -->
+                          <div class="row row-xs justify-content-end mg-b-20">
+                            <div class="col-xl-4">
+                              <label class="form-label-left mg-b-0">Remarks</label>
+                            </div><!-- col -->
+                            <div class="col-xl-8 mg-t-5 mg-md-t-0">
+                              <textarea rows="2" class="form-control" placeholder="" formControlName="remarks"></textarea>
+                            </div><!-- col -->
+                          </div><!-- row -->
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="col-md-6 col-lg-4 bd bd-t-0 bd-gray-200">
+              
+                          <!-- assigners -->
+                          <div class="">
+                            <div class="d-flex flex-row justify-content-center pd-t-10 mg-b-20">
+                              <div class="wd-30 ht-30 text-center tx-13 tx-bold bd bg-orange tx-white pd-t-5 rounded-50 mg-b-5">
+                                3</div>
+                              <span class="mg-l-10 tx-16 tx-medium tx-orange pd-t-3">Assigners Details</span>
+                            </div>
+              
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-xl-4">
+                                <label class="form-label-left">Properties<span class="tx-danger">*</span></label>
+                              </div><!-- col -->
+                              <div class="col-xl-8">
+                                <div class="multiselect-bg">
+                                  <ng-multiselect-dropdown [ngClass]="{ 'is-invalid': submitted && f.properties.errors }"
+                                    class="form-control " name="properties" [placeholder]="'Select properties'"
+                                    [settings]="dropdownSettings" [data]="propertyList" formControlName="properties"
+                                    (onSelect)="onPropertyChange()" (onDeSelect)="onPropertyChange()"
+                                    (onSelectAll)="onPropertySelectAll()" (onDeSelectAll)="onPropertyDeSelectAll()" required>
+                                  </ng-multiselect-dropdown>
+                                  <div *ngIf="submitted && f.properties.errors" class="invalid-feedback">
+                                    <div *ngIf="f.properties.errors.required">Property is required</div>
+                                  </div>
+                                </div>
+                              </div><!-- col -->
+                            </div><!-- row  -->
+              
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-xl-4">
+                                <label class="form-label-left">Roles<span class="tx-danger">*</span></label>
+                              </div><!-- col -->
+                              <div class="col-xl-8">
+                                <div class="multiselect-bg">
+                                  <ng-multiselect-dropdown [ngClass]="{ 'is-invalid': submitted && f.roles.errors }"
+                                    class="form-control " name="roles" [placeholder]="'Select Roles'"
+                                    [settings]="dropdownSettingsRole" [data]="roleList" formControlName="roles"
+                                    (onSelect)="onRoleChange()" (onDeSelect)="onRoleChange()" (onSelectAll)="onRoleSelectAll()"
+                                    (onDeSelectAll)="onRoleDeSelectAll()" required>
+                                  </ng-multiselect-dropdown>
+                                  <div *ngIf="submitted && f.roles.errors" class="invalid-feedback">
+                                    <div *ngIf="f.roles.errors.required">Role is required</div>
+                                  </div>
+                                </div>
+                              </div><!-- col -->
+                            </div><!-- row -->
+              
+                            <div class="row row-xs justify-content-center mg-b-20">
+                              <div class="col-xl-4">
+                                <label class="form-label-left">Users<span class="tx-danger">*</span></label>
+                              </div><!-- col -->
+                              <div class="col-xl-8">
+                                <div class="multiselect-bg">
+                                  <ng-multiselect-dropdown [ngClass]="{ 'is-invalid': submitted && f.users.errors }"
+                                    class="form-control " name="users" [placeholder]="'Select Users'"
+                                    [settings]="dropdownSettingsUser" [data]="userList" formControlName="users"
+                                    (onSelect)="onUserSelect($event)" required>
+                                  </ng-multiselect-dropdown>
+                                  <div *ngIf="submitted && f.users.errors" class="invalid-feedback">
+                                    <div *ngIf="f.users.errors.required">User is required</div>
+                                  </div>
+                                </div>
+                              </div><!-- col -->
+                            </div><!-- row -->
+              
+                          </div>
+                          <!-- assigners end -->
+              
+                        </div>
+                        <!-- Step 4 -->
+                        <div class="col-md-6 col-lg-4 bd-b bd-gray-200">
+                          <div class="d-flex flex-row justify-content-center pd-t-10 mg-b-20">
+                            <div class="wd-30 ht-30 text-center tx-13 tx-bold bd bg-orange tx-white pd-t-5 rounded-50 mg-b-5">
+                              4</div>
+                            <span class="mg-l-10 tx-16 tx-medium tx-orange pd-t-3">Reviewers</span>
+                          </div>
+              
+                          <div class="content-ht-container mg-b-10">
+                            <div class="dynamic-fields" formArrayName="reviewers"
+                              *ngFor="let item of docForm.get('reviewers')['controls']; let i = index;">
+                              <div [formGroupName]="i">
+                                <div class="row row-xs justify-content-center mg-b-20">
+                                  <div class="col-xl-4">
+                                    <label class="form-label-left mg-b-0 pd-t-0-f">Reviewers <span class="tx-danger">*</span></label>
+                                    <div class="tx-success">(level {{i+1}})</div>
+                                  </div>
+                                  <div class="col-lg-9 col-xl-6 mg-t-5 mg-md-t-0">
+                                    <select class="form-control" (change)="changeReviewer($event)" formControlName="reviewer"
+                                      [ngClass]="{ 'is-invalid': submitted && f.reviewers.controls[i].controls.reviewer.errors }">
+                                      <option selected disabled value="">Select</option>
+                                      <!-- <option value="{{ele.id}}" *ngFor="let ele of rev" [disabled]="ele.isdisabled">
+                                              {{ele.name}}                        
+                                            </option> -->
+                                      <option [disabled]="selectedReviewers.indexOf(rItem.user_id.toString()) > -1  "
+                                        *ngFor="let rItem of reviewerList;" [value]="rItem.user_id">{{rItem.user_name}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.reviewers.controls[i].controls.reviewer.errors"
+                                      class="invalid-feedback">
+                                      <div *ngIf="f.reviewers.controls[i].controls.reviewer.errors.required">Approver is
+                                        required</div>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-3 col-xl-2 mg-t-5 mg-md-t-0 pd-t-10 text-center">
+                                    <span role="button" *ngIf="(reviewers && i == reviewers.length-1) || !reviewers "
+                                      class="rounded-50 bg-info text-center pd-y-4 pd-x-4 tx-white op-8 mg-r-5 tx-8"><i
+                                        class="fa fa-plus tx-10" (click)="addItemReviewers()"></i></span>
+                                    <span role="button" *ngIf="reviewers && reviewers.length > 1"
+                                      class="rounded-50 bg-danger text-center pd-y-4 pd-x-4 tx-white op-8 tx-8"><i
+                                        class="fa fa-minus tx-10" (click)="removeItemReviewers( i)"></i></span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="d-flex flex-row justify-content-center pd-t-10 mg-b-20">
+                            <div class="wd-30 ht-30 text-center tx-13 tx-bold bd bg-orange tx-white pd-t-5 rounded-50 mg-b-5">
+                              5</div>
+                            <span class="mg-l-10 tx-16 tx-medium tx-orange pd-t-3">Approvers </span>
+                          </div>
+              
+                          <div class="content-ht-container mg-b-10">
+                            <div class="dynamic-fields" formArrayName="approvers"
+                              *ngFor="let item of docForm.get('approvers')['controls']; let i = index;">
+                              <div [formGroupName]="i">
+                                <div class="row row-xs justify-content-center mg-b-20">
+                                  <div class="col-xl-4">
+                                    <label class="form-label-left mg-b-0 pd-t-0-f">Approvers <span class="tx-danger">*</span> </label>
+                                    <div class="tx-success">(level {{i+1}})</div>
+                                  </div><!-- col -->
+                                  <div class="col-lg-9 col-xl-6 mg-t-5 mg-md-t-0">
+                                    <select class="form-control" (change)="changeApprover($event)" formControlName="approver"
+                                      [ngClass]="{ 'is-invalid': submitted && f.approvers.controls[i].controls.approver.errors }">
+                                      <option selected disabled value="">Select</option>
+              
+                                      <option [disabled]="selectedApprovers.indexOf(aItem.user_id.toString()) > -1  "
+                                        *ngFor="let aItem of approverList;" [value]="aItem.user_id">{{aItem.user_name}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.approvers.controls[i].controls.approver.errors"
+                                      class="invalid-feedback">
+                                      <div *ngIf="f.approvers.controls[i].controls.approver.errors.required">Approver is
+                                        required</div>
+                                    </div>
+                                  </div><!-- col -->
+                                  <div class="col-lg-3 col-xl-2 mg-t-5 mg-md-t-0 pd-t-10 text-center">
+                                    <span role="button" *ngIf="(approvers && i == approvers.length-1) || !approvers "
+                                      class="rounded-50 bg-info text-center pd-y-4 pd-x-4 tx-white op-8 mg-r-5 tx-8"
+                                      (click)="addItemApprovers()"><i class="fa fa-plus tx-10"></i></span>
+                                    <span role="button" *ngIf="approvers && approvers.length > 1"
+                                      class="rounded-50 bg-danger text-center pd-y-4 pd-x-4 tx-white op-8 tx-8"
+                                      (click)="removeItemApprovers(i)"><i class="fa fa-minus tx-10"></i></span>
+                                  </div>
+                                </div><!-- row -->
+                              </div>
+                            </div>
+                          </div>
+              
+              
+                        </div>
+                        <div class="col-md-12 row pd-t-20">
+                          <div class="col-xl-2 col-lg-7 pd-l-5-f">
+                            <label class="form-label-left mg-b-0">Choose file</label>
+                          </div><!-- col -->
+                          <div class="col-xl-10 pd-xl-l-30 pd-b-20">
+                            <ngx-dropzone (change)="onSelect($event)">
+                              <ngx-dropzone-label>Drop it here</ngx-dropzone-label>
+                              <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                              </ngx-dropzone-preview>
+                            </ngx-dropzone>
+                          </div><!-- col -->
+                        </div>
+                        <!-- !Step 4 -->
+                        <!-- !Step 3 -->
+                      </div>
+                    </div>
+              
+              
+                    <!-- !Step 2 -->
+              
+              
+              
+                  </div>
+              
+              
+                  <div class="d-flex justify-content-center mg-t-20 mg-t-10">
+                    <a routerLink="/document-management"><button class="btn-danger custom-btn">Cancel</button></a>
+                    <button class="btn-az-primary mg-r-5 mg-l-10 custom-btn" (click)="onSubmit()">Save</button>
+                  </div>
+                </div>
+              </form>
+              <!-- </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+              
+              
+              <!-- CREATE FOLDER MODAL -->
+              <div id="newfolder" class="modal over-the-tooltip">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content modal-content-demo">
+                    <div class="d-flex flex-row  pd-10">
+                      <i class="fa fa-folder-open tx-15 tx-gray-600 mg-x-5 mt-1"></i>
+                      <label class="mg-b-0 tx-15">Create New Directory</label>
+                    </div>
+                    <div class="modal-body bd-t bd-primary bd-5">
+                      <div class="az-content-body d-flex flex-column">
+                        <div class="card-body bd bd-t-0 pd-0">
+                          <div class="d-flex">
+                            <div class="col-4  bg-gray-100 pd-y-10 select-folder">
+              
+                              <div class="bg-white bd pd-y-5 pd-l-2 rounded">
+                                <div class="tx-15 tx-gray-900">Choose Directory</div>
+                                <div class="tx-10 tx-orange">(Default root is public Directory)</div>
+                              </div>
+                              <tree-root #tree1 [nodes]="nodes1" [options]="options1" (toggleExpanded)="toggleExpanded1($event)"
+                              (click)="clickHandler($event)">
+                              <ng-template #treeNodeTemplate let-node let-index="index">
+                                <div class="d-flex">
+                                  <i class="fa fa-folder tx-14 pd-t-3 tx-warning mg-r-5"></i>
+                                  <span class="tx-13">{{ node.data.node_name }}</span>
+                                </div>
+                              </ng-template>
+                            </tree-root>
+                            </div>
+                            <div class="col-8 bd pd-t-20">
+              
+                              <div class="row row-xs mg-b-20 pd-y-10">
+                                <div class="col-md-12 row">
+                                  <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Folder Name</label>
+                                  </div><!-- col -->
+                                  <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input type="text" class="form-control" [(ngModel)]="model.folder_name"
+                                    [ngClass]="{ 'is-invalid': submitted1 && !model.folder_name }">
+                                  <div *ngIf="submitted1 && !model.folder_name" class="invalid-feedback">
+                                    <div *ngIf="!model.folder_name">Folder Name is required</div>
+                                  </div>
+                                  </div><!-- col -->
+                                </div>
+                              </div><!-- row -->
+                               <div class="row row-xs mg-b-20 pd-y-10">
+                                <div class="col-md-12 row">
+                                  <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Properties</label>
+                                  </div><!-- col -->
+                                  <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <div class="multiselect-bg">
+                                      <ng-multiselect-dropdown 
+                                      class="form-control " name="properties" [placeholder]="'Select properties'"
+                                      [settings]="dropdownSettings" [data]="propertyList" [(ngModel)]="model.properties"
+                                      (onSelect)="onPropertyChange1(1)" (onDeSelect)="onPropertyChange1(2)"
+                                      (onSelectAll)="onPropertyChange1(3)" (onDeSelectAll)="onPropertyChange1(4)" required
+                                      [ngClass]="{ 'is-invalid': submitted1 && (!model.properties || model.properties.length == 0 )}">
+                                    </ng-multiselect-dropdown>
+                                    <div *ngIf="submitted1 && (!model.properties || model.properties.length == 0 )" class="invalid-feedback">
+                                      <div *ngIf="!model.properties || model.properties.length == 0 ">Property is required</div>
+                                    </div>
+                                 
+                                </div>
+                                  </div><!-- col -->
+                                </div>
+                              </div><!-- row -->
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mt-3">
+                        <button type="button" (click)="addFolder()" class="custom-btn rounded btn-primary mg-l-5 wd-80 pull-right">
+                          Create</button>
+
+                        <button type="button"  class="custom-btn rounded btn-danger pull-right"
+                          data-dismiss="modal" aria-label="Close">close</button>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- modal-dialog -->
+              </div><!-- modal -->

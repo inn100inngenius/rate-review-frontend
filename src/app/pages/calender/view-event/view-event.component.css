@@ -1,0 +1,9 @@
+.modal-header{
+    background-color: #3788d8;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 0px;
+}
+.modal-header .nav-link{
+    cursor: pointer;
+}

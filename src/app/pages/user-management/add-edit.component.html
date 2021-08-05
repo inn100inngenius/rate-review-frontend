@@ -1,0 +1,131 @@
+<div class="az-content pd-lg-y-60 pd-xl-y-60">
+    <div class="container-fluid">
+      <div class="az-content-body d-flex flex-column">
+         <div class="row row-xs">
+              <div class="col-md-12">
+              <div class="card bd-0">
+                <div class="card-header tx-medium bd tx-white bg-gray">
+                  <span class="az-content-label">Add User</span>
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-style2">
+                      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                      <li class="breadcrumb-item" aria-current="page"><a routerLink="/user-management">Users</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Add</li>
+                    </ol>
+                  </nav>
+                </div><!-- card-header -->
+                 <div class="card-body bd bd-t-0">
+                  <form [formGroup]="userRegisterForm" (ngSubmit)="onSubmit()" style="margin:0 auto;">
+                    <div class="row row-xs justify-content-center mg-b-20">
+                      <div class="col-md-2">
+                        <label class="form-label mg-b-0 required">First Name <span class="tx-danger"> *</span></label>
+                      </div><!-- col -->
+                      <div class="col-md-4 mg-t-5 mg-md-t-0">
+                        <input type="text" formControlName="first_name"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }">
+                        <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                          <div *ngIf="f.first_name.errors.required">First name is required</div>
+                        </div>
+                      </div><!-- col -->
+                    </div><!-- row -->
+                    <div class="row row-xs justify-content-center mg-b-20">
+                      <div class="col-md-2">
+                        <label class="form-label mg-b-0 required">Last Name <span class="tx-danger"> *</span></label>
+                      </div><!-- col -->
+                      <div class="col-md-4 mg-t-5 mg-md-t-0">
+                        <input type="text" formControlName="last_name"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }">
+                        <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                        <div *ngIf="f.last_name.errors.required">Last name is required</div>
+                        </div>
+                      </div><!-- col -->
+                    </div><!-- row -->
+                    <div class="row row-xs justify-content-center mg-b-20">
+                      <div class="col-md-2">
+                        <label class="form-label mg-b-0 required">User Name <span class="tx-danger"> *</span></label>
+                      </div><!-- col -->
+                      <div class="col-md-4 mg-t-5 mg-md-t-0">
+                        <input type="text" formControlName="user_name"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.user_name.errors }">
+                        <div *ngIf="submitted && f.user_name.errors" class="invalid-feedback">
+                         <div *ngIf="f.user_name.errors.required">User name is required</div>
+                        </div>
+                      </div><!-- col -->
+                    </div><!-- row -->
+                    <div class="row row-xs justify-content-center mg-b-20">
+                      <div class="col-md-2">
+                        <label class="form-label mg-b-0 required">User Email <span class="tx-danger"> *</span></label>
+                      </div><!-- col -->
+                      <div class="col-md-4 mg-t-5 mg-md-t-0">
+                        <input type="text" formControlName="user_email"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.user_email.errors }">
+                        <div *ngIf="submitted && f.user_email.errors" class="invalid-feedback">
+                          <div *ngIf="f.user_email.errors?.email || f.user_email.errors?.required">User email is required</div>
+                        </div>
+                      </div><!-- col -->
+                    </div><!-- row -->
+                    <div class="row row-xs justify-content-center mg-b-20" *ngIf="isAddMode">
+                      <div class="col-md-2">
+                        <label class="form-label mg-b-0 required">Password <span class="tx-danger"> *</span></label>
+                      </div><!-- col -->
+                      <div class="col-md-4 mg-t-5 mg-md-t-0">
+                        <input type="password" formControlName="user_password"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.user_password.errors }">
+                        <div *ngIf="submitted && f.user_password.errors" class="invalid-feedback">
+                          <div *ngIf="f.user_password.errors.required">Password is required</div>
+                        </div>
+                      </div><!-- col -->
+                    </div><!-- row -->
+                    <div class="dynamic-fields" formArrayName="items"
+                    *ngFor="let item of userRegisterForm.get('items')['controls']; let i = index;">
+                    <div [formGroupName]="i">
+                    <div class="row row-xs justify-content-center mg-b-20">
+                      <div class="col-md-2">
+                        <label class="form-label mg-b-0 required"> Property <span class="tx-danger"> *</span></label>
+                      </div><!-- col -->
+                      <div class="col-md-2 mg-t-5 mg-md-t-0">
+                          <select class="form-control select2-no-search"  (change)="onPropertyChange($event.target,i)" formControlName="properties" [ngClass]="{ 'is-invalid': submitted && f.items.controls[i].controls.properties.errors }" required>
+                            <option label="Select property"></option>
+                            <option *ngFor="let propItem of propertyList;" [value]="propItem.id">{{propItem.property_name}}</option>
+                           
+                          </select>
+                          <div *ngIf="submitted && f.items.controls[i].controls.properties.errors" class="invalid-feedback">
+                            <div *ngIf="f.items.controls[i].controls.properties.errors.required">Property is required</div>
+                          </div>
+  
+                      </div><!-- col -->
+                      <div class="col-md-1">
+                        <label class="form-label mg-b-0 required"> Role <span class="tx-danger"> *</span></label>
+                      </div><!-- col -->
+                      <div class="col-md-2 mg-t-5 mg-md-t-0">
+                        <select class="form-control select2-no-search" formControlName="roles" [ngClass]="{ 'is-invalid': submitted && f.items.controls[i].controls.roles.errors }" required>
+                          <option label="Select role"></option>
+                          <option *ngFor="let roleitem of roleList[i];" [value]="roleitem.id">{{roleitem.role_name}}</option>                         
+                        </select>                      
+                        <div *ngIf="submitted && f.items.controls[i].controls.roles.errors" class="invalid-feedback">
+                          <div *ngIf="f.items.controls[i].controls.roles.errors.required">Role is required</div>
+                        </div>
+
+                      </div><!-- col -->
+                      <div class="col-md-2 col-lg-1 mg-t-5 mg-md-t-0 pd-t-6 text-center">
+                        <span _ngcontent-cye-c225="" (click)="addItem()" *ngIf= "(items && i == items.length-1) || !items " role="button" class="rounded-50 bg-info text-center pd-y-5 pd-x-6 tx-white op-8 mg-r-10 tx-9">
+                          <i _ngcontent-cye-c225="" class="fa fa-plus tx-10"></i>
+                        </span>
+                        <!--   <i (click)="addItem()" *ngIf= "(items && i == items.length-1) || !items " class="fa fa-plus-circle addItem" role="button" style="position: absolute;top: 20px; right: -12px;" aria-hidden="true"></i> -->
+  
+                        <span _ngcontent-cye-c225="" role="button" class="rounded-50 bg-danger text-center pd-y-5 pd-x-6 tx-white op-8 tx-9" (click)="removeItem(i)" *ngIf= "items && items.length > 1">
+                          <i _ngcontent-cye-c225="" class="fa fa-minus tx-10"></i>
+                        </span>
+                      </div>
+                    </div><!-- row -->
+                    </div>
+                    </div>
+                    <div class="row row-xs mg-b-20 justify-content-center">
+                      <div class="col-6 justify-content-end" style="margin: 0 auto;">
+                        <button type="button" class="btn-danger custom-btn" routerLink="/user-management">Cancel</button>
+                        <button class="btn-primary mg-r-5 mg-l-10 custom-btn">Save</button>
+                      </div>                      
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div><!-- az-content-body -->
+    </div><!-- container -->
+  </div><!-- az-content -->

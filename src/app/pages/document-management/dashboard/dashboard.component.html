@@ -1,0 +1,290 @@
+
+<div class="az-content az-content-dashboard-four pd-y-20 pd-lg-y-30 pd-xl-y-40">
+    <div class="media media-dashboard">
+      <div class="">
+        <div class="az-content-header">
+          <div>
+            <h6 class="az-dashboard-title tx-18 mg-b-5">Document Dashboard</h6>
+          </div>
+
+          <!-- <div class="az-content-header-right">
+            <a routerLink="/document-management" class="custom-btn btn-success mg-l-20"> Overview</a>
+          </div> -->
+          <div class="az-content-header-right">
+            <div class="media" *ngIf="localStorageService.getValue().userType == 1 " [style.width.px]="200">
+              <div class="media-body">
+                <div class="multiselect-bg">   
+                  <ng-multiselect-dropdown 
+                    class="form-control " name="customers" [placeholder]="'All customers'"
+                    [settings]="dropdownSettingsCustomer" [data]="customerList" [(ngModel)]="filterData.customers"
+                    (onSelect)="onCustomerChange(1)" (onDeSelect)="onCustomerChange(2)"
+                    (onSelectAll)="onCustomerChange(3)" (onDeSelectAll)="onCustomerChange(4)" required>
+                  </ng-multiselect-dropdown>                           
+                  
+                </div>
+              </div><!-- media-body -->
+            </div><!-- media -->
+           
+            <div class="media"  [style.width.px]="200" *ngIf="localStorageService.getValue().userType == 1 || localStorageService.getValue().userType == 2">
+              <div class="media-body">
+                <div class="multiselect-bg">   
+                  <ng-multiselect-dropdown 
+                    class="form-control " name="properties" [placeholder]="'All properties'"
+                    [settings]="dropdownSettings" [data]="propertyList" [(ngModel)]="filterData.properties"
+                    (onSelect)="onPropertyChange(1)" (onDeSelect)="onPropertyChange(2)"
+                    (onSelectAll)="onPropertyChange(3)" (onDeSelectAll)="onPropertyChange(4)" required>
+                  </ng-multiselect-dropdown>                           
+                  
+                </div>
+              </div><!-- media-body -->
+            </div><!-- media -->
+            <div class="media">
+              <div class="media-body">
+                <button type="button" routerLink="/document-management" class="custom-btn btn-purple m-1">Overview</button>
+  
+              </div><!-- media-body -->
+            </div><!-- media -->
+            <div class="media">
+              <div class="media-body">
+                <button  type="button" routerLink="/document-management/upload-document" class="custom-btn btn-success">Upload</button>
+  
+              </div><!-- media-body -->
+            </div><!-- media -->
+          </div>
+        </div><!-- az-content-header -->
+
+      
+        <div class="row row-sm az-content-body-dashboard-six pd-0">
+          <div class="col-sm-6 col-lg-3">
+            <div class="card card-dashboard-donut">
+              <div class="card-header">
+                <h6 class="card-title mg-b-10">Uploads</h6>
+              </div><!-- card-header -->
+              <div class="card-body">
+                <div class="az-donut-chart chart1">
+                  <div class="slice one"></div>
+                  <div class="slice two"></div>
+                  <div class="chart-center">
+                    <span>{{docStatusCount?.uploads}}</span>
+                  </div>
+                </div>
+              </div><!-- card-body -->
+            </div><!-- card -->
+          </div>
+          <div class="col-sm-6 col-lg-3 mg-t-20 mg-sm-t-0">
+            <div class="card card-dashboard-donut">
+              <div class="card-header">
+                <h6 class="card-title mg-b-10">Downloads</h6>
+              </div><!-- card-header -->
+              <div class="card-body">
+                <div class="az-donut-chart chart2">
+                  <div class="slice one"></div>
+                  <div class="slice two"></div>
+                  <div class="chart-center">
+                    <span>{{docStatusCount?.downloads == null ?0:docStatusCount?.downloads}}</span>
+                  </div>
+                </div>
+              </div><!-- card-body -->
+            </div><!-- card -->
+          </div>
+          <div class="col-sm-6 col-lg-3 mg-t-20 mg-sm-t-0">
+            <div class="card card-dashboard-donut">
+              <div class="card-header">
+                <h6 class="card-title mg-b-10">Folders</h6>
+              </div><!-- card-header -->
+              <div class="card-body">
+                <div class="az-donut-chart chart2">
+                  <div class="slice one"></div>
+                  <div class="slice two"></div>
+                  <div class="chart-center">
+                    <span>{{docStatusCount?.folders}}</span>
+                  </div>
+                </div>
+              </div><!-- card-body -->
+            </div><!-- card -->
+          </div>
+          <div class="col-sm-6 col-lg-3 mg-t-20 mg-sm-t-0">
+            <div class="card card-dashboard-donut">
+              <div class="card-header">
+                <h6 class="card-title mg-b-10">Total Size</h6>
+              </div><!-- card-header -->
+              <div class="card-body">
+                <div class="az-donut-chart chart2">
+                  <div class="slice one"></div>
+                  <div class="slice two"></div>
+                  <div class="chart-center">
+                    <span>{{docStatusCount?.total_size == null?0:docStatusCount?.total_size}}</span>
+                  </div>
+                </div>
+              </div><!-- card-body -->
+            </div><!-- card -->
+          </div>
+
+          <!-- <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-balance">
+              <div class="card-body">
+                <i class="fab fa-cc-visa"></i>
+                <label class="az-content-label mg-b-0">Your Balance</label>
+                <h1 class="balance-amount"><span>$</span>780,560<small>.00</small></h1>
+
+                <label class="az-content-label mg-b-2">Your Account Number</label>
+                <div class="account-number">
+                  <span><i></i><i></i><i></i><i></i></span>
+                  <span><i></i><i></i><i></i><i></i></span>
+                  <span><i></i><i></i><i></i><i></i></span>
+                  <span>5637</span>
+                </div>
+                <div class="d-sm-flex">
+                  <div>
+                    <label class="az-content-label">Account Holder</label>
+                    <h5 class="account-name">Alicia Christensen</h5>
+                  </div>
+                  <div class="mg-t-20 mg-sm-t-0 mg-sm-l-50">
+                    <label class="az-content-label">Account Type</label>
+                    <h5 class="account-name">Savings</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="chart-wrapper">
+                <div id="flotChart2" class="flot-chart"></div>
+              </div>
+            </div>
+          </div> -->
+          <div class="col-lg-6 mg-t-20">
+            <div class="card card-dashboard-four">
+              <div class="card-header">
+                <h6 class="card-title">Document Status</h6>
+                
+              </div>
+              <div class="card-body row ">
+                <apx-chart class="w-100"
+                [series]="chartOptions.series"
+                [chart]="chartOptions.chart"
+                [dataLabels]="chartOptions.dataLabels"
+                [plotOptions]="chartOptions.plotOptions"
+                [responsive]="chartOptions.responsive"
+                [xaxis]="chartOptions.xaxis"
+                [legend]="chartOptions.legend"
+                [fill]="chartOptions.fill"
+              ></apx-chart>  
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mg-t-20">
+            <div class="card card-dashboard-four">
+              <div class="card-header">
+                <h6 class="card-title">Uploads / Downloads Status </h6>
+                
+              </div>
+              <div id="linechart" class="card-body row ">
+                
+                  <apx-chart class="w-100"
+                    [series]="lineChartOptions.series"
+                    [chart]="lineChartOptions.chart"
+                    [xaxis]="lineChartOptions.xaxis"
+                    [stroke]="lineChartOptions.stroke"
+                    [colors]="lineChartOptions.colors"
+                    [dataLabels]="lineChartOptions.dataLabels"
+                    [legend]="lineChartOptions.legend"
+                    [markers]="lineChartOptions.markers"
+                    [grid]="lineChartOptions.grid"
+                    [yaxis]="lineChartOptions.yaxis"
+                    [title]="lineChartOptions.title"
+                  ></apx-chart>
+                
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mg-t-20">
+            <div class="card card-dashboard-four">
+              <div class="card-header">
+                <h6 class="card-title">Most Downloaded </h6>
+                
+              </div>
+              <div class="card-body row ">
+                <div class="table-responsive dash-table">
+                  <table style="width:99% !important;" id="example2" class=" table user-status-task" datatable [dtOptions]="dtOptions4">
+                  </table>
+                </div>
+                <!-- <apx-chart class="w-100"
+                [series]="chartOptions.series"
+                [chart]="chartOptions.chart"
+                [dataLabels]="chartOptions.dataLabels"
+                [plotOptions]="chartOptions.plotOptions"
+                [responsive]="chartOptions.responsive"
+                [xaxis]="chartOptions.xaxis"
+                [legend]="chartOptions.legend"
+                [fill]="chartOptions.fill"
+              ></apx-chart>   -->
+              </div>
+            </div>
+          </div>
+          <div class="col-8 mg-t-20">
+            <div class="card card-dashboard-fourteen">
+              <h6 class="card-title">Financial Management Review</h6>
+             
+                <div class="card-header">
+                  <ul class="nav nav-tabs justify-content-center" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" data-toggle="tab" href="#documents" role="tab">
+                        My Documents
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#approvals" role="tab">
+                       My Approvals
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#reviewals" role="tab">
+                         My Reviewals
+                      </a>
+                    </li>  
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#rejected" role="tab">
+                       My Rejected Documents
+                      </a>
+                    </li>                 
+                  </ul>
+                </div>
+  
+                <div class="card-body">
+                  <!-- Tab panes -->
+                  <div class="tab-content text-center">
+                    <div class="tab-pane active" id="documents" role="tabpanel">
+                        <div class="dash-table">
+                         <app-my-documents></app-my-documents> 
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="approvals" role="tabpanel">
+                      <div class="dash-table">
+                        <app-my-approvals></app-my-approvals> 
+                       </div>
+                    </div>
+                    <div class="tab-pane" id="reviewals" role="tabpanel">
+                      <div class="dash-table">
+                        <app-my-reviews></app-my-reviews>
+                      </div>
+                    </div>
+                    <div class="tab-pane" id="rejected" role="tabpanel">
+                      <div class="dash-table">
+                        <app-my-rejected-documents></app-my-rejected-documents>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                
+             
+            </div><!-- card -->
+          </div><!-- col -->
+        </div><!-- row -->
+       
+
+        
+      </div><!-- media-body -->
+
+      
+    </div><!-- media -->
+
+  </div><!-- az-content -->

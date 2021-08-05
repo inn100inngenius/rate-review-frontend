@@ -1,0 +1,369 @@
+<div class="az-content pd-y-10 pd-sm-y-10 pd-lg-y-60 pd-xl-y-60">
+  <div class="container-fluid">
+    
+    <div class="az-content-body d-flex flex-column">
+      <div class="row row-xs">
+        <div class="col-md-12">
+          <div class="card bd-0">
+            <div class="card-header tx-medium bd tx-white bg-gray custom-card-header">
+              <div class="">
+                <span class="az-content-label">Task Management</span>
+                <!-- <a routerLink="/task-management/add" class="pull-right">
+                  <button class="btn-primary custom-btn rounded">
+                    <span>Create New</span>
+                  </button>
+                </a>
+                <a routerLink="/calendar"><button type="button"
+                    class="custom-btn btn-success pull-right mr-2 rounded">Calendar</button></a>
+                <a routerLink="my-tasks"><button type="button"
+                    class="custom-btn btn-dark pull-right mr-2 rounded">My Tasks</button></a> -->
+                <!-- <a routerLink="/task-management/my-tasks"><button type="button"
+                    class="custom-btn btn-dark pull-right mr-2 rounded">My Tasks</button></a> -->
+              </div>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-style2 breadcrumb-cust-style">
+                  <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                  <li class="breadcrumb-item"><a routerLink="/task-management">Dashboard</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Task Board</li>
+                </ol>
+              </nav>
+              <div class="task-action-buttons">
+
+                <!-- <button (click)="myTask()" class="custom-btn btn-dark rounded mg-r-10 mg-b-10 mg-md-b-0">My Tasks</button> -->
+                <button (click)="taskcalendar()" class="custom-btn btn-success rounded mg-r-10 mg-b-10 mg-md-b-0">Calendar</button>
+                <button (click)="createTask()" class="custom-btn btn-primary rounded">Create New</button>
+
+                <!-- <a routerLink="add" class="pull-right">
+                  <button class="btn-primary custom-btn rounded">
+                    <span>Create New</span>
+                  </button>
+                </a>
+                <a routerLink="/calendar">
+                  <button type="button"
+                    class="custom-btn btn-success pull-right mr-2 rounded">Calendar</button>
+                  </a>
+                <a routerLink="my-tasks">
+                  <button type="button"
+                    class="custom-btn btn-dark pull-right mr-2 rounded">My Tasks</button>
+                  </a> -->
+              </div>
+
+            </div><!-- card-header -->
+            <div class="card-body bd bd-t-0 min-ht-box">
+              <div class="row">
+
+                <div class="col-md mg-t-20 mg-lg-t-0">
+                  <div class="image-grouped">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search for...">
+                      <span class="input-group-btn">
+                        <button class="custom-btn bg-info" type="button"><i class="fa fa-search pd-y-5"></i></button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col-md mg-t-20 mg-lg-t-0">
+                    <div class="multiselect-bg">   
+                      <ng-multiselect-dropdown 
+                        class="form-control " name="properties" [placeholder]="'Select properties'"
+                        [settings]="dropdownSettings" [data]="propertyList" [(ngModel)]="filterData.properties"
+                        (onSelect)="onPropertyChange(1)" (onDeSelect)="onPropertyChange(2)"
+                        (onSelectAll)="onPropertyChange(3)" (onDeSelectAll)="onPropertyChange(4)" required>
+                      </ng-multiselect-dropdown>                           
+                      
+                    </div>
+                  <!-- </div> -->
+                </div>
+                <div class="col-md mg-t-20 mg-lg-t-0">
+                  <div class="multiselect-bg">  
+                    <ng-multiselect-dropdown 
+                      class="form-control " name="roles" [placeholder]="'Select roles'"
+                      [settings]="dropdownSettingsRole" [data]="roleList" [(ngModel)]="filterData.roles"
+                      (onSelect)="onRoleChange(1)" (onDeSelect)="onRoleChange(2)"
+                      (onSelectAll)="onRoleChange(3)" (onDeSelectAll)="onRoleChange(4)" required>
+                    </ng-multiselect-dropdown>                               
+                    <!-- <angular2-multiselect name="multiselect2" [data]="dropdownListRoles" 
+                    [(ngModel)]="selectedItemsRoles" 
+                    [settings]="roleSettings" 
+                    (onSelect)="onItemSelect($event)" 
+                    (onDeSelect)="OnItemDeSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                    (onDeSelectAll)="onDeSelectAll($event)">
+                      </angular2-multiselect> -->
+                  </div>
+                </div>
+                <div class="col-md mg-t-20 mg-lg-t-0">
+                  <div class="multiselect-bg"> 
+                    <ng-multiselect-dropdown 
+                        class="form-control " name="users" [placeholder]="'Select users'"
+                        [settings]="dropdownSettingsUser" [data]="userList" [(ngModel)]="filterData.users"
+                        (onSelect)="onUserChange(1)" (onDeSelect)="onUserChange(2)"
+                        (onSelectAll)="onUserChange(3)" (onDeSelectAll)="onUserChange(4)" required>
+                      </ng-multiselect-dropdown>                                  
+                    <!-- <angular2-multiselect name="multiselect3" [data]="dropdownListUsers"
+                    [(ngModel)]="selectedItemsUsers" 
+                    [settings]="userSettings" 
+                    (onSelect)="onItemSelect($event)" 
+                    (onDeSelect)="OnItemDeSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                    (onDeSelectAll)="onDeSelectAll($event)">
+                      </angular2-multiselect> -->
+                  </div>
+                </div>
+                <div class="col-md mg-t-20 mg-lg-t-0">
+                  <!-- <div class="col-lg-3 mg-t-20 mg-lg-t-0"> -->
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d="ngbDatepicker">
+                    <div class="input-group-append">
+                      <span (click)="d.toggle()" type="button" class="bg-gray-300 pd-x-15 pd-y-4">
+                        <i class="fa fa-calendar-alt tx-info"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="board-wrapper pd-y-12">
+                <div class="col-md bg-gray-200 rounded-5 pd-y-10 mg-r-8 system-task-drop-box">
+                  <div class="d-flex flex-row justify-content-between">
+                    <h4 class="portlet-heading tx-info tx-18"><i class="fa fa-server"></i>&nbsp;System Task</h4>
+                    <span class="badge badge-dark tx-12 ht-20">{{systemTasks.length }}{{systemTasks.length > 0 ?' Tasks':' Task'}}</span>
+                  </div>
+                  <ul id="portlet-card-list-1" class="portlet-card-list">
+                    <li class="portlet-card bd-t bd-4 bd-warning disable-sort-item" 
+                     id="{{progress.id}}" *ngFor="let progress of systemTasks ;">
+                      <div (click)="systemTaskDetails(progress.id)">
+                        <div class="d-flex flex-row justify-content-between">
+                          <p class="task-date tx-12"><i class="fa fa-calendar-alt"></i>&nbsp;{{progress.start_date}}</p>
+                          <span class="status-pointer-badge-warning" *ngIf="progress.my_reviewal">Review</span>
+                          <span class="status-pointer-badge-success" *ngIf="progress.my_approval">Approve</span>
+                        </div>
+                        <h4 class="task-title task-limited-contents">{{progress.task_title}}</h4>
+                        <div class="task-desc task-limited-contents" [innerHtml]="progress.task_description">
+                          </div>
+                      </div>
+                      <div class="image-grouped" (click)="gotoTimeline(progress.id)">
+                        <ng-container  *ngFor="let users of progress.task_users ;let i = index;">
+                          <!-- <img src="assets/img/faces/face4.jpg" alt="profile image"  *ngIf="i < 3 "> -->
+                          <span class="more-user" *ngIf="i < 3 ">{{users.user_name.substring(0,2).toUpperCase()}}</span>
+
+                          </ng-container>
+                          <span class="more-user" *ngIf="progress.task_users && progress.task_users.length > 3">+{{(progress.task_users  && progress.task_users.length > 3) ? progress.task_users.length - 3:''}}</span>
+                      </div>
+
+                      <div class="pd-y-5">
+                        <ngb-progressbar type="warning" [value]="progress.task_percentage" [striped]="true" [animated]="true" routerLink="timeline"><i>{{progress.task_percentage}}%</i></ngb-progressbar>
+                      </div>
+                      <div class="d-flex flex-row justify-content-between">
+                        <span class="badge  mg-x-4 wd-110 tx-bold tx-12 pd-x-10 pd-y-5"
+                        [ngClass]="{'badge-info': progress.days_to_due > 10, 'badge-warning': progress.days_to_due <= 10 && progress.days_to_due >= 5, 'badge-danger':progress.days_to_due < 5}" >
+                        
+                          <i class="fa fa-hourglass-half"></i>&nbsp; {{progress.due_date}}</span>
+                        <span class="badge badge-danger op-7 wd-75 tx-12" *ngIf="progress.priority == 1"><i class="fa fa-arrow-up"></i>&nbsp; High</span>
+                        <span class="badge badge-warning op-7 wd-75 tx-12" *ngIf="progress.priority == 2"><i class="fa fa-sort"></i>&nbsp; Medium</span>
+                        <span class="badge badge-success op-7 wd-75 tx-12" *ngIf="progress.priority == 3"><i class="fa fa-arrow-down"></i>&nbsp;Low</span>
+                      </div>
+                    </li>
+                    </ul>
+                </div>
+                <div class="col-md bg-gray-200 rounded-5 pd-y-10 mg-r-8">
+                  <div class="d-flex flex-row justify-content-between">
+                    <h4 class="portlet-heading tx-18 tx-gray-800 ">Todo</h4>
+                    <span class="badge badge-dark tx-12 ht-20">{{taskTodo.length }}{{taskTodo.length > 0 ?' Tasks':' Task'}}</span>
+                  </div>
+                  <ul id="portlet-card-list-2" class="portlet-card-list">
+
+                    <li class="portlet-card bd-t bd-4 bd-todo" [ngClass]="{'disable-sort-item': !todo.my_task }"
+                     id="{{todo.id}}" *ngFor="let todo of taskTodo ;">
+                      <div (click)="taskDetails(todo.id)">
+                        <div class="d-flex flex-row justify-content-between">
+                          <p class="task-date tx-12"><i class="fa fa-calendar-alt"></i>&nbsp;{{todo.start_date}}</p>
+                          <span class="status-pointer-badge-warning" *ngIf="todo.my_reviewal">Review</span>
+                          <span class="status-pointer-badge-success" *ngIf="todo.my_approval">Approve</span>
+                        </div>
+                        <h4 class="task-title task-limited-contents">{{todo.task_title}}</h4>
+                        <div class="task-desc task-limited-contents" [innerHtml]="todo.task_description">
+                          </div>
+                      </div>                      
+                      <div class="image-grouped" (click)="gotoTimeline(todo.id)"  >
+                        <ng-container  *ngFor="let users of todo.task_users ;let i = index;">
+                        <!-- <img src="assets/img/faces/face4.jpg" alt="profile image"  *ngIf="i < 3 "> -->
+                        <span class="more-user" *ngIf="i < 3 ">{{users.user_name.substring(0,2).toUpperCase()}}</span>
+
+                        </ng-container>
+                        <span class="more-user" *ngIf="todo.task_users && todo.task_users.length > 3">+{{(todo.task_users  && todo.task_users.length > 3) ? todo.task_users.length - 3:''}}</span>
+                      </div>
+                      <div class="pd-y-5">
+                        <ngb-progressbar type="indigo" [value]="todo.task_percentage" [striped]="true" [animated]="true" routerLink="timeline"><i>{{todo.task_percentage}}%</i></ngb-progressbar>
+                      </div>
+                      <div class="d-flex flex-row justify-content-between">
+                        <span class="badge  mg-x-4 wd-110 tx-bold tx-12 pd-x-10 pd-y-5"
+                        [ngClass]="{'badge-info': todo.days_to_due > 10, 'badge-warning': todo.days_to_due <= 10 && todo.days_to_due >= 5, 'badge-danger':todo.days_to_due < 5}" >
+                          <i class="fa fa-hourglass-half"></i>&nbsp; {{todo.due_date}}
+                        </span>
+                        <span class="badge badge-danger op-7 wd-75 tx-12" *ngIf="todo.priority == 1"><i class="fa fa-arrow-up"></i>&nbsp; High</span>
+                        <span class="badge badge-warning op-7 wd-75 tx-12" *ngIf="todo.priority == 2"><i class="fa fa-sort"></i>&nbsp; Medium</span>
+                        <span class="badge badge-success op-7 wd-75 tx-12" *ngIf="todo.priority == 3"><i class="fa fa-arrow-down"></i>&nbsp;Low</span>
+
+                      </div>
+                    </li>
+
+                   
+
+                  </ul>
+                </div>
+                <div class="col-md bg-gray-200 rounded-5 pd-y-10 mg-r-8">
+                  <div class="d-flex flex-row justify-content-between">
+                    <h4 class="portlet-heading tx-18 tx-gray-800">In progress</h4>
+                    <span class="badge badge-dark tx-12 ht-20">{{taskInprogress.length }}{{taskInprogress.length > 0 ?' Tasks':' Task'}}</span>
+                  </div>
+                  <ul id="portlet-card-list-3" class="portlet-card-list">
+
+                    <li class="portlet-card bd-t bd-4 bd-inprogress" [ngClass]="{'disable-sort-item': !progress.my_task }"
+                     id="{{progress.id}}" *ngFor="let progress of taskInprogress ;">
+                      <div (click)="taskDetails(progress.id)">
+                        <div class="d-flex flex-row justify-content-between">
+                          <p class="task-date tx-12"><i class="fa fa-calendar-alt"></i>&nbsp;{{progress.start_date}}</p>
+                          <span class="status-pointer-badge-warning" *ngIf="progress.my_reviewal">Review</span>
+                          <span class="status-pointer-badge-success" *ngIf="progress.my_approval">Approve</span>
+                        </div>
+                        <h4 class="task-title task-limited-contents">{{progress.task_title}}</h4>
+                        <div class="task-desc task-limited-contents"  [innerHtml]="progress.task_description">
+                         </div>
+                      </div>
+                      <div class="image-grouped" (click)="gotoTimeline(progress.id)">
+                        <ng-container  *ngFor="let users of progress.task_users ;let i = index;">
+                          <!-- <img src="assets/img/faces/face4.jpg" alt="profile image"  *ngIf="i < 3 "> -->
+                          <span class="more-user" *ngIf="i < 3 ">{{users.user_name.substring(0,2).toUpperCase()}}</span>
+
+                          </ng-container>
+                          <span class="more-user" *ngIf="progress.task_users && progress.task_users.length > 3">+{{(progress.task_users  && progress.task_users.length > 3) ? progress.task_users.length - 3:''}}</span>
+                      </div>
+
+                      <div class="pd-y-5">
+                        <ngb-progressbar type="warning" [value]="progress.task_percentage" [striped]="true" [animated]="true" routerLink="timeline"><i>{{progress.task_percentage}}%</i></ngb-progressbar>
+                      </div>
+                      <div class="d-flex flex-row justify-content-between">
+                        <span class="badge  mg-x-4 wd-110 tx-bold tx-12 pd-x-10 pd-y-5"
+                        [ngClass]="{'badge-info': progress.days_to_due > 10, 'badge-warning': progress.days_to_due <= 10 && progress.days_to_due >= 5, 'badge-danger':progress.days_to_due < 5}" >
+                        
+                          <i class="fa fa-hourglass-half"></i>&nbsp; {{progress.due_date}}</span>
+                        <span class="badge badge-danger op-7 wd-75 tx-12" *ngIf="progress.priority == 1"><i class="fa fa-arrow-up"></i>&nbsp; High</span>
+                        <span class="badge badge-warning op-7 wd-75 tx-12" *ngIf="progress.priority == 2"><i class="fa fa-sort"></i>&nbsp; Medium</span>
+                        <span class="badge badge-success op-7 wd-75 tx-12" *ngIf="progress.priority == 3"><i class="fa fa-arrow-down"></i>&nbsp;Low</span>
+                      </div>
+                    </li>
+
+                   
+                  </ul>
+                </div>
+                <!-- [ngClass]="{'disable-sort-item': !completed.my_task }" -->
+                <div class="col-md bg-gray-200 rounded-5 pd-y-10 mg-r-8">
+                  <div class="d-flex flex-row justify-content-between">
+                    <h4 class="portlet-heading tx-18 tx-gray-800">Completed</h4>
+                    <span class="badge badge-dark tx-12 ht-20">{{taskCompleted.length }}{{taskCompleted.length > 0 ?' Tasks':' Task'}}</span>
+                  </div>
+                  <ul id="portlet-card-list-4" class="portlet-card-list">
+                    <li class="portlet-card bd-t bd-4 " 
+                    [ngClass]="{'bd-approved': completed.my_action_status == 'Approved', 
+                          'bd-done': completed.my_action_status == 'Done',
+                          'bd-rejected': completed.my_action_status == 'Rejected',
+                          'bd-completed': completed.my_action_status == 'Pending',
+                          'disable-sort-item': !completed.my_task }" 
+                    
+                     id="{{completed.id}}" *ngFor="let completed of taskCompleted ;">
+                      <div (click)="taskDetails(completed.id)">
+                        <div class="d-flex flex-row justify-content-between">
+                          <p class="task-date tx-12"><i class="fa fa-calendar-alt"></i>&nbsp;{{completed.start_date}}</p>
+                          <span class="status-pointer-badge-warning" *ngIf="completed.my_reviewal">Review</span>
+                          <span class="status-pointer-badge-success" *ngIf="completed.my_approval">Approve</span>
+                        </div>
+                        <h4 class="task-title task-limited-contents">{{completed.task_title}}</h4>
+                        <div class="task-desc task-limited-contents" [innerHtml]="completed.task_description">
+                          </div>
+                      </div>
+                      <div class="image-grouped" (click)="gotoTimeline(completed.id)">
+                        <ng-container  *ngFor="let users of completed.task_users ;let i = index;">
+                          <!-- <img src="assets/img/faces/face4.jpg" alt="profile image"  *ngIf="i < 3 "> -->
+                          <span class="more-user" *ngIf="i < 3 ">{{users.user_name.substring(0,2).toUpperCase()}}</span>
+
+                          </ng-container>
+                          <span class="more-user" *ngIf="completed.task_users && completed.task_users.length > 3">+{{(completed.task_users  && completed.task_users.length > 3) ? completed.task_users.length - 3:''}}</span>
+                      </div>
+                      <div class="pd-y-5">
+                        <ngb-progressbar type="success" [value]="completed.task_percentage" [striped]="true" [animated]="true" routerLink="timeline"><i>{{completed.task_percentage}}%</i></ngb-progressbar>
+                      </div>
+                      <div class="d-flex flex-row justify-content-between">
+                        <span class="badge  mg-x-4 wd-110 tx-bold tx-12 pd-x-10 pd-y-5"
+                        [ngClass]="{'badge-info': completed.days_to_due > 10, 'badge-warning': completed.days_to_due <= 10 && completed.days_to_due >= 5, 'badge-danger':completed.days_to_due < 5 }" >
+                        
+                          <i class="fa fa-hourglass-half"></i>&nbsp; {{completed.due_date}}</span>
+                        <ng-container *ngIf="!completed.my_task">
+                        <span class="badge badge-danger op-7 wd-75 tx-12" *ngIf="completed.priority == 1"><i class="fa fa-arrow-up"></i>&nbsp; High</span>
+                        <span class="badge badge-warning op-7 wd-75 tx-12" *ngIf="completed.priority == 2"><i class="fa fa-sort"></i>&nbsp; Medium</span>
+                        <span class="badge badge-success op-7 wd-75 tx-12" *ngIf="completed.priority == 3"><i class="fa fa-arrow-down"></i>&nbsp;Low</span>
+                        </ng-container>
+                        <ng-container *ngIf="completed.my_task">
+                          <span  class="badge  op-7 wd-75 tx-12 tx-bold"  [ngClass]="{'bg-approved': completed.my_action_status == 'Approved', 
+                          'bg-done': completed.my_action_status == 'Done',
+                          'bg-rejected': completed.my_action_status == 'Rejected',
+                          'bg-completed': completed.my_action_status == 'Pending' }" 
+                         >{{completed.my_action_status}}</span>
+                        </ng-container>
+                      </div>
+                    </li>
+
+                  </ul>
+                </div>
+                <div class="col-md bg-gray-200 rounded-5 pd-y-10">
+                  <div class="d-flex flex-row justify-content-between">
+                    <h4 class="portlet-heading tx-18 tx-gray-800">Not completed</h4>
+                    <span class="badge badge-dark tx-12 ht-20">{{taskNotCompleted.length }}{{taskNotCompleted.length > 0 ?' Tasks':' Task'}}</span>
+                  </div>
+                  <ul id="portlet-card-list-5" class="portlet-card-list">
+                    <li class="portlet-card bd-t bd-4 bd-notcompleted"  [ngClass]="{'disable-sort-item': !notcompleted.my_task }"
+                     id="{{notcompleted.id}}" *ngFor="let notcompleted of taskNotCompleted ;">
+                      <div (click)="taskDetails(notcompleted.id)">
+                        <div class="d-flex flex-row justify-content-between">
+                          <p class="task-date tx-12"><i class="fa fa-calendar-alt"></i>&nbsp;{{notcompleted.start_date}}</p>
+                          <span class="status-pointer-badge-warning" *ngIf="notcompleted.my_reviewal">Review</span>
+                          <span class="status-pointer-badge-success" *ngIf="notcompleted.my_approval">Approve</span>
+                        </div>
+                        <h4 class="task-title task-limited-contents">{{notcompleted.task_title}}</h4>
+                        <div class="task-desc task-limited-contents" [innerHtml]="notcompleted.task_description">
+                          </div>
+                      </div>
+                      <div class="image-grouped" (click)="gotoTimeline(notcompleted.id)">
+                        <ng-container  *ngFor="let users of notcompleted.task_users ;let i = index;">
+                          <!-- <img src="assets/img/faces/face4.jpg" alt="profile image"  *ngIf="i < 3 "> -->
+                          <span class="more-user" *ngIf="i < 3 ">{{users.user_name.substring(0,2).toUpperCase()}}</span>
+
+                          </ng-container>
+                          <span class="more-user" *ngIf="notcompleted.task_users && notcompleted.task_users.length > 3">+{{(notcompleted.task_users  && notcompleted.task_users.length > 3) ? notcompleted.task_users.length - 3:''}}</span>
+                      </div>
+                      <div class="pd-y-5">
+                        <ngb-progressbar type="danger" [value]="notcompleted.task_percentage" [striped]="true" [animated]="true" routerLink="timeline"><i>{{notcompleted.task_percentage}}%</i></ngb-progressbar>
+                      </div>
+                      <div class="d-flex flex-row justify-content-between">
+                        <span class="badge  mg-x-4 wd-110 tx-bold tx-12 pd-x-10 pd-y-5"
+                        [ngClass]="{'badge-info': notcompleted.days_to_due > 10, 'badge-warning': notcompleted.days_to_due <= 10 && notcompleted.days_to_due >= 5, 'badge-danger':notcompleted.days_to_due < 5}" >
+                        
+                          <i class="fa fa-hourglass-half"></i>&nbsp; {{notcompleted.due_date}}</span>
+                        <span class="badge badge-danger op-7 wd-75 tx-12" *ngIf="notcompleted.priority == 1"><i class="fa fa-arrow-up"></i>&nbsp; High</span>
+                        <span class="badge badge-warning op-7 wd-75 tx-12" *ngIf="notcompleted.priority == 2"><i class="fa fa-sort"></i>&nbsp; Medium</span>
+                        <span class="badge badge-success op-7 wd-75 tx-12" *ngIf="notcompleted.priority == 3"><i class="fa fa-arrow-down"></i>&nbsp;Low</span>
+                      </div>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
