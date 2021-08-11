@@ -277,24 +277,33 @@ export class HotelsettingComponent implements OnInit {
   }
 
   onHotelListChange(e) {
-
-    if (this.BookingListData.length > 10) {
-      this.toastService.show("Only 10 Hotel Selection Allowed", {
-        classname: 'bg-danger text-light',
-      });
-      return;
+    debugger;
+    if (this.hotelTypeId == 1) {
+      if (this.BookingListData.length >= 10) {
+        this.toastService.show("Only 10 Hotel Selection Allowed", {
+          classname: 'bg-danger text-light',
+        });
+        this.BookingList = [];
+        return;
+      }
     }
-    if (this.BookingListData.length > 10) {
-      this.toastService.show("Only 10 Hotel Selection Allowed", {
-        classname: 'bg-danger text-light',
-      });
-      return;
+    if (this.hotelTypeId == 2) {
+      if (this.HoltelListData.length >= 10) {
+        this.toastService.show("Only 10 Hotel Selection Allowed", {
+          classname: 'bg-danger text-light',
+        });
+        this.BookingList = [];
+        return;
+      }
     }
-    if (this.BookingListData.length > 10) {
-      this.toastService.show("Only 10 Hotel Selection Allowed", {
-        classname: 'bg-danger text-light',
-      });
-      return;
+    if (this.hotelTypeId == 3) {
+      if (this.ExpediaListData.length >= 10) {
+        this.toastService.show("Only 10 Hotel Selection Allowed", {
+          classname: 'bg-danger text-light',
+        });
+        this.BookingList = [];
+        return;
+      }
     }
     this.SpinnerService.show();
 
@@ -319,30 +328,32 @@ export class HotelsettingComponent implements OnInit {
   }
 
   onCityChange(e) {
-    this.SpinnerService.show();
+    this.hotelTypeId = 0;
+    this.BookingList = [];
+    // this.SpinnerService.show();
 
-    let val = e.value;
-    var link = `${'UserSettings/GetHotelList'}`;
-    this.appService.get(link, { id: val })
-      .subscribe(
-        data => {
-          this.SpinnerService.hide();
-          if (this.hotelTypeId == 1) {
-            this.BookingList = data[0];
-          }
-          else if (this.hotelTypeId == 2) {
-            this.BookingList = data[1];
-          }
-          else if (this.hotelTypeId == 3) {
-            this.BookingList = data[2];
-          }
-          // this.BookingList = data[0];
-          // this.HotelList = data[1];
-          // this.ExpediaList = data[2];
-        },
-        err => {
-          this.SpinnerService.hide();
-        })
+    // let val = e.value;
+    // var link = `${'UserSettings/GetHotelList'}`;
+    // this.appService.get(link, { id: val })
+    //   .subscribe(
+    //     data => {
+    //       this.SpinnerService.hide();
+    //       if (this.hotelTypeId == 1) {
+    //         this.BookingList = data[0];
+    //       }
+    //       else if (this.hotelTypeId == 2) {
+    //         this.BookingList = data[1];
+    //       }
+    //       else if (this.hotelTypeId == 3) {
+    //         this.BookingList = data[2];
+    //       }
+    //       // this.BookingList = data[0];
+    //       // this.HotelList = data[1];
+    //       // this.ExpediaList = data[2];
+    //     },
+    //     err => {
+    //       this.SpinnerService.hide();
+    //     })
   }
 
   onBookingChange(e, j) {
@@ -430,6 +441,7 @@ export class HotelsettingComponent implements OnInit {
         this.getAllExpediaData();
         this.addDetails();
         this.bookingDataList = [];
+        this.bookingDataList.push(this.createNewBooking());
         this.city = 0;
         this.state = 0;
         this.hotelTypeId = 0;

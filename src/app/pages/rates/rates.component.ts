@@ -21,90 +21,16 @@ import { AppService } from '@app/app.service';
 })
 export class RatesComponent {
 
-  Highcharts: typeof Highcharts = Highcharts;
-  chartConstructor = 'mapChart';
-
-  chartOptions: Highcharts.Options = {
-    chart: {
-      map: worldMap
-    },
-    title: {
-      text: ''
-    },
-    subtitle: {
-      text:
-        ''
-    },
-    mapNavigation: {
-      enabled: false,
-      buttonOptions: {
-        alignTo: 'spacingBox'
-      }
-    },
-    legend: {
-      enabled: false
-    },
-    colorAxis: {
-      min: 0
-    },
-    plotOptions: {
-      map: {
-        states: {
-          hover: {
-            color: '#BADA55'
-          },
-          select: {
-            color: 'red'
-          }
-        }
-      }
-    },
-    series: [
-      {
-        type: 'map',
-        name: 'Login Counts',
-        allowPointSelect: true,
-        dataLabels: {
-          enabled: false,
-          format: '{point.name}'
-        },
-        allAreas: true,
-        data: [
-        ]
-      }
-    ],
-    responsive: {
-      rules: [{
-        condition: {
-          maxWidth: 200
-        }
-      }]
-    }
-  };
   updateFlag = false;
   user: User;
-  breadcrumbs: string[] = ['Projects', 'Angular Jira Clone', 'Kanban Board'];
-
-  public barChartOptions: ChartOptions = {
-    responsive: true,
-  };
-  public barChartLabels: Label[] = ['1⭐', '2⭐', '3⭐', '4⭐', '5⭐', '6⭐', '7⭐', '8⭐', '9⭐', '10⭐'];
-  public barChartType: ChartType = 'bar';
-  public barChartLegend = true;
-  public barChartPlugins = [];
-
-  public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 136, 55, 40, 45, 89, 76], label: 'Booking', fill: false },
-    { data: [28, 48, 40, 19, 86, 27, 90, 75, 9, 86], label: 'Hotel', fill: false },
-    { data: [12, 56, 89, 105, 56, 145, 40, 5, 89, 46], label: 'Expedia', fill: false }
-  ];
+  
 
   public lineChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 4, 156, 55, 40], label: 'Series A', fill: false },
-    { data: [60, 7, 80, 81, 20, 40, 30, 120, 40, 30], label: 'Series B', fill: true },
+    { data: [60, 7, 80, 81, 20, 40, 30, 120, 40, 30], label: 'Series B', fill: false },
     { data: [65, 59, 0, 81, 56, 255, 40, 156, 6, 40], label: 'Series C', fill: false },
   ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct'];
+  public lineChartLabels: Label[]; //= ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct'];
   public lineChartOptions: (ChartOptions & { annotation?: any }) = {
     responsive: true,
   };
@@ -150,6 +76,7 @@ export class RatesComponent {
       data => {
         console.log(data);
         this.BookingData = data;
+        this.lineChartLabels = this.BookingData;
       }, err => { console.log(err); })
 
     this.appService.post('Dashboard/Hotel_HotelData', {}).subscribe(
@@ -162,23 +89,6 @@ export class RatesComponent {
       data => {
         console.log(data);
         this.ExpediaData = data;
-      }, err => { console.log(err); })
-    this.appService.post('Dashboard/Booking_HotelReview', {}).subscribe(
-      data => {
-        console.log(data);
-        this.BookingReview = data;
-      }, err => { console.log(err); })
-
-    this.appService.post('Dashboard/Hotel_HotelReview', {}).subscribe(
-      data => {
-        console.log(data);
-        this.HotelReview = data;
-      }, err => { console.log(err); })
-
-    this.appService.post('Dashboard/Expedia_HotelReview', {}).subscribe(
-      data => {
-        console.log(data);
-        this.ExpediaReview = data;
       }, err => { console.log(err); })
   }
 }

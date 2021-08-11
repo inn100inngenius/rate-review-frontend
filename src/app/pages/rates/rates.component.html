@@ -1,63 +1,100 @@
 <div class="az-content az-content-dashboard">
-    <div class="container-fluid">
-      <div class="az-content-body">
-        <div class="az-content-header d-block d-md-flex">
+  <div class="container-fluid">
+    <div class="az-content-body">
+      <div class="az-content-header d-block d-md-flex">
+        <div>
+          <h2 class="az-content-title tx-24 mg-b-5 mg-b-lg-8">Hi, Admin!</h2>
+          <p class="mg-b-0">Your Dashboard.</p>
+        </div>
+        <div class="az-dashboard-header-right">
           <div>
-            <h2 class="az-content-title tx-24 mg-b-5 mg-b-lg-8">Hi, Admin!</h2>
-            <p class="mg-b-0">Your Dashboard.</p>
+            <label class="tx-13">Customer Ratings</label>
+            <div class="az-star">
+              <i class="typcn typcn-star active"></i>
+              <i class="typcn typcn-star active"></i>
+              <i class="typcn typcn-star active"></i>
+              <i class="typcn typcn-star active"></i>
+              <i class="typcn typcn-star"></i>
+              <span>(12,775)</span>
+            </div>
           </div>
-          <div class="az-dashboard-header-right">
-            <div>
-              <label class="tx-13">Customer Ratings</label>
-              <div class="az-star">
-                <i class="typcn typcn-star active"></i>
-                <i class="typcn typcn-star active"></i>
-                <i class="typcn typcn-star active"></i>
-                <i class="typcn typcn-star active"></i>
-                <i class="typcn typcn-star"></i>
-                <span>(12,775)</span>
+          <div>
+            <label class="tx-13">All Sales (Online)</label>
+            <h5>431,007</h5>
+          </div>
+          <div>
+            <label class="tx-13">All Sales (Offline)</label>
+            <h5>932,210</h5>
+          </div>
+        </div><!-- az-dashboard-header-right -->
+      </div><!-- az-content-header -->
+
+      <div class="az-content-body">
+        <div class="">
+          <div class="card card-table-two">
+            <h6 class="card-title">Hotel Data</h6>
+            <!-- <span class="d-block mg-b-20">This is the most recent earnings for today's date.</span> -->
+            <div class="card-body bd bd-t-0">
+              <div class="row">
+                <div class="col-md-4">
+                  <table>
+                    <tr>
+                      <th>Hotel Name</th>
+                      <th>Booking.com Name</th>
+                    </tr>
+                    <tr *ngFor="let item of BookingData">
+                      <td>{{item.hotel_name}}</td>
+                      <td>{{item.price}}</td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-md-4">
+                  <table>
+                    <tr>
+                      <th>Hotel Name</th>
+                      <th>Hotel.com Name</th>
+                    </tr>
+                    <tr *ngFor="let item of HotelData">
+                      <td>{{item.hotel_name}}</td>
+                      <td>{{item.price}}</td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-md-4">
+                  <table>
+                    <tr>
+                      <th>Hotel Name</th>
+                      <th>Expedia.com Name</th>
+                    </tr>
+                    <tr *ngFor="let item of ExpediaData">
+                      <td>{{item.hotel_name}}</td>
+                      <td>{{item.price}}</td>
+                    </tr>
+                  </table>
+                </div>
               </div>
             </div>
-            <div>
-              <label class="tx-13">All Sales (Online)</label>
-              <h5>431,007</h5>
-            </div>
-            <div>
-              <label class="tx-13">All Sales (Offline)</label>
-              <h5>932,210</h5>
-            </div>
-          </div><!-- az-dashboard-header-right -->
-        </div><!-- az-content-header -->
-  
-        <div class="az-content-body">
-          <div class="">
-            <div class="card card-table-two">
-              <h6 class="card-title">Hotel Data</h6>
-              <!-- <span class="d-block mg-b-20">This is the most recent earnings for today's date.</span> -->
-  
-              <mat-tab-group mat-align-tabs="center" color="primary" backgroundColor="primary">
-               
-                <mat-tab label="Review">
-  
-                  <div class="fluid-container">
-                    <h4 class="card-text latest-reviews-title"> Reviews</h4>
-                    <div class="col-12 row">
-                      <div class="col-6">
-                        <canvas baseChart [datasets]="lineChartData" [labels]="barChartLabels" chartType="pie"
-                          [options]="lineChartOptions" [plugins]="lineChartPlugins" [legend]="lineChartLegend">
-                        </canvas>
-                        <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels"
-                          [options]="lineChartOptions" [plugins]="lineChartPlugins" [legend]="lineChartLegend"
-                          [chartType]="lineChartType">
-                        </canvas>
-                      </div>
-                    </div>  
-                  </div><!-- table-responsive -->  
-                </mat-tab>
-              </mat-tab-group>
-            </div><!-- card-dashboard-five -->
-          </div><!-- col -->
-        </div><!-- az-content-body -->
+
+            <mat-tab-group mat-align-tabs="center" color="primary" backgroundColor="primary">
+
+              <mat-tab label="Review">
+
+                <div class="fluid-container">
+                  <h4 class="card-text latest-reviews-title"> Reviews</h4>
+                  <div class="col-12 row">
+                    <div class="col-6">
+                      <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels"
+                        [options]="lineChartOptions" [plugins]="lineChartPlugins" [legend]="lineChartLegend"
+                        [chartType]="lineChartType">
+                      </canvas>
+                    </div>
+                  </div>
+                </div><!-- table-responsive -->
+              </mat-tab>
+            </mat-tab-group>
+          </div><!-- card-dashboard-five -->
+        </div><!-- col -->
       </div><!-- az-content-body -->
-    </div>
+    </div><!-- az-content-body -->
   </div>
+</div>
